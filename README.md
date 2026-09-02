@@ -1,54 +1,90 @@
-# lenovobeast
+<div align="center">
 
-Personal landing page — Developer, Builder, Creator.
+# Lenovo-DevPort
 
-Built with vanilla HTML, CSS, and JavaScript. No frameworks, no dependencies — just clean code.
+**Personal landing page — Developer, Builder, Creator.**
+
+[![Live Site](https://img.shields.io/badge/🌐_Live_Site-lenovobeast.github.io-c67d4a?style=for-the-badge)](https://lenovobeast.github.io/Lenovo-DevPort/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-222?style=for-the-badge&logo=github)](https://github.com/LenovoBeast/Lenovo-DevPort)
+[![MIT License](https://img.shields.io/badge/License-MIT-222?style=for-the-badge)](LICENSE)
+
+</div>
+
+---
+
+## 👁️ Live Preview
+
+👉 **[View Live Site →](https://lenovobeast.github.io/Lenovo-DevPort/)**
+
+The page is deployed via GitHub Pages on every push to `main`. The site is served at:
+
+```
+https://lenovobeast.github.io/Lenovo-DevPort/
+```
+
+---
+
+## ✨ Overview
+
+A minimalist, editorial developer landing page — built with vanilla HTML, CSS, and JavaScript. No frameworks, no build step, no dependencies. Just clean, handcrafted code.
+
+**Design principles:**
+- Warm dark aesthetic with burnt sienna accent (`#c67d4a`)
+- Editorial typography — Cormorant Garamond × DM Sans × JetBrains Mono
+- Generous whitespace, no visual clutter
+- SVG line icons, mono-spaced tags
+- No AI-slop: no glassmorphism, no glow blobs, no shimmer, no 3D tilt
+
+---
 
 ## 🚀 Quick Start
 
 ```bash
-# Clone the repo
-git clone https://github.com/lenovobeast/lenovobeast.github.io.git
-cd lenovobeast.github.io
+# Clone
+git clone https://github.com/LenovoBeast/Lenovo-DevPort.git
+cd Lenovo-DevPort
 
-# Serve locally
+# Serve locally (pick one)
 npx serve
-# Or: python -m http.server 8000
-# Or: open index.html directly
+python -m http.server 8000
+# Or just open index.html
 ```
 
-## ✨ Features
+---
 
-- Clean, modern design with dark luxury aesthetic
-- Animated gradient mesh background
-- Floating particle effects
-- 3D tilt interactions on cards
-- Smooth scroll animations
-- Fully responsive
-
-## 📁 Project Structure
+## 📁 Structure
 
 ```
-├── index.html    # Main page
-├── README.md     # This file
-└── .utim_tmp/    # Assets & temp files (ignored)
+├── index.html    # The entire page
+├── README.md     # You are here
+└── .utim_tmp/    # Build assets (gitignored)
 ```
 
-## 🌐 Deploy to GitHub Pages
-
-1. Push to `main` branch on GitHub
-2. Go to repository **Settings → Pages**
-3. Set Source to `main` branch, `/ (root)` folder
-4. Your site will be live at: `https://lenovobeast.github.io`
+---
 
 ## 🔧 Customization
 
-Edit `index.html` to update:
-- Name/brand in navigation and footer
-- Hero section text
-- About section content
-- Skills and projects
-- Contact links
+Everything lives in `index.html`:
+- **Brand & nav** — name in the top bar
+- **Hero** — headline + intro
+- **About** — bio paragraph
+- **Projects** — project cards & links
+- **Skills** — tech tags
+- **Contact** — social links
+
+---
+
+## 🌐 Deployment
+
+This repo auto-deploys to GitHub Pages from the `main` branch.
+
+| Setting      | Value       |
+|--------------|-------------|
+| Source       | `main`      |
+| Path         | `/ (root)`  |
+| URL          | `https://lenovobeast.github.io/Lenovo-DevPort/` |
+
+---
 
 ## 📜 License
 
