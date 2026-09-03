@@ -1,0 +1,14 @@
+index.html
+  h_e5fbfa34adbdd7 60-77
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "06ef995bfabbfd0b84e71a60298347b998c9aad3",
+  "prompts": {},
+  "humans": {
+    "h_e5fbfa34adbdd7": {
+      "author": "Lenovo Beast <lenovobeast.905@gmail.com>"
+    }
+  }
+}
