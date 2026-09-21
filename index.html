@@ -192,6 +192,8 @@
       position: relative;
       min-height: 550px;
       margin-right: -5vw;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
       border: 1px solid var(--line);
       border-radius: var(--radius);
       overflow: hidden;
@@ -202,7 +204,7 @@
     .hero-art img {
       width: 100%;
       height: 100%;
-      min-height: 550px;
+      min-height: 0;
       object-fit: cover;
       opacity: 0.76;
       filter: grayscale(0.72) saturate(0.72) contrast(1.12);
@@ -215,14 +217,14 @@
       pointer-events: none;
     }
     .art-note {
-      position: absolute;
-      right: 18px;
-      bottom: 18px;
+      position: relative;
+      right: auto;
+      bottom: auto;
       z-index: 1;
-      max-width: 180px;
+      max-width: none;
       padding: 12px 14px;
-      border-left: 2px solid var(--accent);
-      background: color-mix(in srgb, var(--bg), transparent 15%);
+      border-top: 2px solid var(--accent);
+      background: var(--surface);
       color: var(--text);
       font-size: 0.78rem;
     }
@@ -350,6 +352,26 @@
     .bento-card.accent { background: var(--accent); border-color: var(--accent); color: #fff; }
     .bento-card.accent p { color: rgba(255,255,255,0.82); }
     .bento-card.accent::after { background: linear-gradient(135deg, rgba(0,0,0,0.05), rgba(0,0,0,0.25)); }
+    .bento-card.visual-card {
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto auto;
+      padding: 0;
+    }
+    .bento-card.visual-card img {
+      position: relative;
+      inset: auto;
+      z-index: 0;
+      grid-row: 1;
+      min-height: 0;
+      opacity: 0.82;
+    }
+    .bento-card.visual-card::after { display: none; }
+    .bento-card.visual-card h3,
+    .bento-card.visual-card p {
+      padding-inline: 24px;
+    }
+    .bento-card.visual-card h3 { grid-row: 2; margin-top: 18px; }
+    .bento-card.visual-card p { grid-row: 3; margin-bottom: 24px; }
 
     .media-rail {
       display: grid;
@@ -445,6 +467,8 @@
     }
     .accordion-item {
       position: relative;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
       flex: 1 1 0;
       min-width: 0;
       overflow: hidden;
@@ -454,10 +478,10 @@
       transition: flex 700ms var(--ease), border-color 250ms ease;
     }
     .accordion-item:hover, .accordion-item:focus-within { flex: 2.8 1 0; border-color: var(--accent); }
-    .accordion-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.9) contrast(1.14); opacity: 0.6; transition: transform 800ms var(--ease), opacity 500ms ease; }
+    .accordion-item img { width: 100%; height: 100%; min-height: 0; object-fit: cover; filter: grayscale(0.9) contrast(1.14); opacity: 0.6; transition: transform 800ms var(--ease), opacity 500ms ease; }
     .accordion-item:hover img, .accordion-item:focus-within img { transform: scale(1.08); opacity: 0.92; }
     .accordion-item::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(16,18,20,0.95), transparent 60%); }
-    .accordion-copy { position: absolute; right: 22px; bottom: 20px; left: 22px; z-index: 1; min-width: 190px; }
+    .accordion-copy { position: relative; right: auto; bottom: auto; left: auto; z-index: 1; min-width: 190px; padding: 18px 22px 20px; background: var(--surface); }
     .accordion-copy h3 { margin: 0 0 7px; font-size: 1.45rem; letter-spacing: -0.04em; }
     .accordion-copy p { margin: 0; color: #d7dce0; font-size: 0.84rem; }
 
@@ -476,10 +500,9 @@
     .scroll-gallery-heading h2 { max-width: 8ch; }
     .scroll-gallery-heading > p { max-width: 38ch; margin: 0; color: var(--muted); }
     .gallery-stack { display: grid; gap: 22px; }
-    .gallery-card { position: relative; min-height: 390px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .gallery-card { display: grid; grid-template-rows: minmax(0, 1fr) auto; min-height: 520px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
     .gallery-card img { width: 100%; height: 100%; min-height: 390px; object-fit: cover; filter: grayscale(0.76) contrast(1.16); opacity: 0.78; }
-    .gallery-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(16,18,20,0.9), transparent 65%); }
-    .gallery-card-copy { position: absolute; right: 24px; bottom: 22px; left: 24px; z-index: 1; }
+    .gallery-card-copy { position: relative; right: auto; bottom: auto; left: auto; z-index: 1; padding: 22px 24px 24px; background: var(--surface); }
     .gallery-card-copy h3 { margin: 0 0 5px; font-size: 1.65rem; }
     .gallery-card-copy p { margin: 0; color: #d7dce0; }
 
@@ -527,10 +550,10 @@
       .media-panel { min-height: 280px; }
       .portal-grid, .repo-feed { grid-template-columns: 1fr; }
       .accordion { min-height: 680px; flex-direction: column; }
-      .accordion-item, .accordion-item:hover, .accordion-item:focus-within { min-height: 140px; flex: 1 1 0; }
+      .accordion-item, .accordion-item:hover, .accordion-item:focus-within { min-height: 200px; flex: 1 1 0; }
       .accordion-item:hover, .accordion-item:focus-within { flex: 2 1 0; }
       .hero-art { min-height: 360px; margin-right: 0; transform: rotate(1deg); }
-      .hero-art img { min-height: 360px; }
+      .hero-art img { min-height: 0; }
     }
   </style>
 </head>
@@ -664,7 +687,7 @@
           <p>Different tools, same expectation: make the system clearer than you found it.</p>
         </div>
         <div class="bento">
-          <article class="bento-card feature reveal">
+          <article class="bento-card feature visual-card reveal">
             <img src="https://opengraph.githubassets.com/1/LenovoBeast/Lenovo-DevPort" alt="Lenovo DevPort repository preview">
             <h3>Build for the second read.</h3>
             <p>The first interaction should feel obvious. The second should reveal care.</p>
@@ -677,7 +700,7 @@
             <h3>Systems over shortcuts.</h3>
             <p>Reusable foundations keep the work durable.</p>
           </article>
-          <article class="bento-card wide reveal">
+          <article class="bento-card wide visual-card reveal">
             <img src="https://opengraph.githubassets.com/1/LenovoBeast/taste-skill" alt="Taste-skill repository preview">
             <h3>Details that earn their place.</h3>
             <p>Motion, texture, and interaction should explain something, not compete for attention.</p>
