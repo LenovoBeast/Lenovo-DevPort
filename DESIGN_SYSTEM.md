@@ -1,8 +1,8 @@
-# Lenovo Beast Portfolio Design System
+# Lenovo Beast Portal Design System
 
 ## Direction
 
-The portfolio uses a restrained technical-editorial system. Graphite surfaces and cool neutral typography create the base; Lenovo red is the only accent. The design is intentionally quiet so the work and the writing carry the page.
+The portal uses a technical-editorial system with a more expressive Behance-style composition. Graphite surfaces and cool neutral typography create the base; Lenovo red is the only accent. Movement is used to establish hierarchy, never to decorate empty space.
 
 ## Tokens
 
@@ -34,29 +34,32 @@ Both modes use the same hierarchy, geometry, and accent. The page follows the us
 
 ## Typography
 
-- Display and body: system UI stack for fast, native rendering.
-- Labels and tags: system monospace stack.
-- Headings use tight tracking and a restrained scale rather than oversized decorative type.
+- Display and body: Cabinet Grotesk, loaded from Google Fonts with a system fallback.
+- Labels and terminal content: JetBrains Mono with a system monospace fallback.
+- Hero headings use a wide `78rem` maximum and `clamp(3rem, 6vw, 6.5rem)` sizing so they stay within two or three lines on desktop.
 
 ## Components
 
 - Buttons use a single 999px pill radius. Primary buttons use Lenovo red with white text. Secondary buttons are transparent with a neutral border.
 - Project surfaces use one shared 14px radius, a 1px border, and no artificial glow.
 - Layout hierarchy comes from spacing, borders, and contrast before shadows.
-- Images are real photography with a restrained grayscale treatment. No fake dashboard or terminal previews.
-- The practice bento uses five intentional cells with dense placement: one featured two-column/two-row cell, two supporting cells, and one wide closing cell.
-- The visual rail uses four responsive image panels. Each panel scales its image and lifts slightly on hover, while remaining static for reduced-motion users.
+- Images are GitHub-native repository previews and profile assets with restrained grayscale treatment.
+- The practice bento is a four-column, four-row dense grid with five intentional cells and no unused desktop cells.
+- The project accordion expands the hovered panel horizontally to reveal its case-study copy.
+- The capability marquee provides a quiet continuous rhythm between major chapters.
+- The work gallery pins its left heading while right-side repository previews scale from `0.8` to `1` and fade as they leave the viewport.
 
 ## Motion and accessibility
 
 - Sections reveal once on entry with `IntersectionObserver`.
-- Motion only uses opacity and transform.
+- GSAP and ScrollTrigger handle pinned gallery motion, image scale/fade, hero parallax, and bento card stacking.
 - `prefers-reduced-motion` removes reveal movement and smooth scrolling.
 - All interactive elements have visible keyboard focus states.
 - Body text and controls are calibrated for WCAG AA contrast.
+- If GSAP or the GitHub API is unavailable, the static layout and fallback repository message remain usable.
 
 ## Responsive behavior
 
-- Desktop layouts use asymmetric grids for the hero, about section, and projects.
+- Desktop layouts use an asymmetrical hero, dense bento, pinned gallery, and horizontal accordion.
 - Below `820px`, grids collapse to one column where needed.
 - Below `560px`, navigation, skills, and footer content simplify for narrow screens.

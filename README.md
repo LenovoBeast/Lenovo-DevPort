@@ -26,13 +26,14 @@ https://lenovobeast.github.io/Lenovo-DevPort/
 
 ## ✨ Overview
 
-A restrained technical-editorial developer landing page built with vanilla HTML, CSS, and JavaScript. No frameworks, no build step, no dependencies.
+A technical-editorial developer portal built with vanilla HTML, CSS, and JavaScript. It uses GitHub-native imagery, live public repository data, and optional CDN-loaded GSAP motion without a build step.
 
 **Design principles:**
 - Graphite surfaces with Lenovo red as the single accent
-- Cool neutral typography with system UI and monospace labels
-- Asymmetric responsive layouts with generous whitespace
-- Real image assets instead of fake product previews
+- Cabinet Grotesk display typography with JetBrains Mono terminal content
+- Asymmetric responsive layouts with cinematic spacing
+- GitHub-native repository previews instead of generic stock art
+- GSAP ScrollTrigger for pinned work storytelling and image choreography
 - Reduced-motion support and visible keyboard focus states
 
 ---
@@ -68,7 +69,7 @@ Everything lives in `index.html`:
 - **Brand and nav**: name in the top bar
 - **Hero**: headline and intro
 - **About**: bio paragraph
-- **Projects**: project cards and links
+- **Projects**: project cards, repository previews, and accordion case-study prompts
 - **Skills**: tech tags
 - **Contact**: social links
 

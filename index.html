@@ -21,6 +21,8 @@
   }
   </script>
   <style>
+    @import url("https://fonts.googleapis.com/css2?family=Cabin+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
     :root {
       color-scheme: dark light;
       --bg: #101214;
@@ -34,9 +36,10 @@
       --accent-soft: rgba(226, 35, 26, 0.14);
       --accent-strong: #ff625b;
       --radius: 14px;
-      --max: 1180px;
+      --max: 1280px;
       --ease: cubic-bezier(0.16, 1, 0.3, 1);
       --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      --font-display: "Cabin Grotesk", ui-sans-serif, system-ui, sans-serif;
     }
 
     @media (prefers-color-scheme: light) {
@@ -61,7 +64,7 @@
       overflow-x: hidden;
       background: var(--bg);
       color: var(--text);
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: var(--font-display);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
@@ -133,27 +136,21 @@
       min-height: min(760px, calc(100dvh - 70px));
       display: grid;
       align-items: center;
-      padding: 72px 0 84px;
+      padding: 100px 0 150px;
     }
-    .hero.cinematic .hero-grid { position: relative; display: block; min-height: min(650px, calc(100dvh - 150px)); }
-    .hero.cinematic .hero-copy { position: relative; z-index: 1; display: flex; min-height: min(650px, calc(100dvh - 150px)); max-width: 840px; margin-inline: auto; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-    .hero.cinematic .hero-copy > p { max-width: 52ch; }
-    .hero.cinematic .hero-art { position: absolute; inset: 0; min-height: 0; border-color: color-mix(in srgb, var(--accent), var(--line) 65%); }
-    .hero.cinematic .hero-art img { min-height: 100%; opacity: 0.42; }
-    .hero.cinematic .hero-art::after { background: radial-gradient(circle at center, rgba(16,18,20,0.18), rgba(16,18,20,0.92) 80%), linear-gradient(145deg, rgba(226,35,26,0.15), transparent 45%); }
     .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
-      gap: clamp(42px, 8vw, 112px);
+      grid-template-columns: minmax(0, 1.12fr) minmax(300px, 0.88fr);
+      gap: clamp(42px, 7vw, 110px);
       align-items: center;
     }
-    .hero-copy { max-width: 700px; }
+    .hero-copy { position: relative; z-index: 1; max-width: 900px; }
     .hero h1 {
-      max-width: 11ch;
+      max-width: 78rem;
       margin: 18px 0 22px;
-      font-size: clamp(3.8rem, 9vw, 7.2rem);
-      line-height: 0.93;
-      letter-spacing: -0.075em;
+      font-size: clamp(3rem, 6vw, 6.5rem);
+      line-height: 0.9;
+      letter-spacing: -0.07em;
       font-weight: 750;
     }
     .hero h1 em {
@@ -193,16 +190,19 @@
     }
     .hero-art {
       position: relative;
-      min-height: 430px;
+      min-height: 550px;
+      margin-right: -5vw;
       border: 1px solid var(--line);
       border-radius: var(--radius);
       overflow: hidden;
       background: var(--surface);
+      transform: rotate(2deg);
+      box-shadow: 24px 30px 80px rgba(0, 0, 0, 0.28);
     }
     .hero-art img {
       width: 100%;
       height: 100%;
-      min-height: 430px;
+      min-height: 550px;
       object-fit: cover;
       opacity: 0.76;
       filter: grayscale(0.72) saturate(0.72) contrast(1.12);
@@ -227,7 +227,7 @@
       font-size: 0.78rem;
     }
 
-    section { padding: 148px 0; border-top: 1px solid var(--line); }
+    section { padding: 190px 0; border-top: 1px solid var(--line); }
     .section-heading { max-width: 680px; margin-bottom: 48px; }
     h2 {
       margin: 0 0 16px;
@@ -322,8 +322,9 @@
 
     .bento {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr 0.85fr;
-      grid-auto-rows: minmax(190px, auto);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-rows: repeat(4, minmax(120px, 1fr));
+      grid-auto-rows: minmax(120px, auto);
       grid-auto-flow: dense;
       gap: 14px;
     }
@@ -338,7 +339,9 @@
       isolation: isolate;
     }
     .bento-card.feature { grid-column: span 2; grid-row: span 2; min-height: 438px; }
-    .bento-card.wide { grid-column: span 2; }
+    .bento-card.tall { grid-column: span 1; grid-row: span 2; }
+    .bento-card.wide { grid-column: span 2; grid-row: span 2; }
+    .bento-card.open-source { grid-column: span 2; grid-row: span 2; }
     .bento-card h3 { position: relative; z-index: 1; max-width: 12ch; margin: 0 0 10px; font-size: 1.5rem; line-height: 1; letter-spacing: -0.04em; }
     .bento-card p { position: relative; z-index: 1; max-width: 34ch; margin: 0; color: var(--muted); font-size: 0.88rem; }
     .bento-card img { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; object-fit: cover; opacity: 0.48; filter: grayscale(0.8) contrast(1.15); transition: transform 800ms var(--ease), opacity 500ms ease; }
@@ -434,6 +437,52 @@
       font-weight: 700;
     }
 
+    .accordion {
+      display: flex;
+      min-height: 430px;
+      gap: 8px;
+      overflow: hidden;
+    }
+    .accordion-item {
+      position: relative;
+      flex: 1 1 0;
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      transition: flex 700ms var(--ease), border-color 250ms ease;
+    }
+    .accordion-item:hover, .accordion-item:focus-within { flex: 2.8 1 0; border-color: var(--accent); }
+    .accordion-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.9) contrast(1.14); opacity: 0.6; transition: transform 800ms var(--ease), opacity 500ms ease; }
+    .accordion-item:hover img, .accordion-item:focus-within img { transform: scale(1.08); opacity: 0.92; }
+    .accordion-item::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(16,18,20,0.95), transparent 60%); }
+    .accordion-copy { position: absolute; right: 22px; bottom: 20px; left: 22px; z-index: 1; min-width: 190px; }
+    .accordion-copy h3 { margin: 0 0 7px; font-size: 1.45rem; letter-spacing: -0.04em; }
+    .accordion-copy p { margin: 0; color: #d7dce0; font-size: 0.84rem; }
+
+    .marquee {
+      overflow: hidden;
+      margin: 0 0 42px;
+      border-block: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    .marquee-track { display: inline-flex; min-width: max-content; gap: 34px; padding: 19px 0; color: var(--muted); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; animation: marquee 24s linear infinite; }
+    .marquee-track b { color: var(--accent); font-weight: 500; }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    .scroll-gallery { display: grid; grid-template-columns: minmax(220px, 0.55fr) minmax(0, 1.45fr); gap: clamp(32px, 7vw, 100px); align-items: start; }
+    .scroll-gallery-heading { position: sticky; top: 110px; }
+    .scroll-gallery-heading h2 { max-width: 8ch; }
+    .scroll-gallery-heading > p { max-width: 38ch; margin: 0; color: var(--muted); }
+    .gallery-stack { display: grid; gap: 22px; }
+    .gallery-card { position: relative; min-height: 390px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .gallery-card img { width: 100%; height: 100%; min-height: 390px; object-fit: cover; filter: grayscale(0.76) contrast(1.16); opacity: 0.78; }
+    .gallery-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(16,18,20,0.9), transparent 65%); }
+    .gallery-card-copy { position: absolute; right: 24px; bottom: 22px; left: 24px; z-index: 1; }
+    .gallery-card-copy h3 { margin: 0 0 5px; font-size: 1.65rem; }
+    .gallery-card-copy p { margin: 0; color: #d7dce0; }
+
     footer { padding: 26px 0 42px; color: var(--faint); font-size: 0.8rem; }
     footer .container { display: flex; justify-content: space-between; gap: 20px; }
     footer a { color: var(--muted); }
@@ -456,8 +505,11 @@
       .project:first-child .project-image { height: 280px; }
       .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .contact-link { justify-self: start; }
-      .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .bento-card.feature, .bento-card.wide { grid-column: span 2; }
+      .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto; }
+      .bento-card.feature, .bento-card.wide, .bento-card.open-source { grid-column: span 2; }
+      .bento-card.tall { grid-column: span 1; }
+      .scroll-gallery { grid-template-columns: 1fr; }
+      .scroll-gallery-heading { position: static; }
       .media-rail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 560px) {
@@ -466,14 +518,19 @@
       .brand span { display: none; }
       nav ul { gap: 14px; font-size: 0.76rem; }
       .hero h1 { font-size: clamp(3.4rem, 18vw, 5.5rem); }
-      section { padding: 92px 0; }
+      section { padding: 120px 0; }
       .skills-grid { grid-template-columns: 1fr; }
       footer .container { flex-direction: column; }
       .bento, .media-rail { grid-template-columns: 1fr; }
-      .bento-card.feature, .bento-card.wide { grid-column: auto; }
+      .bento-card.feature, .bento-card.wide, .bento-card.open-source, .bento-card.tall { grid-column: auto; grid-row: auto; }
       .bento-card.feature { min-height: 320px; }
       .media-panel { min-height: 280px; }
       .portal-grid, .repo-feed { grid-template-columns: 1fr; }
+      .accordion { min-height: 680px; flex-direction: column; }
+      .accordion-item, .accordion-item:hover, .accordion-item:focus-within { min-height: 140px; flex: 1 1 0; }
+      .accordion-item:hover, .accordion-item:focus-within { flex: 2 1 0; }
+      .hero-art { min-height: 360px; margin-right: 0; transform: rotate(1deg); }
+      .hero-art img { min-height: 360px; }
     }
   </style>
 </head>
@@ -496,8 +553,8 @@
     </div>
   </header>
 
-  <main>
-    <section class="hero cinematic">
+  <main class="overflow-x-hidden">
+    <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy reveal">
           <span class="mono">Developer / builder / open source</span>
@@ -572,6 +629,13 @@
       </div>
     </section>
 
+    <div class="marquee" aria-label="Capabilities">
+      <div class="marquee-track">
+        <span>Open source</span><b>+</b><span>Product systems</span><b>+</b><span>Interface craft</span><b>+</b><span>Reliable delivery</span><b>+</b>
+        <span>Open source</span><b>+</b><span>Product systems</span><b>+</b><span>Interface craft</span><b>+</b><span>Reliable delivery</span><b>+</b>
+      </div>
+    </div>
+
     <section id="showcase" aria-labelledby="showcase-title">
       <div class="container">
         <div class="section-heading reveal">
@@ -605,11 +669,11 @@
             <h3>Build for the second read.</h3>
             <p>The first interaction should feel obvious. The second should reveal care.</p>
           </article>
-          <article class="bento-card accent reveal">
+          <article class="bento-card tall accent reveal">
             <h3>Clarity is a feature.</h3>
             <p>Simple structures make room for ambitious ideas.</p>
           </article>
-          <article class="bento-card reveal">
+          <article class="bento-card tall reveal">
             <h3>Systems over shortcuts.</h3>
             <p>Reusable foundations keep the work durable.</p>
           </article>
@@ -618,33 +682,58 @@
             <h3>Details that earn their place.</h3>
             <p>Motion, texture, and interaction should explain something, not compete for attention.</p>
           </article>
+          <article class="bento-card open-source accent reveal">
+            <h3>Public by default.</h3>
+            <p>Ideas become more useful when people can inspect them, fork them, and make them better.</p>
+          </article>
         </div>
       </div>
     </section>
 
     <section aria-labelledby="visual-title">
       <div class="container">
-        <div class="section-heading reveal">
-          <h2 id="visual-title">Work in progress.</h2>
-          <p>A visual cross-section of the environments I like to make: tactile, legible, and quietly expressive.</p>
+        <div class="scroll-gallery">
+          <div class="scroll-gallery-heading reveal">
+            <h2 id="visual-title">A practice in motion.</h2>
+            <p>The work changes shape, but the standard stays steady: useful, legible, and ready to meet the next person.</p>
+          </div>
+          <div class="gallery-stack">
+            <article class="gallery-card reveal">
+              <img src="https://opengraph.githubassets.com/1/LenovoBeast/Playground" alt="Playground repository preview">
+              <div class="gallery-card-copy"><h3>Interfaces that invite action.</h3><p>Make the next decision feel natural.</p></div>
+            </article>
+            <article class="gallery-card reveal">
+              <img src="https://opengraph.githubassets.com/1/LenovoBeast/runs-on.dev" alt="runs-on.dev repository preview">
+              <div class="gallery-card-copy"><h3>Systems with a visible edge.</h3><p>Give complexity a shape people can trust.</p></div>
+            </article>
+            <article class="gallery-card reveal">
+              <img src="https://github.com/lenovobeast.png?size=1200" alt="Lenovo Beast GitHub profile image">
+              <div class="gallery-card-copy"><h3>Open work, better questions.</h3><p>Leave room for collaboration to improve the result.</p></div>
+            </article>
+          </div>
         </div>
-        <div class="media-rail">
-          <article class="media-panel reveal">
-            <img src="https://opengraph.githubassets.com/1/LenovoBeast/Playground" alt="Playground repository preview">
-            <div class="media-panel-copy"><h3>Interfaces</h3><p>Make the next action feel natural.</p></div>
-          </article>
-          <article class="media-panel reveal">
+      </div>
+    </section>
+
+    <section aria-labelledby="approach-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <h2 id="approach-title">Choose the right shape.</h2>
+          <p>From a small interaction to a full product system, the approach starts with the constraint and ends with something people can use.</p>
+        </div>
+        <div class="accordion">
+          <a class="accordion-item reveal" href="#contact">
+            <img src="https://opengraph.githubassets.com/1/LenovoBeast/Lenovo-DevPort" alt="Lenovo DevPort repository preview">
+            <div class="accordion-copy"><h3>Shape the product.</h3><p>Turn an idea into a coherent experience.</p></div>
+          </a>
+          <a class="accordion-item reveal" href="#contact">
             <img src="https://opengraph.githubassets.com/1/LenovoBeast/taste-skill" alt="Taste-skill repository preview">
-            <div class="media-panel-copy"><h3>Tools</h3><p>Remove friction from the routine.</p></div>
-          </article>
-          <article class="media-panel reveal">
+            <div class="accordion-copy"><h3>Sharpen the interface.</h3><p>Make complex workflows feel direct.</p></div>
+          </a>
+          <a class="accordion-item reveal" href="#contact">
             <img src="https://opengraph.githubassets.com/1/LenovoBeast/runs-on.dev" alt="runs-on.dev repository preview">
-            <div class="media-panel-copy"><h3>Systems</h3><p>Give complexity a shape.</p></div>
-          </article>
-          <article class="media-panel reveal">
-            <img src="https://github.com/lenovobeast.png?size=1200" alt="Lenovo Beast GitHub profile image">
-            <div class="media-panel-copy"><h3>Collaboration</h3><p>Leave room for better questions.</p></div>
-          </article>
+            <div class="accordion-copy"><h3>Ship the system.</h3><p>Build foundations that keep moving.</p></div>
+          </a>
         </div>
       </div>
     </section>
@@ -656,10 +745,10 @@
           <p>Enough range to see the whole system, with a preference for simple tools and strong fundamentals.</p>
         </div>
         <div class="skills-grid">
-          <article class="skill reveal"><span class="skill-index">01</span><h3>Languages</h3><p>JavaScript, TypeScript, Python, Java, C++, and Rust.</p></article>
-          <article class="skill reveal"><span class="skill-index">02</span><h3>Frontend</h3><p>React, Vue, Svelte, HTML, CSS, Tailwind, and WebGL.</p></article>
-          <article class="skill reveal"><span class="skill-index">03</span><h3>Backend</h3><p>Node.js, Express, Django, Spring Boot, Go, PostgreSQL, and MongoDB.</p></article>
-          <article class="skill reveal"><span class="skill-index">04</span><h3>Delivery</h3><p>Docker, Kubernetes, AWS, CI/CD, Terraform, and Linux.</p></article>
+          <article class="skill reveal"><h3>Languages</h3><p>JavaScript, TypeScript, Python, Java, C++, and Rust.</p></article>
+          <article class="skill reveal"><h3>Frontend</h3><p>React, Vue, Svelte, HTML, CSS, Tailwind, and WebGL.</p></article>
+          <article class="skill reveal"><h3>Backend</h3><p>Node.js, Express, Django, Spring Boot, Go, PostgreSQL, and MongoDB.</p></article>
+          <article class="skill reveal"><h3>Delivery</h3><p>Docker, Kubernetes, AWS, CI/CD, Terraform, and Linux.</p></article>
         </div>
       </div>
     </section>
@@ -689,6 +778,8 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -704,6 +795,48 @@
         });
       }, { threshold: 0.14 });
       items.forEach((item) => observer.observe(item));
+    }
+
+    if (!reduced && window.gsap && window.ScrollTrigger) {
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.utils.toArray(".gallery-card").forEach((card) => {
+        gsap.fromTo(card, { scale: 0.8, opacity: 0.2 }, {
+          scale: 1,
+          opacity: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 88%",
+            end: "bottom 12%",
+            scrub: true
+          }
+        });
+      });
+      gsap.to(".scroll-gallery-heading", {
+        scrollTrigger: {
+          trigger: ".scroll-gallery",
+          start: "top 110px",
+          end: "bottom bottom",
+          pin: true,
+          pinSpacing: false
+        }
+      });
+      gsap.fromTo(".hero-art", { y: 32, rotate: 4 }, {
+        y: -18,
+        rotate: 2,
+        ease: "none",
+        scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true }
+      });
+      gsap.utils.toArray(".bento-card").forEach((card, index) => {
+        gsap.fromTo(card, { y: 42, opacity: 0 }, {
+          y: index % 2 ? -10 : 0,
+          opacity: 1,
+          duration: 1,
+          delay: index * 0.08,
+          ease: "power3.out",
+          scrollTrigger: { trigger: card, start: "top 88%" }
+        });
+      });
     }
 
     const repoFeed = document.getElementById("repo-feed");
