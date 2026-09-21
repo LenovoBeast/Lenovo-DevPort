@@ -2,7 +2,7 @@
 
 # Lenovo-DevPort
 
-**Personal landing page — Developer, Builder, Creator.**
+**Personal landing page - Developer, Builder, Creator.**
 
 [![Live Site](https://img.shields.io/badge/🌐_Live_Site-lenovobeast.github.io-c67d4a?style=for-the-badge)](https://lenovobeast.github.io/Lenovo-DevPort/)
 [![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-222?style=for-the-badge&logo=github)](https://github.com/LenovoBeast/Lenovo-DevPort)
@@ -26,14 +26,14 @@ https://lenovobeast.github.io/Lenovo-DevPort/
 
 ## ✨ Overview
 
-A minimalist, editorial developer landing page — built with vanilla HTML, CSS, and JavaScript. No frameworks, no build step, no dependencies. Just clean, handcrafted code.
+A restrained technical-editorial developer landing page built with vanilla HTML, CSS, and JavaScript. No frameworks, no build step, no dependencies.
 
 **Design principles:**
-- Warm dark aesthetic with burnt sienna accent (`#c67d4a`)
-- Editorial typography — Cormorant Garamond × DM Sans × JetBrains Mono
-- Generous whitespace, no visual clutter
-- SVG line icons, mono-spaced tags
-- No AI-slop: no glassmorphism, no glow blobs, no shimmer, no 3D tilt
+- Graphite surfaces with Lenovo red as the single accent
+- Cool neutral typography with system UI and monospace labels
+- Asymmetric responsive layouts with generous whitespace
+- Real image assets instead of fake product previews
+- Reduced-motion support and visible keyboard focus states
 
 ---
 
@@ -65,12 +65,12 @@ python -m http.server 8000
 ## 🔧 Customization
 
 Everything lives in `index.html`:
-- **Brand & nav** — name in the top bar
-- **Hero** — headline + intro
-- **About** — bio paragraph
-- **Projects** — project cards & links
-- **Skills** — tech tags
-- **Contact** — social links
+- **Brand and nav**: name in the top bar
+- **Hero**: headline and intro
+- **About**: bio paragraph
+- **Projects**: project cards and links
+- **Skills**: tech tags
+- **Contact**: social links
 
 ---
 
@@ -88,4 +88,4 @@ This repo auto-deploys to GitHub Pages from the `main` branch.
 
 ## 📜 License
 
-MIT — Do whatever you want with it.
+MIT. Do whatever you want with it.
