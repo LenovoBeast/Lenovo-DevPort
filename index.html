@@ -136,7 +136,7 @@
       min-height: min(760px, calc(100dvh - 70px));
       display: grid;
       align-items: center;
-      padding: 100px 0 150px;
+      padding: 96px 0 150px;
     }
     .hero-grid {
       display: grid;
@@ -394,7 +394,7 @@
     .media-panel:hover { transform: translateY(-5px); }
     .media-panel-copy { position: absolute; right: 20px; bottom: 20px; left: 20px; z-index: 1; }
     .media-panel-copy h3 { margin: 0 0 7px; font-size: 1.35rem; letter-spacing: -0.04em; }
-    .media-panel-copy p { margin: 0; color: #d7dce0; font-size: 0.82rem; }
+    .media-panel-copy p { margin: 0; color: var(--text); opacity: 0.84; font-size: 0.82rem; }
 
     .portal-grid {
       display: grid;
@@ -483,7 +483,7 @@
     .accordion-item::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(16,18,20,0.95), transparent 60%); }
     .accordion-copy { position: relative; right: auto; bottom: auto; left: auto; z-index: 1; min-width: 190px; padding: 18px 22px 20px; background: var(--surface); }
     .accordion-copy h3 { margin: 0 0 7px; font-size: 1.45rem; letter-spacing: -0.04em; }
-    .accordion-copy p { margin: 0; color: #d7dce0; font-size: 0.84rem; }
+    .accordion-copy p { margin: 0; color: var(--muted); font-size: 0.84rem; }
 
     .marquee {
       overflow: hidden;
@@ -504,7 +504,7 @@
     .gallery-card img { width: 100%; height: 100%; min-height: 390px; object-fit: cover; filter: grayscale(0.76) contrast(1.16); opacity: 0.78; }
     .gallery-card-copy { position: relative; right: auto; bottom: auto; left: auto; z-index: 1; padding: 22px 24px 24px; background: var(--surface); }
     .gallery-card-copy h3 { margin: 0 0 5px; font-size: 1.65rem; }
-    .gallery-card-copy p { margin: 0; color: #d7dce0; }
+    .gallery-card-copy p { margin: 0; color: var(--muted); }
 
     footer { padding: 26px 0 42px; color: var(--faint); font-size: 0.8rem; }
     footer .container { display: flex; justify-content: space-between; gap: 20px; }
@@ -589,7 +589,7 @@
           </div>
         </div>
         <figure class="hero-art reveal">
-          <img src="https://opengraph.githubassets.com/1/LenovoBeast/Lenovo-DevPort" alt="Lenovo DevPort repository preview">
+          <img src="https://opengraph.githubassets.com/1/LenovoBeast/Lenovo-DevPort" alt="Lenovo DevPort repository preview" fetchpriority="high" decoding="async">
           <figcaption class="art-note">A live portfolio for practical tools, open source experiments, and thoughtful interfaces.</figcaption>
         </figure>
       </div>
@@ -621,32 +621,32 @@
           <article class="project reveal">
             <div>
               <div class="project-image">
-                <img src="https://opengraph.githubassets.com/1/LenovoBeast/Playground" alt="Lenovo Beast Playground repository preview">
+                <img src="https://opengraph.githubassets.com/1/LenovoBeast/Playground" alt="Lenovo Beast Playground repository preview" loading="lazy" decoding="async">
               </div>
-              <h3>Beast-Invoice</h3>
-              <p>A focused invoicing tool for freelancers and small teams. Create, send, and track invoices without adding process overhead.</p>
+              <h3>Playground</h3>
+              <p>A public space for testing ideas, interfaces, and small experiments before they become durable tools.</p>
             </div>
-            <div class="tags"><span class="tag">JavaScript</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MongoDB</span></div>
+            <div class="tags"><span class="tag">JavaScript</span><span class="tag">Experiments</span><span class="tag">Open source</span></div>
           </article>
           <article class="project reveal">
             <div>
               <div class="project-image">
-                <img src="https://opengraph.githubassets.com/1/LenovoBeast/taste-skill" alt="Lenovo Beast taste-skill repository preview">
+                <img src="https://opengraph.githubassets.com/1/LenovoBeast/taste-skill" alt="Lenovo Beast taste-skill repository preview" loading="lazy" decoding="async">
               </div>
-              <h3>Project Beta</h3>
-              <p>An open source library for simplifying complex state management in frontend applications.</p>
+              <h3>Taste-Skill</h3>
+              <p>A design skill for helping AI produce more considered, specific, and useful interfaces.</p>
             </div>
-            <div class="tags"><span class="tag">TypeScript</span><span class="tag">Vue</span><span class="tag">Open source</span></div>
+            <div class="tags"><span class="tag">JavaScript</span><span class="tag">Design systems</span><span class="tag">Open source</span></div>
           </article>
           <article class="project reveal">
             <div>
               <div class="project-image">
-                <img src="https://opengraph.githubassets.com/1/LenovoBeast/runs-on.dev" alt="runs-on.dev repository preview">
+                <img src="https://opengraph.githubassets.com/1/LenovoBeast/runs-on.dev" alt="runs-on.dev repository preview" loading="lazy" decoding="async">
               </div>
-              <h3>Project Gamma</h3>
-              <p>A DevOps toolkit for repeatable deployment pipelines and infrastructure management.</p>
+              <h3>runs-on.dev</h3>
+              <p>A free subdomain service that gives small projects a memorable place to live on the web.</p>
             </div>
-            <div class="tags"><span class="tag">Python</span><span class="tag">Docker</span><span class="tag">AWS</span><span class="tag">CI/CD</span></div>
+            <div class="tags"><span class="tag">JavaScript</span><span class="tag">Web platform</span><span class="tag">Open source</span></div>
           </article>
         </div>
       </div>
@@ -688,7 +688,7 @@
         </div>
         <div class="bento">
           <article class="bento-card feature visual-card reveal">
-            <img src="https://opengraph.githubassets.com/1/LenovoBeast/Lenovo-DevPort" alt="Lenovo DevPort repository preview">
+            <img src="https://opengraph.githubassets.com/1/LenovoBeast/Lenovo-DevPort" alt="Lenovo DevPort repository preview" loading="lazy" decoding="async">
             <h3>Build for the second read.</h3>
             <p>The first interaction should feel obvious. The second should reveal care.</p>
           </article>
@@ -701,7 +701,7 @@
             <p>Reusable foundations keep the work durable.</p>
           </article>
           <article class="bento-card wide visual-card reveal">
-            <img src="https://opengraph.githubassets.com/1/LenovoBeast/taste-skill" alt="Taste-skill repository preview">
+            <img src="https://opengraph.githubassets.com/1/LenovoBeast/taste-skill" alt="Taste-skill repository preview" loading="lazy" decoding="async">
             <h3>Details that earn their place.</h3>
             <p>Motion, texture, and interaction should explain something, not compete for attention.</p>
           </article>
@@ -722,15 +722,15 @@
           </div>
           <div class="gallery-stack">
             <article class="gallery-card reveal">
-              <img src="https://opengraph.githubassets.com/1/LenovoBeast/Playground" alt="Playground repository preview">
+              <img src="https://opengraph.githubassets.com/1/LenovoBeast/Playground" alt="Playground repository preview" loading="lazy" decoding="async">
               <div class="gallery-card-copy"><h3>Interfaces that invite action.</h3><p>Make the next decision feel natural.</p></div>
             </article>
             <article class="gallery-card reveal">
-              <img src="https://opengraph.githubassets.com/1/LenovoBeast/runs-on.dev" alt="runs-on.dev repository preview">
+              <img src="https://opengraph.githubassets.com/1/LenovoBeast/runs-on.dev" alt="runs-on.dev repository preview" loading="lazy" decoding="async">
               <div class="gallery-card-copy"><h3>Systems with a visible edge.</h3><p>Give complexity a shape people can trust.</p></div>
             </article>
             <article class="gallery-card reveal">
-              <img src="https://github.com/lenovobeast.png?size=1200" alt="Lenovo Beast GitHub profile image">
+              <img src="https://github.com/lenovobeast.png?size=1200" alt="Lenovo Beast GitHub profile image" loading="lazy" decoding="async">
               <div class="gallery-card-copy"><h3>Open work, better questions.</h3><p>Leave room for collaboration to improve the result.</p></div>
             </article>
           </div>
@@ -746,15 +746,15 @@
         </div>
         <div class="accordion">
           <a class="accordion-item reveal" href="#contact">
-            <img src="https://opengraph.githubassets.com/1/LenovoBeast/Lenovo-DevPort" alt="Lenovo DevPort repository preview">
+            <img src="https://opengraph.githubassets.com/1/LenovoBeast/Lenovo-DevPort" alt="Lenovo DevPort repository preview" loading="lazy" decoding="async">
             <div class="accordion-copy"><h3>Shape the product.</h3><p>Turn an idea into a coherent experience.</p></div>
           </a>
           <a class="accordion-item reveal" href="#contact">
-            <img src="https://opengraph.githubassets.com/1/LenovoBeast/taste-skill" alt="Taste-skill repository preview">
+            <img src="https://opengraph.githubassets.com/1/LenovoBeast/taste-skill" alt="Taste-skill repository preview" loading="lazy" decoding="async">
             <div class="accordion-copy"><h3>Sharpen the interface.</h3><p>Make complex workflows feel direct.</p></div>
           </a>
           <a class="accordion-item reveal" href="#contact">
-            <img src="https://opengraph.githubassets.com/1/LenovoBeast/runs-on.dev" alt="runs-on.dev repository preview">
+            <img src="https://opengraph.githubassets.com/1/LenovoBeast/runs-on.dev" alt="runs-on.dev repository preview" loading="lazy" decoding="async">
             <div class="accordion-copy"><h3>Ship the system.</h3><p>Build foundations that keep moving.</p></div>
           </a>
         </div>
