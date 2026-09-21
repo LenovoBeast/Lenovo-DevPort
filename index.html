@@ -140,9 +140,9 @@
       gap: clamp(42px, 8vw, 112px);
       align-items: center;
     }
-    .hero-copy { max-width: 680px; }
+    .hero-copy { max-width: 700px; }
     .hero h1 {
-      max-width: 9ch;
+      max-width: 11ch;
       margin: 18px 0 22px;
       font-size: clamp(3.8rem, 9vw, 7.2rem);
       line-height: 0.93;
@@ -220,7 +220,7 @@
       font-size: 0.78rem;
     }
 
-    section { padding: 112px 0; border-top: 1px solid var(--line); }
+    section { padding: 148px 0; border-top: 1px solid var(--line); }
     .section-heading { max-width: 680px; margin-bottom: 48px; }
     h2 {
       margin: 0 0 16px;
@@ -313,6 +313,57 @@
     .skill p { margin: 0; color: var(--muted); font-size: 0.92rem; }
     .skill-index { display: block; margin-bottom: 44px; color: var(--accent); font-family: ui-monospace, monospace; font-size: 0.72rem; }
 
+    .bento {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr 0.85fr;
+      grid-auto-rows: minmax(190px, auto);
+      grid-auto-flow: dense;
+      gap: 14px;
+    }
+    .bento-card {
+      position: relative;
+      min-height: 210px;
+      padding: 24px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      isolation: isolate;
+    }
+    .bento-card.feature { grid-column: span 2; grid-row: span 2; min-height: 438px; }
+    .bento-card.wide { grid-column: span 2; }
+    .bento-card h3 { position: relative; z-index: 1; max-width: 12ch; margin: 0 0 10px; font-size: 1.5rem; line-height: 1; letter-spacing: -0.04em; }
+    .bento-card p { position: relative; z-index: 1; max-width: 34ch; margin: 0; color: var(--muted); font-size: 0.88rem; }
+    .bento-card img { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; object-fit: cover; opacity: 0.48; filter: grayscale(0.8) contrast(1.15); transition: transform 800ms var(--ease), opacity 500ms ease; }
+    .bento-card::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(155deg, rgba(16,18,20,0.06), rgba(16,18,20,0.88)); }
+    .bento-card:hover img { transform: scale(1.06); opacity: 0.66; }
+    .bento-card.accent { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .bento-card.accent p { color: rgba(255,255,255,0.82); }
+    .bento-card.accent::after { background: linear-gradient(135deg, rgba(0,0,0,0.05), rgba(0,0,0,0.25)); }
+
+    .media-rail {
+      display: grid;
+      grid-template-columns: 1.6fr repeat(3, 0.7fr);
+      min-height: 390px;
+      gap: 8px;
+    }
+    .media-panel {
+      position: relative;
+      min-height: 390px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      transition: flex 500ms var(--ease), transform 500ms var(--ease);
+    }
+    .media-panel img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.9) contrast(1.15); opacity: 0.62; transition: transform 700ms var(--ease), opacity 500ms ease; }
+    .media-panel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(16,18,20,0.88), transparent 58%); }
+    .media-panel:hover img { transform: scale(1.08); opacity: 0.9; }
+    .media-panel:hover { transform: translateY(-5px); }
+    .media-panel-copy { position: absolute; right: 20px; bottom: 20px; left: 20px; z-index: 1; }
+    .media-panel-copy h3 { margin: 0 0 7px; font-size: 1.35rem; letter-spacing: -0.04em; }
+    .media-panel-copy p { margin: 0; color: #d7dce0; font-size: 0.82rem; }
+
     .contact {
       display: grid;
       grid-template-columns: 1fr auto;
@@ -356,6 +407,9 @@
       .project:first-child .project-image { height: 280px; }
       .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .contact-link { justify-self: start; }
+      .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .bento-card.feature, .bento-card.wide { grid-column: span 2; }
+      .media-rail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 560px) {
       .container { width: min(100% - 28px, var(--max)); }
@@ -363,9 +417,13 @@
       .brand span { display: none; }
       nav ul { gap: 14px; font-size: 0.76rem; }
       .hero h1 { font-size: clamp(3.4rem, 18vw, 5.5rem); }
-      section { padding: 80px 0; }
+      section { padding: 92px 0; }
       .skills-grid { grid-template-columns: 1fr; }
       footer .container { flex-direction: column; }
+      .bento, .media-rail { grid-template-columns: 1fr; }
+      .bento-card.feature, .bento-card.wide { grid-column: auto; }
+      .bento-card.feature { min-height: 320px; }
+      .media-panel { min-height: 280px; }
     }
   </style>
 </head>
@@ -458,6 +516,62 @@
               <p>A DevOps toolkit for repeatable deployment pipelines and infrastructure management.</p>
             </div>
             <div class="tags"><span class="tag">Python</span><span class="tag">Docker</span><span class="tag">AWS</span><span class="tag">CI/CD</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="practice-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <h2 id="practice-title">A broad practice, one standard.</h2>
+          <p>Different tools, same expectation: make the system clearer than you found it.</p>
+        </div>
+        <div class="bento">
+          <article class="bento-card feature reveal">
+            <img src="https://picsum.photos/seed/quiet-code/1200/1000" alt="A developer workspace with notes and a laptop">
+            <h3>Build for the second read.</h3>
+            <p>The first interaction should feel obvious. The second should reveal care.</p>
+          </article>
+          <article class="bento-card accent reveal">
+            <h3>Clarity is a feature.</h3>
+            <p>Simple structures make room for ambitious ideas.</p>
+          </article>
+          <article class="bento-card reveal">
+            <h3>Systems over shortcuts.</h3>
+            <p>Reusable foundations keep the work durable.</p>
+          </article>
+          <article class="bento-card wide reveal">
+            <img src="https://picsum.photos/seed/materials-and-light/1200/700" alt="Light moving across a textured architectural surface">
+            <h3>Details that earn their place.</h3>
+            <p>Motion, texture, and interaction should explain something, not compete for attention.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="visual-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <h2 id="visual-title">Work in progress.</h2>
+          <p>A visual cross-section of the environments I like to make: tactile, legible, and quietly expressive.</p>
+        </div>
+        <div class="media-rail">
+          <article class="media-panel reveal">
+            <img src="https://picsum.photos/seed/interface-light/1100/900" alt="Soft light on a modern interface workspace">
+            <div class="media-panel-copy"><h3>Interfaces</h3><p>Make the next action feel natural.</p></div>
+          </article>
+          <article class="media-panel reveal">
+            <img src="https://picsum.photos/seed/terminal-texture/800/900" alt="Close-up of a technical workstation">
+            <div class="media-panel-copy"><h3>Tools</h3><p>Remove friction from the routine.</p></div>
+          </article>
+          <article class="media-panel reveal">
+            <img src="https://picsum.photos/seed/architecture-grid/800/900" alt="Geometric architecture with strong lines">
+            <div class="media-panel-copy"><h3>Systems</h3><p>Give complexity a shape.</p></div>
+          </article>
+          <article class="media-panel reveal">
+            <img src="https://picsum.photos/seed/team-table/800/900" alt="People collaborating around a table">
+            <div class="media-panel-copy"><h3>Collaboration</h3><p>Leave room for better questions.</p></div>
           </article>
         </div>
       </div>

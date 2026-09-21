@@ -44,6 +44,8 @@ Both modes use the same hierarchy, geometry, and accent. The page follows the us
 - Project surfaces use one shared 14px radius, a 1px border, and no artificial glow.
 - Layout hierarchy comes from spacing, borders, and contrast before shadows.
 - Images are real photography with a restrained grayscale treatment. No fake dashboard or terminal previews.
+- The practice bento uses five intentional cells with dense placement: one featured two-column/two-row cell, two supporting cells, and one wide closing cell.
+- The visual rail uses four responsive image panels. Each panel scales its image and lifts slightly on hover, while remaining static for reduced-motion users.
 
 ## Motion and accessibility
 
