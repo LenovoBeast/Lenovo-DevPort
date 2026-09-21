@@ -205,7 +205,9 @@
       width: 100%;
       height: 100%;
       min-height: 0;
-      object-fit: cover;
+      object-fit: contain;
+      object-position: center;
+      background: var(--surface-strong);
       opacity: 0.76;
       filter: grayscale(0.72) saturate(0.72) contrast(1.12);
     }
@@ -293,7 +295,7 @@
       background: var(--surface-strong);
     }
     .project:first-child .project-image { height: 430px; }
-    .project-image img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.7); }
+    .project-image img { width: 100%; height: 100%; object-fit: contain; object-position: center; background: var(--surface-strong); filter: saturate(0.7); }
     .project h3 { margin: 0 0 10px; font-size: 1.55rem; letter-spacing: -0.04em; }
     .project p { max-width: 42ch; margin: 0 0 22px; color: var(--muted); font-size: 0.94rem; }
     .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
@@ -363,6 +365,9 @@
       z-index: 0;
       grid-row: 1;
       min-height: 0;
+      object-fit: contain;
+      object-position: center;
+      background: var(--surface-strong);
       opacity: 0.82;
     }
     .bento-card.visual-card::after { display: none; }
@@ -478,7 +483,7 @@
       transition: flex 700ms var(--ease), border-color 250ms ease;
     }
     .accordion-item:hover, .accordion-item:focus-within { flex: 2.8 1 0; border-color: var(--accent); }
-    .accordion-item img { width: 100%; height: 100%; min-height: 0; object-fit: cover; filter: grayscale(0.9) contrast(1.14); opacity: 0.6; transition: transform 800ms var(--ease), opacity 500ms ease; }
+    .accordion-item img { width: 100%; height: 100%; min-height: 0; object-fit: contain; object-position: center; background: var(--surface-strong); filter: grayscale(0.9) contrast(1.14); opacity: 0.6; transition: transform 800ms var(--ease), opacity 500ms ease; }
     .accordion-item:hover img, .accordion-item:focus-within img { transform: scale(1.08); opacity: 0.92; }
     .accordion-item::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(16,18,20,0.95), transparent 60%); }
     .accordion-copy { position: relative; right: auto; bottom: auto; left: auto; z-index: 1; min-width: 190px; padding: 18px 22px 20px; background: var(--surface); }
@@ -501,7 +506,7 @@
     .scroll-gallery-heading > p { max-width: 38ch; margin: 0; color: var(--muted); }
     .gallery-stack { display: grid; gap: 22px; }
     .gallery-card { display: grid; grid-template-rows: minmax(0, 1fr) auto; min-height: 520px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
-    .gallery-card img { width: 100%; height: 100%; min-height: 390px; object-fit: cover; filter: grayscale(0.76) contrast(1.16); opacity: 0.78; }
+    .gallery-card img { width: 100%; height: 100%; min-height: 390px; object-fit: contain; object-position: center; background: var(--surface-strong); filter: grayscale(0.76) contrast(1.16); opacity: 0.78; }
     .gallery-card-copy { position: relative; right: auto; bottom: auto; left: auto; z-index: 1; padding: 22px 24px 24px; background: var(--surface); }
     .gallery-card-copy h3 { margin: 0 0 5px; font-size: 1.65rem; }
     .gallery-card-copy p { margin: 0; color: var(--muted); }
