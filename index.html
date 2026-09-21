@@ -430,6 +430,7 @@
       display: flex;
       min-height: 180px;
       flex-direction: column;
+      overflow: hidden;
       padding: 20px;
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -437,6 +438,24 @@
       transition: transform 220ms var(--ease), border-color 220ms ease, background 220ms ease;
     }
     .repo-card:hover { transform: translateY(-4px); border-color: var(--accent); background: var(--surface-strong); }
+    .repo-preview {
+      width: calc(100% + 40px);
+      height: 150px;
+      margin: -20px -20px 18px;
+      object-fit: contain;
+      object-position: center;
+      background: var(--surface-strong);
+      border-bottom: 1px solid var(--line);
+    }
+    .repo-preview-fallback { display: none; }
+    .repo-site {
+      display: inline-flex;
+      width: fit-content;
+      margin-top: 10px;
+      color: var(--accent-strong);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+    }
     .repo-card h3 { margin: 0 0 8px; font-size: 1rem; letter-spacing: -0.03em; }
     .repo-card p { display: -webkit-box; overflow: hidden; margin: 0 0 18px; color: var(--muted); font-size: 0.82rem; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
     .repo-meta { display: flex; gap: 14px; margin-top: auto; color: var(--faint); font-family: var(--font-mono); font-size: 0.66rem; }
@@ -554,6 +573,7 @@
       .bento-card.feature { min-height: 320px; }
       .media-panel { min-height: 280px; }
       .portal-grid, .repo-feed { grid-template-columns: 1fr; }
+      .repo-preview { height: 170px; }
       .accordion { min-height: 680px; flex-direction: column; }
       .accordion-item, .accordion-item:hover, .accordion-item:focus-within { min-height: 200px; flex: 1 1 0; }
       .accordion-item:hover, .accordion-item:focus-within { flex: 2 1 0; }
@@ -870,6 +890,15 @@
     const repoFeed = document.getElementById("repo-feed");
     const githubStatus = document.getElementById("github-status");
     const formatCount = (value) => new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 }).format(value || 0);
+    const validHomepage = (value) => {
+      try {
+        const url = new URL(value);
+        return url.protocol === "https:" || url.protocol === "http:" ? url.href : "";
+      } catch {
+        return "";
+      }
+    };
+    const screenshotUrl = (homepage) => `https://s.wordpress.com/mshots/v1/${encodeURIComponent(homepage)}?w=1200`;
     const renderRepos = (repos) => {
       repoFeed.replaceChildren(...repos.map((repo) => {
         const link = document.createElement("a");
@@ -877,10 +906,30 @@
         link.href = repo.html_url;
         link.target = "_blank";
         link.rel = "noreferrer";
+        const homepage = validHomepage(repo.homepage);
+        if (homepage) {
+          const preview = document.createElement("img");
+          preview.className = "repo-preview";
+          preview.src = screenshotUrl(homepage);
+          preview.alt = `${repo.name} live website preview`;
+          preview.loading = "lazy";
+          preview.decoding = "async";
+          preview.addEventListener("error", () => {
+            preview.src = `https://opengraph.githubassets.com/1/LenovoBeast/${encodeURIComponent(repo.name)}`;
+            preview.alt = `${repo.name} repository preview`;
+          }, { once: true });
+          link.append(preview);
+        }
         const title = document.createElement("h3");
         title.textContent = repo.name;
         const description = document.createElement("p");
         description.textContent = repo.description || "A public project from the Lenovo Beast workbench.";
+        let site;
+        if (homepage) {
+          site = document.createElement("span");
+          site.className = "repo-site";
+          site.textContent = new URL(homepage).hostname.replace(/^www\./, "");
+        }
         const meta = document.createElement("div");
         meta.className = "repo-meta";
         [["language", repo.language || "Code"], ["stars", formatCount(repo.stargazers_count)], ["forks", formatCount(repo.forks_count)]].forEach(([label, value]) => {
@@ -890,11 +939,13 @@
           item.append(label === "language" ? strong : `${label} ${value}`);
           meta.append(item);
         });
-        link.append(title, description, meta);
+        link.append(title, description);
+        if (site) link.append(site);
+        link.append(meta);
         return link;
       }));
     };
-    fetch("https://api.github.com/users/lenovobeast/repos?sort=updated&per_page=4", {
+    fetch("https://api.github.com/users/lenovobeast/repos?sort=updated&per_page=20", {
       headers: { Accept: "application/vnd.github+json" }
     })
       .then((response) => {
