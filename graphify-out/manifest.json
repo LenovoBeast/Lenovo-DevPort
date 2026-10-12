@@ -1,0 +1,32 @@
+{
+  ".github/workflows/deploy.yml": {
+    "mtime": 1791805302.4937105,
+    "seen": 1791810156.3318925,
+    "ast_hash": "cb1beb1db750e30d14d7809c88a9aaf6",
+    "semantic_hash": "cb1beb1db750e30d14d7809c88a9aaf6"
+  },
+  "DESIGN_SYSTEM.md": {
+    "mtime": 1791805302.4957051,
+    "seen": 1791810156.3318925,
+    "ast_hash": "63346101603d20ae68251dfba958e791",
+    "semantic_hash": "63346101603d20ae68251dfba958e791"
+  },
+  "README.md": {
+    "mtime": 1791805302.5057054,
+    "seen": 1791810156.3318925,
+    "ast_hash": "8f27903756ebccd90a91697137751e83",
+    "semantic_hash": "8f27903756ebccd90a91697137751e83"
+  },
+  "index.html": {
+    "mtime": 1791805302.5077047,
+    "seen": 1791810156.3318925,
+    "ast_hash": "24639e7e23712f45e733f3e8cf7513ff",
+    "semantic_hash": "24639e7e23712f45e733f3e8cf7513ff"
+  },
+  "LenovoBeast.png": {
+    "mtime": 1791805302.5047061,
+    "seen": 1791810156.3318925,
+    "ast_hash": "9fa8eddb66a8206fac23d289aa520403",
+    "semantic_hash": "9fa8eddb66a8206fac23d289aa520403"
+  }
+}
