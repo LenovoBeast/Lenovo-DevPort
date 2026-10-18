@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found — Lenovo Beast</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0d0f11" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    @font-face {
+      font-family: "Cabinet Grotesk";
+      src: url("fonts/cabinet-grotesk-400.woff2") format("woff2");
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Cabinet Grotesk";
+      src: url("fonts/cabinet-grotesk-800.woff2") format("woff2");
+      font-weight: 800; font-style: normal; font-display: swap;
+    }
+    :root {
+      color-scheme: dark light;
+      --bg: #0d0f11; --text: #f0f2f4; --muted: #a3adb7; --faint: #8a949e;
+      --line: #272c32; --accent: #e2231a; --accent-text: #ff6b64;
+      --font-display: "Cabinet Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f6f7f9; --text: #101418; --muted: #525c66; --faint: #5f6a74;
+        --line: #d9dfe5; --accent: #b51e1a; --accent-text: #8f1714;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: 32px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-display);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { width: min(100%, 560px); }
+    .mono {
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-text);
+    }
+    h1 {
+      margin: 18px 0 0;
+      font-size: clamp(2.4rem, 8vw, 4rem);
+      line-height: 0.96;
+      letter-spacing: -0.045em;
+      font-weight: 800;
+    }
+    p.lede { margin: 20px 0 0; color: var(--muted); max-width: 46ch; }
+    .rule { height: 1px; background: var(--line); margin: 32px 0; }
+    a.btn {
+      display: inline-flex;
+      align-items: center;
+      min-height: 46px;
+      padding: 0 20px;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    a.btn:hover, a.btn:focus-visible { opacity: 0.9; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="mono">Error 404</p>
+    <h1>This page went missing.</h1>
+    <p class="lede">The link may be outdated, or the page may have moved. The work is still where it was.</p>
+    <div class="rule"></div>
+    <a class="btn" href="/Lenovo-DevPort/">Back to the portfolio</a>
+  </main>
+</body>
+</html>

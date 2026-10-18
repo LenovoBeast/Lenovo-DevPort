@@ -3,967 +3,921 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lenovo Beast | Developer</title>
-  <meta name="description" content="Lenovo Beast builds practical software, thoughtful interfaces, and open source tools.">
-  <link rel="icon" href="LenovoBeast.png">
+  <title>Lenovo Beast — developer, builder, open source</title>
+  <meta name="description" content="Lenovo Beast builds design tooling, developer products, and open source software. Selected work, live products, and public repositories.">
+  <meta name="author" content="Lenovo Beast">
+  <link rel="canonical" href="https://lenovobeast.github.io/Lenovo-DevPort/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Lenovo Beast">
+  <meta property="og:title" content="Lenovo Beast — developer, builder, open source">
+  <meta property="og:description" content="Design tooling, developer products, and open source software.">
+  <meta property="og:url" content="https://lenovobeast.github.io/Lenovo-DevPort/">
+  <meta property="og:image" content="https://lenovobeast.github.io/Lenovo-DevPort/lenovo-beast-512.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Lenovo Beast — developer, builder, open source">
+  <meta name="twitter:description" content="Design tooling, developer products, and open source software.">
+  <meta name="twitter:image" content="https://lenovobeast.github.io/Lenovo-DevPort/lenovo-beast-512.png">
+
+  <meta name="theme-color" content="#0d0f11" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="favicon-48.png" sizes="48x48" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+
+  <script>document.documentElement.classList.add("js");</script>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Lenovo Beast",
     "url": "https://lenovobeast.github.io/Lenovo-DevPort/",
-    "sameAs": [
-      "https://github.com/lenovobeast",
-      "https://twitter.com/lenovobeast",
-      "https://linkedin.com/in/lenovobeast"
-    ],
-    "jobTitle": "Developer"
+    "image": "https://lenovobeast.github.io/Lenovo-DevPort/lenovo-beast-512.png",
+    "sameAs": ["https://github.com/lenovobeast"],
+    "jobTitle": "Developer",
+    "knowsAbout": ["Design tooling", "Developer tooling", "Open source", "TypeScript", "Python", "Go"]
   }
   </script>
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Cabin+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+    /* Cabinet Grotesk is published by Fontshare (Indian Type Foundry) and is not
+       on Google Fonts. Self-hosted so the display face actually resolves. */
+    @font-face {
+      font-family: "Cabinet Grotesk";
+      src: url("fonts/cabinet-grotesk-400.woff2") format("woff2");
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Cabinet Grotesk";
+      src: url("fonts/cabinet-grotesk-500.woff2") format("woff2");
+      font-weight: 500; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Cabinet Grotesk";
+      src: url("fonts/cabinet-grotesk-700.woff2") format("woff2");
+      font-weight: 700; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: "Cabinet Grotesk";
+      src: url("fonts/cabinet-grotesk-800.woff2") format("woff2");
+      font-weight: 800; font-style: normal; font-display: swap;
+    }
 
     :root {
       color-scheme: dark light;
-      --bg: #101214;
-      --surface: #171a1d;
-      --surface-strong: #20252a;
-      --text: #f2f4f6;
-      --muted: #a6afb8;
-      --faint: #737d87;
-      --line: #30373f;
+      --bg: #0d0f11;
+      --bg-soft: #131619;
+      --surface: #16191d;
+      --surface-2: #1b1f24;
+      --text: #f0f2f4;
+      --muted: #a3adb7;
+      --faint: #8a949e;
+      --line: #272c32;
+      --line-strong: #363c43;
       --accent: #e2231a;
-      --accent-soft: rgba(226, 35, 26, 0.14);
-      --accent-strong: #ff625b;
-      --radius: 14px;
-      --max: 1280px;
+      --accent-text: #ff6b64;
+      --accent-soft: rgba(226, 35, 26, 0.12);
+      --grain: rgba(255, 255, 255, 0.055);
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      --radius: 12px;
+      --shell: 1180px;
+      --pad: clamp(20px, 4vw, 40px);
       --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --font-display: "Cabinet Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
       --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      --font-display: "Cabin Grotesk", ui-sans-serif, system-ui, sans-serif;
     }
 
     @media (prefers-color-scheme: light) {
       :root {
-        --bg: #f4f6f8;
+        --bg: #f6f7f9;
+        --bg-soft: #eef0f3;
         --surface: #ffffff;
-        --surface-strong: #e8edf1;
-        --text: #15191d;
-        --muted: #59636d;
-        --faint: #7a858f;
-        --line: #cbd2d9;
+        --surface-2: #f1f3f6;
+        --text: #101418;
+        --muted: #525c66;
+        --faint: #5f6a74;
+        --line: #d9dfe5;
+        --line-strong: #c2cbd3;
         --accent: #b51e1a;
-        --accent-soft: rgba(181, 30, 26, 0.1);
-        --accent-strong: #8f1714;
+        --accent-text: #8f1714;
+        --accent-soft: rgba(181, 30, 26, 0.09);
+        --grain: rgba(16, 20, 24, 0.05);
+        --shadow: 0 20px 44px rgba(16, 24, 32, 0.10);
       }
     }
 
     *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; overflow-x: clip; -webkit-text-size-adjust: 100%; }
     body {
       margin: 0;
       overflow-x: hidden;
+      overflow-x: clip;
       background: var(--bg);
       color: var(--text);
       font-family: var(--font-display);
+      font-size: 1rem;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
+    /* A faint measurement grid rather than a dot texture: it reads as a technical
+       drawing surface instead of decorative noise. */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       z-index: -1;
       pointer-events: none;
-      opacity: 0.26;
-      background-image: radial-gradient(rgba(255,255,255,0.11) 0.7px, transparent 0.7px);
-      background-size: 5px 5px;
-      mask-image: linear-gradient(to bottom, #000, transparent 70%);
-    }
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
-    .container { width: min(100% - 40px, var(--max)); margin-inline: auto; }
-    .mono {
-      color: var(--accent);
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+      background-image:
+        linear-gradient(to right, var(--grain) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grain) 1px, transparent 1px);
+      background-size: 72px 72px;
+      -webkit-mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 10%, transparent 75%);
+      mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 10%, transparent 75%);
     }
 
-    header {
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; height: auto; }
+    ::selection { background: var(--accent); color: #fff; }
+
+    .shell { width: min(100% - (var(--pad) * 2), var(--shell)); margin-inline: auto; }
+
+    .mono {
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-text);
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -120px;
+      left: 16px;
+      z-index: 30;
+      padding: 10px 16px;
+      border-radius: 0 0 10px 10px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      transition: top 160ms ease;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* ---------- header ---------- */
+    .site-head {
       position: sticky;
       top: 0;
-      z-index: 5;
-      border-bottom: 1px solid color-mix(in srgb, var(--line), transparent 28%);
-      background: color-mix(in srgb, var(--bg), transparent 9%);
-      backdrop-filter: blur(14px);
+      z-index: 10;
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--bg), transparent 12%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
-    .nav {
-      min-height: 70px;
+    .head-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 20px;
+      min-height: 64px;
     }
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-    }
+    .brand { display: inline-flex; align-items: center; gap: 10px; }
     .brand img {
-      width: 34px;
-      height: 34px;
-      object-fit: cover;
+      width: 26px; height: 26px;
       border-radius: 50%;
-      border: 1px solid var(--line);
+      border: 1px solid var(--line-strong);
+      object-fit: cover;
     }
-    nav ul {
-      display: flex;
-      align-items: center;
-      gap: clamp(16px, 3vw, 34px);
-      margin: 0;
-      padding: 0;
-      list-style: none;
+    .brand-name { font-weight: 700; letter-spacing: -0.02em; font-size: 0.95rem; }
+    .site-nav { display: flex; align-items: center; gap: clamp(16px, 3vw, 30px); }
+    .site-nav a {
+      position: relative;
       color: var(--muted);
-      font-size: 0.88rem;
+      font-size: 0.86rem;
+      padding-block: 4px;
+      transition: color 160ms ease;
     }
-    nav a { transition: color 180ms ease; }
-    nav a:hover, nav a:focus-visible { color: var(--accent-strong); }
+    .site-nav a::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: -2px;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 220ms var(--ease);
+    }
+    .site-nav a:hover, .site-nav a:focus-visible { color: var(--text); }
+    .site-nav a:hover::after, .site-nav a:focus-visible::after { transform: scaleX(1); }
 
-    .hero {
-      min-height: min(760px, calc(100dvh - 70px));
-      display: grid;
-      align-items: center;
-      padding: 96px 0 150px;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.12fr) minmax(300px, 0.88fr);
-      gap: clamp(42px, 7vw, 110px);
-      align-items: center;
-    }
-    .hero-copy { position: relative; z-index: 1; max-width: 900px; }
+    /* ---------- hero ---------- */
+    .hero { padding: clamp(64px, 11vw, 132px) 0 clamp(48px, 7vw, 84px); }
     .hero h1 {
-      max-width: 78rem;
-      margin: 18px 0 22px;
-      font-size: clamp(3rem, 6vw, 6.5rem);
-      line-height: 0.9;
-      letter-spacing: -0.07em;
-      font-weight: 750;
+      max-width: 19ch;
+      margin: 20px 0 0;
+      font-size: clamp(2.7rem, 7.2vw, 5.6rem);
+      line-height: 0.94;
+      letter-spacing: -0.045em;
+      font-weight: 800;
+      text-wrap: balance;
     }
-    .hero h1 em {
-      color: var(--accent);
-      font-style: normal;
-    }
-    .hero-copy > p {
-      max-width: 43ch;
-      margin: 0 0 30px;
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero-lede {
+      max-width: 56ch;
+      margin: 26px 0 0;
       color: var(--muted);
-      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      font-size: clamp(1.02rem, 1.6vw, 1.16rem);
     }
-    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
-    .button {
+    .cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px; }
+
+    .btn {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
+      gap: 9px;
       min-height: 46px;
       padding: 0 20px;
       border: 1px solid var(--accent);
-      border-radius: 999px;
-      color: #ffffff;
+      border-radius: 8px;
       background: var(--accent);
+      color: #fff;
       font-size: 0.9rem;
       font-weight: 700;
-      transition: transform 180ms var(--ease), background 180ms ease, color 180ms ease;
+      letter-spacing: -0.01em;
+      transition: transform 180ms var(--ease), background 180ms ease, border-color 180ms ease, color 180ms ease;
     }
-    .button.secondary {
-      color: var(--text);
+    .btn:hover, .btn:focus-visible { transform: translateY(-2px); }
+    .btn.ghost {
       background: transparent;
-      border-color: var(--line);
-    }
-    .button:hover, .button:focus-visible { transform: translateY(-2px); }
-    .button.secondary:hover, .button.secondary:focus-visible {
-      border-color: var(--accent);
-      color: var(--accent-strong);
-    }
-    .hero-art {
-      position: relative;
-      min-height: 550px;
-      margin-right: -5vw;
-      display: grid;
-      grid-template-rows: minmax(0, 1fr) auto;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      overflow: hidden;
-      background: var(--surface);
-      transform: rotate(2deg);
-      box-shadow: 24px 30px 80px rgba(0, 0, 0, 0.28);
-    }
-    .hero-art img {
-      width: 100%;
-      height: 100%;
-      min-height: 0;
-      object-fit: contain;
-      object-position: center;
-      background: var(--surface-strong);
-      opacity: 0.76;
-      filter: grayscale(0.72) saturate(0.72) contrast(1.12);
-    }
-    .hero-art::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(145deg, rgba(16,18,20,0.06) 25%, rgba(226,35,26,0.34));
-      pointer-events: none;
-    }
-    .art-note {
-      position: relative;
-      right: auto;
-      bottom: auto;
-      z-index: 1;
-      max-width: none;
-      padding: 12px 14px;
-      border-top: 2px solid var(--accent);
-      background: var(--surface);
+      border-color: var(--line-strong);
       color: var(--text);
-      font-size: 0.78rem;
     }
+    .btn.ghost:hover, .btn.ghost:focus-visible { border-color: var(--accent); color: var(--accent-text); }
+    .btn .arrow { font-family: var(--font-mono); font-size: 0.8em; opacity: 0.8; }
 
-    section { padding: 190px 0; border-top: 1px solid var(--line); }
-    .section-heading { max-width: 680px; margin-bottom: 48px; }
-    h2 {
-      margin: 0 0 16px;
-      font-size: clamp(2.2rem, 5vw, 4.3rem);
-      line-height: 0.98;
-      letter-spacing: -0.065em;
-    }
-    .section-heading p, .about-copy p, .contact-copy p {
-      max-width: 60ch;
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .about-grid {
+    /* ---------- stat strip ---------- */
+    .stats {
       display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(240px, 0.85fr);
-      gap: clamp(36px, 8vw, 120px);
-      align-items: end;
-    }
-    .about-copy { display: grid; gap: 20px; }
-    .about-mark {
-      aspect-ratio: 1 / 1;
-      display: grid;
-      place-items: center;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background:
-        linear-gradient(135deg, transparent 48%, var(--accent-soft) 49%, transparent 52%),
-        var(--surface);
-    }
-    .about-mark img {
-      width: 48%;
-      max-width: 170px;
-      border-radius: 50%;
-      filter: grayscale(1);
-      opacity: 0.88;
-    }
-
-    .project-list {
-      display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
-      gap: 16px;
-    }
-    .project {
-      min-height: 360px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 26px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--surface);
-      transition: transform 220ms var(--ease), border-color 220ms ease;
-    }
-    .project:first-child { grid-row: span 2; min-height: 736px; background: linear-gradient(145deg, var(--surface-strong), var(--surface)); }
-    .project:hover { transform: translateY(-5px); border-color: var(--accent); }
-    .project-image {
-      height: 220px;
-      margin: -26px -26px 30px;
-      overflow: hidden;
-      background: var(--surface-strong);
-    }
-    .project:first-child .project-image { height: 430px; }
-    .project-image img { width: 100%; height: 100%; object-fit: contain; object-position: center; background: var(--surface-strong); filter: saturate(0.7); }
-    .project h3 { margin: 0 0 10px; font-size: 1.55rem; letter-spacing: -0.04em; }
-    .project p { max-width: 42ch; margin: 0 0 22px; color: var(--muted); font-size: 0.94rem; }
-    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
-    .tag {
-      padding: 5px 9px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: var(--faint);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 0.68rem;
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      border-top: 1px solid var(--line);
-      border-left: 1px solid var(--line);
-    }
-    .skill {
-      min-height: 220px;
-      padding: 24px;
-      border-right: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-    .skill h3 { margin: 0 0 18px; font-size: 1.12rem; }
-    .skill p { margin: 0; color: var(--muted); font-size: 0.92rem; }
-    .skill-index { display: block; margin-bottom: 44px; color: var(--accent); font-family: ui-monospace, monospace; font-size: 0.72rem; }
-
-    .bento {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      grid-template-rows: repeat(4, minmax(120px, 1fr));
-      grid-auto-rows: minmax(120px, auto);
-      grid-auto-flow: dense;
-      gap: 14px;
-    }
-    .bento-card {
-      position: relative;
-      min-height: 210px;
-      padding: 24px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--surface);
-      isolation: isolate;
-    }
-    .bento-card.feature { grid-column: span 2; grid-row: span 2; min-height: 438px; }
-    .bento-card.tall { grid-column: span 1; grid-row: span 2; }
-    .bento-card.wide { grid-column: span 2; grid-row: span 2; }
-    .bento-card.open-source { grid-column: span 2; grid-row: span 2; }
-    .bento-card h3 { position: relative; z-index: 1; max-width: 12ch; margin: 0 0 10px; font-size: 1.5rem; line-height: 1; letter-spacing: -0.04em; }
-    .bento-card p { position: relative; z-index: 1; max-width: 34ch; margin: 0; color: var(--muted); font-size: 0.88rem; }
-    .bento-card img { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; object-fit: cover; opacity: 0.48; filter: grayscale(0.8) contrast(1.15); transition: transform 800ms var(--ease), opacity 500ms ease; }
-    .bento-card::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(155deg, rgba(16,18,20,0.06), rgba(16,18,20,0.88)); }
-    .bento-card:hover img { transform: scale(1.06); opacity: 0.66; }
-    .bento-card.accent { background: var(--accent); border-color: var(--accent); color: #fff; }
-    .bento-card.accent p { color: rgba(255,255,255,0.82); }
-    .bento-card.accent::after { background: linear-gradient(135deg, rgba(0,0,0,0.05), rgba(0,0,0,0.25)); }
-    .bento-card.visual-card {
-      display: grid;
-      grid-template-rows: minmax(0, 1fr) auto auto;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      margin: clamp(48px, 7vw, 76px) 0 0;
       padding: 0;
-    }
-    .bento-card.visual-card img {
-      position: relative;
-      inset: auto;
-      z-index: 0;
-      grid-row: 1;
-      min-height: 0;
-      object-fit: contain;
-      object-position: center;
-      background: var(--surface-strong);
-      opacity: 0.82;
-    }
-    .bento-card.visual-card::after { display: none; }
-    .bento-card.visual-card h3,
-    .bento-card.visual-card p {
-      padding-inline: 24px;
-    }
-    .bento-card.visual-card h3 { grid-row: 2; margin-top: 18px; }
-    .bento-card.visual-card p { grid-row: 3; margin-bottom: 24px; }
-
-    .media-rail {
-      display: grid;
-      grid-template-columns: 1.6fr repeat(3, 0.7fr);
-      min-height: 390px;
-      gap: 8px;
-    }
-    .media-panel {
-      position: relative;
-      min-height: 390px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--line);
       overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--surface);
-      transition: flex 500ms var(--ease), transform 500ms var(--ease);
     }
-    .media-panel img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.9) contrast(1.15); opacity: 0.62; transition: transform 700ms var(--ease), opacity 500ms ease; }
-    .media-panel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(16,18,20,0.88), transparent 58%); }
-    .media-panel:hover img { transform: scale(1.08); opacity: 0.9; }
-    .media-panel:hover { transform: translateY(-5px); }
-    .media-panel-copy { position: absolute; right: 20px; bottom: 20px; left: 20px; z-index: 1; }
-    .media-panel-copy h3 { margin: 0 0 7px; font-size: 1.35rem; letter-spacing: -0.04em; }
-    .media-panel-copy p { margin: 0; color: var(--text); opacity: 0.84; font-size: 0.82rem; }
-
-    .portal-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-      gap: 16px;
-      align-items: stretch;
-    }
-    .terminal-shell {
-      min-height: 100%;
-      padding: 24px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--surface);
+    .stat { margin: 0; padding: 20px var(--pad) 22px; background: var(--bg-soft); }
+    .stat dt {
       font-family: var(--font-mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--faint);
     }
-    .terminal-bar { display: flex; gap: 7px; margin-bottom: 28px; }
-    .terminal-bar span { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
-    .terminal-bar span:first-child { background: var(--accent); }
-    .terminal-line { margin: 0 0 12px; color: var(--muted); font-size: 0.78rem; }
-    .terminal-line strong { color: var(--accent-strong); font-weight: 500; }
-    .terminal-output { margin: 28px 0 0; color: var(--text); font-size: 0.8rem; line-height: 1.8; }
-    .repo-feed {
+    .stat dd {
+      margin: 8px 0 0;
+      font-size: clamp(1.6rem, 3vw, 2.15rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    /* ---------- sections ---------- */
+    .section { padding: clamp(60px, 8vw, 104px) 0; border-top: 1px solid var(--line); }
+    .section-head { display: grid; gap: 14px; max-width: 62ch; margin-bottom: clamp(32px, 4vw, 48px); }
+    .section-head.tight { margin-bottom: 0; }
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+      text-wrap: balance;
+    }
+    .section-lede { margin: 0; color: var(--muted); max-width: 60ch; }
+
+    /* ---------- featured work ---------- */
+    .featured {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(14px, 2vw, 20px);
+    }
+    /* Typographic on purpose. GitHub's OG card duplicates the repo name and
+       advertises "0 stars / 0 forks", so it is not used here: the card is the
+       plate, and the copy below is the only place the project is named. */
+    .feature {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding: 24px var(--pad) 26px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-top: 2px solid var(--accent);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, var(--surface-2), var(--surface) 60%);
+      transition: border-color 220ms ease, transform 220ms var(--ease), box-shadow 220ms ease;
+    }
+    .feature:hover {
+      transform: translateY(-3px);
+      border-color: var(--line-strong);
+      box-shadow: var(--shadow);
+    }
+    .feature-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       gap: 12px;
     }
-    .repo-card {
+    .feature-idx {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--accent-text);
+    }
+    .feature-title {
+      margin: 0;
+      font-size: clamp(1.6rem, 2.6vw, 2rem);
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+      font-weight: 800;
+    }
+    .feature p { margin: 0; color: var(--muted); font-size: 0.95rem; max-width: 44ch; }
+    .meta-row {
       display: flex;
-      min-height: 180px;
-      flex-direction: column;
-      overflow: hidden;
-      padding: 20px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--surface);
-      transition: transform 220ms var(--ease), border-color 220ms ease, background 220ms ease;
-    }
-    .repo-card:hover { transform: translateY(-4px); border-color: var(--accent); background: var(--surface-strong); }
-    .repo-preview {
-      width: calc(100% + 40px);
-      height: 150px;
-      margin: -20px -20px 18px;
-      object-fit: contain;
-      object-position: center;
-      background: var(--surface-strong);
-      border-bottom: 1px solid var(--line);
-    }
-    .repo-preview-fallback { display: none; }
-    .repo-site {
-      display: inline-flex;
-      width: fit-content;
-      margin-top: 10px;
-      color: var(--accent-strong);
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 14px;
+      margin-top: auto;
+      padding-top: 18px;
       font-family: var(--font-mono);
       font-size: 0.68rem;
+      letter-spacing: 0.04em;
+      color: var(--faint);
     }
-    .repo-card h3 { margin: 0 0 8px; font-size: 1rem; letter-spacing: -0.03em; }
-    .repo-card p { display: -webkit-box; overflow: hidden; margin: 0 0 18px; color: var(--muted); font-size: 0.82rem; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
-    .repo-meta { display: flex; gap: 14px; margin-top: auto; color: var(--faint); font-family: var(--font-mono); font-size: 0.66rem; }
-    .repo-meta strong { color: var(--accent-strong); font-weight: 500; }
-    .repo-loading { grid-column: 1 / -1; padding: 30px; border: 1px dashed var(--line); border-radius: var(--radius); color: var(--muted); font-family: var(--font-mono); font-size: 0.78rem; }
+    .chip {
+      padding: 3px 8px;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      font-size: 0.66rem;
+      color: var(--faint);
+    }
+    .meta-link { color: var(--accent-text); }
+    .meta-link:hover, .meta-link:focus-visible { text-decoration: underline; text-underline-offset: 3px; }
 
-    .contact {
+    /* ---------- work rows ---------- */
+    .work-list { margin: clamp(14px, 2vw, 20px) 0 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+    .work-row {
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 40px;
-      align-items: end;
+      grid-template-columns: 3.2rem minmax(0, 1fr) auto;
+      align-items: baseline;
+      gap: 6px 20px;
+      padding: 22px 4px;
+      border-bottom: 1px solid var(--line);
+      transition: background 200ms ease, padding-inline 200ms var(--ease);
     }
-    .contact h2 { max-width: 8ch; }
-    .contact-copy p { margin-bottom: 26px; }
-    .socials { display: flex; flex-wrap: wrap; gap: 20px; color: var(--muted); }
-    .socials a { border-bottom: 1px solid var(--line); padding-bottom: 3px; }
-    .socials a:hover, .socials a:focus-visible { color: var(--accent-strong); border-color: var(--accent); }
-    .contact-link {
-      display: inline-flex;
-      padding: 18px 22px;
-      border: 1px solid var(--accent);
-      border-radius: var(--radius);
-      color: var(--accent-strong);
-      font-size: 0.95rem;
+    .work-row:hover { background: var(--bg-soft); padding-inline: 12px; }
+    .work-idx { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-text); letter-spacing: 0.08em; }
+    .work-main { min-width: 0; }
+    .work-title {
+      margin: 0;
+      font-size: 1.14rem;
+      letter-spacing: -0.02em;
       font-weight: 700;
     }
-
-    .accordion {
+    .work-desc { margin: 5px 0 0; color: var(--muted); font-size: 0.9rem; max-width: 62ch; }
+    .work-links {
       display: flex;
-      min-height: 430px;
-      gap: 8px;
-      overflow: hidden;
-    }
-    .accordion-item {
-      position: relative;
-      display: grid;
-      grid-template-rows: minmax(0, 1fr) auto;
-      flex: 1 1 0;
-      min-width: 0;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--surface);
-      transition: flex 700ms var(--ease), border-color 250ms ease;
-    }
-    .accordion-item:hover, .accordion-item:focus-within { flex: 2.8 1 0; border-color: var(--accent); }
-    .accordion-item img { width: 100%; height: 100%; min-height: 0; object-fit: contain; object-position: center; background: var(--surface-strong); filter: grayscale(0.9) contrast(1.14); opacity: 0.6; transition: transform 800ms var(--ease), opacity 500ms ease; }
-    .accordion-item:hover img, .accordion-item:focus-within img { transform: scale(1.08); opacity: 0.92; }
-    .accordion-item::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(16,18,20,0.95), transparent 60%); }
-    .accordion-copy { position: relative; right: auto; bottom: auto; left: auto; z-index: 1; min-width: 190px; padding: 18px 22px 20px; background: var(--surface); }
-    .accordion-copy h3 { margin: 0 0 7px; font-size: 1.45rem; letter-spacing: -0.04em; }
-    .accordion-copy p { margin: 0; color: var(--muted); font-size: 0.84rem; }
-
-    .marquee {
-      overflow: hidden;
-      margin: 0 0 42px;
-      border-block: 1px solid var(--line);
+      align-items: center;
+      gap: 14px;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
       white-space: nowrap;
     }
-    .marquee-track { display: inline-flex; min-width: max-content; gap: 34px; padding: 19px 0; color: var(--muted); font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; animation: marquee 24s linear infinite; }
-    .marquee-track b { color: var(--accent); font-weight: 500; }
-    @keyframes marquee { to { transform: translateX(-50%); } }
+    .work-links a { color: var(--faint); transition: color 160ms ease; }
+    .work-links a:hover, .work-links a:focus-visible { color: var(--accent-text); }
+    .work-links .live { color: var(--accent-text); }
 
-    .scroll-gallery { display: grid; grid-template-columns: minmax(220px, 0.55fr) minmax(0, 1.45fr); gap: clamp(32px, 7vw, 100px); align-items: start; }
-    .scroll-gallery-heading { position: sticky; top: 110px; }
-    .scroll-gallery-heading h2 { max-width: 8ch; }
-    .scroll-gallery-heading > p { max-width: 38ch; margin: 0; color: var(--muted); }
-    .gallery-stack { display: grid; gap: 22px; }
-    .gallery-card { display: grid; grid-template-rows: minmax(0, 1fr) auto; min-height: 520px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
-    .gallery-card img { width: 100%; height: 100%; min-height: 390px; object-fit: contain; object-position: center; background: var(--surface-strong); filter: grayscale(0.76) contrast(1.16); opacity: 0.78; }
-    .gallery-card-copy { position: relative; right: auto; bottom: auto; left: auto; z-index: 1; padding: 22px 24px 24px; background: var(--surface); }
-    .gallery-card-copy h3 { margin: 0 0 5px; font-size: 1.65rem; }
-    .gallery-card-copy p { margin: 0; color: var(--muted); }
+    /* ---------- github feed ---------- */
+    .feed-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .feed-status {
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      color: var(--faint);
+    }
+    .feed { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+    .feed-item {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: baseline;
+      gap: 4px 18px;
+      padding: 14px 4px;
+      border-bottom: 1px solid var(--line);
+      transition: background 180ms ease;
+    }
+    .feed-item:hover { background: var(--bg-soft); }
+    .feed-name { font-weight: 700; font-size: 0.98rem; letter-spacing: -0.01em; }
+    .feed-name a:hover, .feed-name a:focus-visible { color: var(--accent-text); }
+    .feed-desc {
+      margin: 3px 0 0;
+      color: var(--faint);
+      font-size: 0.84rem;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+    }
+    .feed-meta {
+      display: flex;
+      gap: 14px;
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.04em;
+      color: var(--faint);
+      white-space: nowrap;
+    }
+    .feed-meta a { color: var(--accent-text); }
+    .feed-meta a:hover, .feed-meta a:focus-visible { text-decoration: underline; text-underline-offset: 3px; }
+    .feed-msg { padding: 20px 4px; color: var(--faint); font-family: var(--font-mono); font-size: 0.78rem; }
 
-    footer { padding: 26px 0 42px; color: var(--faint); font-size: 0.8rem; }
-    footer .container { display: flex; justify-content: space-between; gap: 20px; }
-    footer a { color: var(--muted); }
+    /* ---------- about ---------- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: clamp(28px, 5vw, 64px);
+      align-items: start;
+    }
+    .about-copy p { margin: 0 0 18px; color: var(--muted); max-width: 58ch; }
+    .about-copy p:last-child { margin-bottom: 0; }
+    .caps { margin: 0; display: grid; gap: 18px; }
+    .cap {
+      display: grid;
+      gap: 5px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+    .cap:last-child { border-bottom: 0; padding-bottom: 0; }
+    .cap dt {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--accent-text);
+    }
+    .cap dd { margin: 0; font-size: 0.95rem; }
 
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 700ms var(--ease), transform 700ms var(--ease); }
-    .reveal.is-visible { opacity: 1; transform: none; }
-    :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+    /* ---------- contact ---------- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 32px;
+      align-items: end;
+    }
+    .contact h2 {
+      margin: 14px 0 0;
+      font-size: clamp(2rem, 4.6vw, 3.4rem);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+      font-weight: 800;
+      max-width: 18ch;
+      text-wrap: balance;
+    }
+    .contact p { margin: 16px 0 0; color: var(--muted); max-width: 52ch; }
+    .contact-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    /* ---------- footer ---------- */
+    .site-foot { border-top: 1px solid var(--line); padding: 26px 0 40px; }
+    .foot-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.03em;
+      color: var(--faint);
+    }
+    .foot-inner a:hover, .foot-inner a:focus-visible { color: var(--accent-text); }
+
+    /* ---------- reveal (opt-in) ---------- */
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 620ms var(--ease), transform 620ms var(--ease);
+    }
+    .js .reveal.is-in { opacity: 1; transform: none; }
+
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-      .reveal { opacity: 1; transform: none; }
+      .js .reveal { opacity: 1; transform: none; }
+      .feature:hover, .btn:hover, .btn:focus-visible { transform: none; }
     }
-    @media (max-width: 820px) {
-      .hero-grid, .about-grid, .contact { grid-template-columns: 1fr; }
-      .hero { min-height: auto; padding: 70px 0 84px; }
-      .hero-art { min-height: 320px; }
-      .hero-art img { min-height: 320px; }
-      .project-list { grid-template-columns: 1fr; }
-      .project:first-child { grid-row: auto; min-height: 0; }
-      .project:first-child .project-image { height: 280px; }
-      .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .contact-link { justify-self: start; }
-      .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto; }
-      .bento-card.feature, .bento-card.wide, .bento-card.open-source { grid-column: span 2; }
-      .bento-card.tall { grid-column: span 1; }
-      .scroll-gallery { grid-template-columns: 1fr; }
-      .scroll-gallery-heading { position: static; }
-      .media-rail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    @media (max-width: 860px) {
+      .featured { grid-template-columns: 1fr; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .contact-grid { align-items: start; }
+      .stats { grid-template-columns: 1fr; }
+      .work-row { grid-template-columns: 2.6rem minmax(0, 1fr); }
+      .work-links { grid-column: 2; justify-content: flex-start; }
     }
     @media (max-width: 560px) {
-      .container { width: min(100% - 28px, var(--max)); }
-      .nav { min-height: 62px; }
-      .brand span { display: none; }
-      nav ul { gap: 14px; font-size: 0.76rem; }
-      .hero h1 { font-size: clamp(3.4rem, 18vw, 5.5rem); }
-      section { padding: 120px 0; }
-      .skills-grid { grid-template-columns: 1fr; }
-      footer .container { flex-direction: column; }
-      .bento, .media-rail { grid-template-columns: 1fr; }
-      .bento-card.feature, .bento-card.wide, .bento-card.open-source, .bento-card.tall { grid-column: auto; grid-row: auto; }
-      .bento-card.feature { min-height: 320px; }
-      .media-panel { min-height: 280px; }
-      .portal-grid, .repo-feed { grid-template-columns: 1fr; }
-      .repo-preview { height: 170px; }
-      .accordion { min-height: 680px; flex-direction: column; }
-      .accordion-item, .accordion-item:hover, .accordion-item:focus-within { min-height: 200px; flex: 1 1 0; }
-      .accordion-item:hover, .accordion-item:focus-within { flex: 2 1 0; }
-      .hero-art { min-height: 360px; margin-right: 0; transform: rotate(1deg); }
-      .hero-art img { min-height: 0; }
+      .brand-name { display: none; }
+      .hero h1 { font-size: clamp(2.3rem, 10.5vw, 3.2rem); }
+      .work-row { padding: 18px 2px; }
+      .feed-item { grid-template-columns: 1fr; }
+      .feed-meta { justify-content: flex-start; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="container nav">
-      <a class="brand" href="#" aria-label="Lenovo Beast home">
-        <img src="LenovoBeast.png" alt="">
-        <span>Lenovo Beast</span>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-head">
+    <div class="shell head-inner">
+      <a class="brand" href="#top" aria-label="Lenovo Beast — back to top">
+        <img src="lenovo-beast-128.png" alt="" width="26" height="26">
+        <span class="brand-name">Lenovo Beast</span>
       </a>
-      <nav aria-label="Primary navigation">
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#showcase">Workbench</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#work">Work</a>
+        <a href="#github">GitHub</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
-  <main class="overflow-x-hidden">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy reveal">
-          <span class="mono">Developer / builder / open source</span>
-          <h1>Software with <em>shape.</em></h1>
-          <p>I build practical tools and clear interfaces for people who want the work to move forward.</p>
-          <div class="actions">
-            <a class="button" href="#projects">View projects</a>
-            <a class="button secondary" href="#contact">Contact me</a>
-          </div>
-        </div>
-        <figure class="hero-art reveal">
-          <img src="https://opengraph.githubassets.com/1/LenovoBeast/Lenovo-DevPort" alt="Lenovo DevPort repository preview" fetchpriority="high" decoding="async">
-          <figcaption class="art-note">A live portfolio for practical tools, open source experiments, and thoughtful interfaces.</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="container about-grid">
-        <div class="about-copy reveal">
-          <div class="section-heading">
-            <h2>Useful beats loud.</h2>
-            <p>I care about the parts of software that make a product feel dependable: a clear model, a fast path, and a finish that respects the user.</p>
-          </div>
-          <p>My work sits between product thinking and implementation. I enjoy turning rough ideas into systems that are easy to understand, maintain, and extend.</p>
-          <p>When I am away from the editor, I explore new tools, contribute to open source, and share what I learn.</p>
-        </div>
-        <div class="about-mark reveal">
-          <img src="LenovoBeast.png" alt="Lenovo Beast mark">
-        </div>
-      </div>
-    </section>
-
-    <section id="projects">
-      <div class="container">
-        <div class="section-heading reveal">
-          <h2>Selected work</h2>
-          <p>A few directions I keep returning to: tools for independent work, thoughtful frontends, and infrastructure that removes friction.</p>
-        </div>
-        <div class="project-list">
-          <article class="project reveal">
-            <div>
-              <div class="project-image">
-                <img src="https://opengraph.githubassets.com/1/LenovoBeast/Playground" alt="Lenovo Beast Playground repository preview" loading="lazy" decoding="async">
-              </div>
-              <h3>Playground</h3>
-              <p>A public space for testing ideas, interfaces, and small experiments before they become durable tools.</p>
-            </div>
-            <div class="tags"><span class="tag">JavaScript</span><span class="tag">Experiments</span><span class="tag">Open source</span></div>
-          </article>
-          <article class="project reveal">
-            <div>
-              <div class="project-image">
-                <img src="https://opengraph.githubassets.com/1/LenovoBeast/taste-skill" alt="Lenovo Beast taste-skill repository preview" loading="lazy" decoding="async">
-              </div>
-              <h3>Taste-Skill</h3>
-              <p>A design skill for helping AI produce more considered, specific, and useful interfaces.</p>
-            </div>
-            <div class="tags"><span class="tag">JavaScript</span><span class="tag">Design systems</span><span class="tag">Open source</span></div>
-          </article>
-          <article class="project reveal">
-            <div>
-              <div class="project-image">
-                <img src="https://opengraph.githubassets.com/1/LenovoBeast/runs-on.dev" alt="runs-on.dev repository preview" loading="lazy" decoding="async">
-              </div>
-              <h3>runs-on.dev</h3>
-              <p>A free subdomain service that gives small projects a memorable place to live on the web.</p>
-            </div>
-            <div class="tags"><span class="tag">JavaScript</span><span class="tag">Web platform</span><span class="tag">Open source</span></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <div class="marquee" aria-label="Capabilities">
-      <div class="marquee-track">
-        <span>Open source</span><b>+</b><span>Product systems</span><b>+</b><span>Interface craft</span><b>+</b><span>Reliable delivery</span><b>+</b>
-        <span>Open source</span><b>+</b><span>Product systems</span><b>+</b><span>Interface craft</span><b>+</b><span>Reliable delivery</span><b>+</b>
-      </div>
-    </div>
-
-    <section id="showcase" aria-labelledby="showcase-title">
-      <div class="container">
-        <div class="section-heading reveal">
-          <h2 id="showcase-title">The public workbench.</h2>
-          <p>Live repository data from GitHub, presented with a quiet surface so the engineering stays legible.</p>
-        </div>
-        <div class="portal-grid">
-          <aside class="terminal-shell reveal" aria-label="GitHub feed status">
-            <div class="terminal-bar" aria-hidden="true"><span></span><span></span><span></span></div>
-            <p class="terminal-line"><strong>lenovobeast@portal</strong>:~$ github --sync</p>
-            <p class="terminal-line">source: github.com/lenovobeast</p>
-            <p class="terminal-line">mode: public repositories</p>
-            <p class="terminal-output" id="github-status">Fetching the latest public work...</p>
-          </aside>
-          <div class="repo-feed" id="repo-feed" aria-live="polite">
-            <div class="repo-loading">Loading public repositories...</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section aria-labelledby="practice-title">
-      <div class="container">
-        <div class="section-heading reveal">
-          <h2 id="practice-title">A broad practice, one standard.</h2>
-          <p>Different tools, same expectation: make the system clearer than you found it.</p>
-        </div>
-        <div class="bento">
-          <article class="bento-card feature visual-card reveal">
-            <img src="https://opengraph.githubassets.com/1/LenovoBeast/Lenovo-DevPort" alt="Lenovo DevPort repository preview" loading="lazy" decoding="async">
-            <h3>Build for the second read.</h3>
-            <p>The first interaction should feel obvious. The second should reveal care.</p>
-          </article>
-          <article class="bento-card tall accent reveal">
-            <h3>Clarity is a feature.</h3>
-            <p>Simple structures make room for ambitious ideas.</p>
-          </article>
-          <article class="bento-card tall reveal">
-            <h3>Systems over shortcuts.</h3>
-            <p>Reusable foundations keep the work durable.</p>
-          </article>
-          <article class="bento-card wide visual-card reveal">
-            <img src="https://opengraph.githubassets.com/1/LenovoBeast/taste-skill" alt="Taste-skill repository preview" loading="lazy" decoding="async">
-            <h3>Details that earn their place.</h3>
-            <p>Motion, texture, and interaction should explain something, not compete for attention.</p>
-          </article>
-          <article class="bento-card open-source accent reveal">
-            <h3>Public by default.</h3>
-            <p>Ideas become more useful when people can inspect them, fork them, and make them better.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section aria-labelledby="visual-title">
-      <div class="container">
-        <div class="scroll-gallery">
-          <div class="scroll-gallery-heading reveal">
-            <h2 id="visual-title">A practice in motion.</h2>
-            <p>The work changes shape, but the standard stays steady: useful, legible, and ready to meet the next person.</p>
-          </div>
-          <div class="gallery-stack">
-            <article class="gallery-card reveal">
-              <img src="https://opengraph.githubassets.com/1/LenovoBeast/Playground" alt="Playground repository preview" loading="lazy" decoding="async">
-              <div class="gallery-card-copy"><h3>Interfaces that invite action.</h3><p>Make the next decision feel natural.</p></div>
-            </article>
-            <article class="gallery-card reveal">
-              <img src="https://opengraph.githubassets.com/1/LenovoBeast/runs-on.dev" alt="runs-on.dev repository preview" loading="lazy" decoding="async">
-              <div class="gallery-card-copy"><h3>Systems with a visible edge.</h3><p>Give complexity a shape people can trust.</p></div>
-            </article>
-            <article class="gallery-card reveal">
-              <img src="https://github.com/lenovobeast.png?size=1200" alt="Lenovo Beast GitHub profile image" loading="lazy" decoding="async">
-              <div class="gallery-card-copy"><h3>Open work, better questions.</h3><p>Leave room for collaboration to improve the result.</p></div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section aria-labelledby="approach-title">
-      <div class="container">
-        <div class="section-heading reveal">
-          <h2 id="approach-title">Choose the right shape.</h2>
-          <p>From a small interaction to a full product system, the approach starts with the constraint and ends with something people can use.</p>
-        </div>
-        <div class="accordion">
-          <a class="accordion-item reveal" href="#contact">
-            <img src="https://opengraph.githubassets.com/1/LenovoBeast/Lenovo-DevPort" alt="Lenovo DevPort repository preview" loading="lazy" decoding="async">
-            <div class="accordion-copy"><h3>Shape the product.</h3><p>Turn an idea into a coherent experience.</p></div>
-          </a>
-          <a class="accordion-item reveal" href="#contact">
-            <img src="https://opengraph.githubassets.com/1/LenovoBeast/taste-skill" alt="Taste-skill repository preview" loading="lazy" decoding="async">
-            <div class="accordion-copy"><h3>Sharpen the interface.</h3><p>Make complex workflows feel direct.</p></div>
-          </a>
-          <a class="accordion-item reveal" href="#contact">
-            <img src="https://opengraph.githubassets.com/1/LenovoBeast/runs-on.dev" alt="runs-on.dev repository preview" loading="lazy" decoding="async">
-            <div class="accordion-copy"><h3>Ship the system.</h3><p>Build foundations that keep moving.</p></div>
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="shell">
+        <p class="mono">Independent developer · Open source</p>
+        <h1>I build tools that make hard things feel <em>direct</em>.</h1>
+        <p class="hero-lede">
+          Design tooling, developer products, and small utilities — mostly open source,
+          mostly shipped. I care about the parts that make software feel dependable:
+          a clear model, a fast path, and a finish that respects the person using it.
+        </p>
+        <div class="cta-row">
+          <a class="btn" href="#work">See the work <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn ghost" href="https://github.com/lenovobeast" target="_blank" rel="me noreferrer">
+            github.com/lenovobeast <span class="arrow" aria-hidden="true">↗</span>
           </a>
         </div>
+
+        <dl class="stats">
+          <div class="stat">
+            <dt>Public repositories</dt>
+            <dd data-stat="repos">20</dd>
+          </div>
+          <div class="stat">
+            <dt>Shipped with a live site</dt>
+            <dd data-stat="live">14</dd>
+          </div>
+          <div class="stat">
+            <dt>Languages shipped</dt>
+            <dd data-stat="langs">6</dd>
+          </div>
+        </dl>
       </div>
     </section>
 
-    <section id="skills">
-      <div class="container">
-        <div class="section-heading reveal">
-          <h2>How I work</h2>
-          <p>Enough range to see the whole system, with a preference for simple tools and strong fundamentals.</p>
+    <section class="section" id="work" aria-labelledby="work-title">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="mono">01 — Selected work</p>
+          <h2 id="work-title">Six things I keep building.</h2>
+          <p class="section-lede">
+            A mix of design tooling and developer products. Each one is public, and most
+            of them are running live right now.
+          </p>
         </div>
-        <div class="skills-grid">
-          <article class="skill reveal"><h3>Languages</h3><p>JavaScript, TypeScript, Python, Java, C++, and Rust.</p></article>
-          <article class="skill reveal"><h3>Frontend</h3><p>React, Vue, Svelte, HTML, CSS, Tailwind, and WebGL.</p></article>
-          <article class="skill reveal"><h3>Backend</h3><p>Node.js, Express, Django, Spring Boot, Go, PostgreSQL, and MongoDB.</p></article>
-          <article class="skill reveal"><h3>Delivery</h3><p>Docker, Kubernetes, AWS, CI/CD, Terraform, and Linux.</p></article>
+
+        <div class="featured">
+          <article class="feature reveal">
+            <div class="feature-top">
+              <span class="feature-idx">01</span>
+              <span class="chip">JavaScript</span>
+            </div>
+            <h3 class="feature-title">impeccable</h3>
+            <p>The design language that makes your AI harness better at design — a shared visual vocabulary instead of generic output.</p>
+            <div class="meta-row">
+              <a class="meta-link" href="https://impeccable.style" target="_blank" rel="noreferrer">impeccable.style ↗</a>
+              <a class="meta-link" href="https://github.com/LenovoBeast/impeccable" target="_blank" rel="noreferrer">Code ↗</a>
+            </div>
+          </article>
+
+          <article class="feature reveal">
+            <div class="feature-top">
+              <span class="feature-idx">02</span>
+              <span class="chip">Local-first</span>
+            </div>
+            <h3 class="feature-title">open-design</h3>
+            <p>A local-first design app that turns your coding agent into the design engine — prototypes, dashboards, slides and video, exported as real files.</p>
+            <div class="meta-row">
+              <a class="meta-link" href="https://open-design.ai" target="_blank" rel="noreferrer">open-design.ai ↗</a>
+              <a class="meta-link" href="https://github.com/LenovoBeast/open-design" target="_blank" rel="noreferrer">Code ↗</a>
+            </div>
+          </article>
+        </div>
+
+        <ol class="work-list">
+          <li class="work-row reveal">
+            <span class="work-idx" aria-hidden="true">03</span>
+            <div class="work-main">
+              <h3 class="work-title">orca</h3>
+              <p class="work-desc">The ADE for working with a fleet of parallel agents — desktop, mobile and remote runtime.</p>
+            </div>
+            <div class="work-links">
+              <span class="chip">TypeScript</span>
+              <a class="live" href="https://onOrca.dev" target="_blank" rel="noreferrer">onOrca.dev ↗</a>
+            </div>
+          </li>
+
+          <li class="work-row reveal">
+            <span class="work-idx" aria-hidden="true">04</span>
+            <div class="work-main">
+              <h3 class="work-title">GeoLibre</h3>
+              <p class="work-desc">A lightweight, cloud-native GIS platform for exploring geospatial data — in the browser, on desktop, on mobile, and inside Jupyter.</p>
+            </div>
+            <div class="work-links">
+              <span class="chip">TypeScript</span>
+              <a class="live" href="https://geolibre.app" target="_blank" rel="noreferrer">geolibre.app ↗</a>
+            </div>
+          </li>
+
+          <li class="work-row reveal">
+            <span class="work-idx" aria-hidden="true">05</span>
+            <div class="work-main">
+              <h3 class="work-title">ui-ux-pro-max-skill</h3>
+              <p class="work-desc">An AI skill that supplies design intelligence for building professional UI/UX across platforms.</p>
+            </div>
+            <div class="work-links">
+              <span class="chip">Python</span>
+              <a class="live" href="https://www.uupm.cc/" target="_blank" rel="noreferrer">uupm.cc ↗</a>
+            </div>
+          </li>
+
+          <li class="work-row reveal">
+            <span class="work-idx" aria-hidden="true">06</span>
+            <div class="work-main">
+              <h3 class="work-title">taste-skill</h3>
+              <p class="work-desc">Gives your AI good taste — stops it generating boring, generic slop.</p>
+            </div>
+            <div class="work-links">
+              <span class="chip">JavaScript</span>
+              <a class="live" href="https://tasteskill.dev" target="_blank" rel="noreferrer">tasteskill.dev ↗</a>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="github" aria-labelledby="github-title">
+      <div class="shell">
+        <div class="feed-head reveal">
+          <div class="section-head tight">
+            <p class="mono">02 — Also on GitHub</p>
+            <h2 id="github-title">Everything else, in public.</h2>
+          </div>
+          <p class="feed-status" id="feed-status" aria-live="polite">Loading repositories…</p>
+        </div>
+        <ul class="feed" id="feed">
+          <li class="feed-msg">Fetching public repositories…</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="shell">
+        <div class="section-head reveal">
+          <p class="mono">03 — About</p>
+          <h2 id="about-title">Useful beats loud.</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-copy reveal">
+            <p>My work sits between product thinking and implementation. I like turning rough ideas into systems that are easy to understand, maintain, and extend — and I would rather ship something small and finished than something large and vague.</p>
+            <p>Most of what I build ends up public. If something here is close to what you need, the source is usually a fork away.</p>
+          </div>
+          <dl class="caps reveal">
+            <div class="cap">
+              <dt>Languages</dt>
+              <dd>TypeScript, JavaScript, Python, Go, Java, C++</dd>
+            </div>
+            <div class="cap">
+              <dt>Frontend</dt>
+              <dd>React, Vue, Svelte, Tailwind, WebGL</dd>
+            </div>
+            <div class="cap">
+              <dt>Backend &amp; infra</dt>
+              <dd>Node.js, Django, Spring Boot, PostgreSQL, Docker, Terraform</dd>
+            </div>
+            <div class="cap">
+              <dt>Focus</dt>
+              <dd>Design tooling, developer experience, open source</dd>
+            </div>
+          </dl>
         </div>
       </div>
     </section>
 
-    <section id="contact">
-      <div class="container contact">
-        <div class="contact-copy reveal">
-          <div class="section-heading">
-            <h2>Have a good problem?</h2>
-            <p>Tell me what you are building, where it is stuck, or what you want to make clearer.</p>
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div class="shell">
+        <div class="contact-grid">
+          <div class="reveal">
+            <p class="mono">04 — Contact</p>
+            <h2 id="contact-title">Have a good problem?</h2>
+            <p>Tell me what you are building, where it is stuck, or what you want to make clearer. The fastest way to reach me is GitHub.</p>
           </div>
-          <div class="socials" aria-label="Social links">
-            <a href="https://github.com/lenovobeast" target="_blank" rel="noreferrer">GitHub</a>
-            <a href="https://twitter.com/lenovobeast" target="_blank" rel="noreferrer">Twitter</a>
-            <a href="https://linkedin.com/in/lenovobeast" target="_blank" rel="noreferrer">LinkedIn</a>
+          <div class="contact-actions reveal">
+            <a class="btn" href="https://github.com/lenovobeast" target="_blank" rel="me noreferrer">
+              Open an issue <span class="arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="btn ghost" href="https://github.com/lenovobeast?tab=repositories" target="_blank" rel="noreferrer">
+              All repositories <span class="arrow" aria-hidden="true">↗</span>
+            </a>
           </div>
         </div>
-        <a class="contact-link reveal" href="mailto:hello@lenovobeast.dev">hello@lenovobeast.dev</a>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container">
-      <span>Lenovo Beast</span>
-      <span>Built with care in <span id="year"></span></span>
+  <footer class="site-foot">
+    <div class="shell foot-inner">
+      <span>&copy; <span id="year"></span> Lenovo Beast</span>
+      <span>Built with Cabinet Grotesk · <a href="https://github.com/LenovoBeast/Lenovo-DevPort" target="_blank" rel="noreferrer">Source</a></span>
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const items = document.querySelectorAll(".reveal");
-    if (reduced || !("IntersectionObserver" in window)) {
-      items.forEach((item) => item.classList.add("is-visible"));
-    } else {
-      const observer = new IntersectionObserver((entries, observerInstance) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-visible");
-          observerInstance.unobserve(entry.target);
-        });
-      }, { threshold: 0.14 });
-      items.forEach((item) => observer.observe(item));
-    }
+    (function () {
+      var year = document.getElementById("year");
+      if (year) year.textContent = new Date().getFullYear();
 
-    if (!reduced && window.gsap && window.ScrollTrigger) {
-      gsap.registerPlugin(ScrollTrigger);
-      gsap.utils.toArray(".gallery-card").forEach((card) => {
-        gsap.fromTo(card, { scale: 0.8, opacity: 0.2 }, {
-          scale: 1,
-          opacity: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 88%",
-            end: "bottom 12%",
-            scrub: true
-          }
-        });
-      });
-      gsap.to(".scroll-gallery-heading", {
-        scrollTrigger: {
-          trigger: ".scroll-gallery",
-          start: "top 110px",
-          end: "bottom bottom",
-          pin: true,
-          pinSpacing: false
-        }
-      });
-      gsap.fromTo(".hero-art", { y: 32, rotate: 4 }, {
-        y: -18,
-        rotate: 2,
-        ease: "none",
-        scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true }
-      });
-      gsap.utils.toArray(".bento-card").forEach((card, index) => {
-        gsap.fromTo(card, { y: 42, opacity: 0 }, {
-          y: index % 2 ? -10 : 0,
-          opacity: 1,
-          duration: 1,
-          delay: index * 0.08,
-          ease: "power3.out",
-          scrollTrigger: { trigger: card, start: "top 88%" }
-        });
-      });
-    }
-
-    const repoFeed = document.getElementById("repo-feed");
-    const githubStatus = document.getElementById("github-status");
-    const formatCount = (value) => new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 }).format(value || 0);
-    const validHomepage = (value) => {
-      try {
-        const url = new URL(value);
-        return url.protocol === "https:" || url.protocol === "http:" ? url.href : "";
-      } catch {
-        return "";
+      var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var items = document.querySelectorAll(".reveal");
+      function revealAll() {
+        items.forEach(function (el) { el.classList.add("is-in"); });
       }
-    };
-    const screenshotUrl = (homepage) => `https://s.wordpress.com/mshots/v1/${encodeURIComponent(homepage)}?w=1200`;
-    const renderRepos = (repos) => {
-      repoFeed.replaceChildren(...repos.map((repo) => {
-        const link = document.createElement("a");
-        link.className = "repo-card reveal is-visible";
+      try {
+        if (reduced || !("IntersectionObserver" in window)) {
+          revealAll();
+        } else {
+          var io = new IntersectionObserver(function (entries, obs) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("is-in");
+              obs.unobserve(entry.target);
+            });
+          }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+          items.forEach(function (el) { io.observe(el); });
+        }
+      } catch (err) {
+        revealAll();
+      }
+    })();
+
+    (function () {
+      var feed = document.getElementById("feed");
+      var status = document.getElementById("feed-status");
+      if (!feed || !status) return;
+
+      // Featured above; keep the feed from repeating them.
+      var FEATURED = ["impeccable", "open-design", "orca", "geolibre", "ui-ux-pro-max-skill", "taste-skill"];
+      var MAX = 8;
+
+      function relative(iso) {
+        var then = new Date(iso).getTime();
+        if (!then) return "";
+        var days = Math.round((Date.now() - then) / 86400000);
+        if (days <= 0) return "today";
+        if (days === 1) return "yesterday";
+        if (days < 30) return days + "d ago";
+        var months = Math.round(days / 30);
+        if (months < 12) return months + "mo ago";
+        return Math.round(months / 12) + "y ago";
+      }
+
+      function row(repo) {
+        var li = document.createElement("li");
+        li.className = "feed-item";
+
+        var main = document.createElement("div");
+        var name = document.createElement("div");
+        name.className = "feed-name";
+        var link = document.createElement("a");
         link.href = repo.html_url;
         link.target = "_blank";
         link.rel = "noreferrer";
-        const homepage = validHomepage(repo.homepage);
-        if (homepage) {
-          const preview = document.createElement("img");
-          preview.className = "repo-preview";
-          preview.src = screenshotUrl(homepage);
-          preview.alt = `${repo.name} live website preview`;
-          preview.loading = "lazy";
-          preview.decoding = "async";
-          preview.addEventListener("error", () => {
-            preview.src = `https://opengraph.githubassets.com/1/LenovoBeast/${encodeURIComponent(repo.name)}`;
-            preview.alt = `${repo.name} repository preview`;
-          }, { once: true });
-          link.append(preview);
+        link.textContent = repo.name;
+        name.append(link);
+        main.append(name);
+
+        if (repo.description) {
+          var desc = document.createElement("p");
+          desc.className = "feed-desc";
+          desc.textContent = repo.description;
+          main.append(desc);
         }
-        const title = document.createElement("h3");
-        title.textContent = repo.name;
-        const description = document.createElement("p");
-        description.textContent = repo.description || "A public project from the Lenovo Beast workbench.";
-        let site;
-        if (homepage) {
-          site = document.createElement("span");
-          site.className = "repo-site";
-          site.textContent = new URL(homepage).hostname.replace(/^www\./, "");
+
+        var meta = document.createElement("div");
+        meta.className = "feed-meta";
+        if (repo.language) {
+          var lang = document.createElement("span");
+          lang.textContent = repo.language;
+          meta.append(lang);
         }
-        const meta = document.createElement("div");
-        meta.className = "repo-meta";
-        [["language", repo.language || "Code"], ["stars", formatCount(repo.stargazers_count)], ["forks", formatCount(repo.forks_count)]].forEach(([label, value]) => {
-          const item = document.createElement("span");
-          const strong = document.createElement("strong");
-          strong.textContent = value;
-          item.append(label === "language" ? strong : `${label} ${value}`);
-          meta.append(item);
+        var when = relative(repo.pushed_at);
+        if (when) {
+          var upd = document.createElement("span");
+          upd.textContent = when;
+          meta.append(upd);
+        }
+        if (repo.homepage) {
+          var site = document.createElement("a");
+          site.href = repo.homepage;
+          site.target = "_blank";
+          site.rel = "noreferrer";
+          site.textContent = "live ↗";
+          meta.append(site);
+        }
+
+        li.append(main, meta);
+        return li;
+      }
+
+      function message(text) {
+        var li = document.createElement("li");
+        li.className = "feed-msg";
+        li.textContent = text;
+        feed.replaceChildren(li);
+      }
+
+      fetch("https://api.github.com/users/lenovobeast/repos?sort=pushed&per_page=100", {
+        headers: { Accept: "application/vnd.github+json" }
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          return res.json();
+        })
+        .then(function (repos) {
+          if (!Array.isArray(repos) || !repos.length) throw new Error("empty");
+
+          var lower = FEATURED.map(function (n) { return n.toLowerCase(); });
+          var rest = repos.filter(function (r) {
+            return lower.indexOf(String(r.name).toLowerCase()) === -1;
+          });
+
+          var langs = {};
+          var live = 0;
+          repos.forEach(function (r) {
+            if (r.language) langs[r.language] = true;
+            if (r.homepage) live += 1;
+          });
+
+          var s1 = document.querySelector('[data-stat="repos"]');
+          var s2 = document.querySelector('[data-stat="live"]');
+          var s3 = document.querySelector('[data-stat="langs"]');
+          if (s1) s1.textContent = repos.length;
+          if (s2) s2.textContent = live;
+          if (s3) s3.textContent = Object.keys(langs).length;
+
+          if (!rest.length) {
+            message("Everything public is already featured above.");
+            status.textContent = repos.length + " repositories";
+            return;
+          }
+
+          feed.replaceChildren.apply(feed, rest.slice(0, MAX).map(row));
+          status.textContent = "Showing " + Math.min(MAX, rest.length) + " of " + rest.length + " other repositories";
+        })
+        .catch(function () {
+          message("Live repository data is unavailable right now — browse everything at github.com/lenovobeast.");
+          status.textContent = "Live sync unavailable";
         });
-        link.append(title, description);
-        if (site) link.append(site);
-        link.append(meta);
-        return link;
-      }));
-    };
-    fetch("https://api.github.com/users/lenovobeast/repos?sort=updated&per_page=20", {
-      headers: { Accept: "application/vnd.github+json" }
-    })
-      .then((response) => {
-        if (!response.ok) throw new Error("GitHub request failed");
-        return response.json();
-      })
-      .then((repos) => {
-        if (!Array.isArray(repos) || repos.length === 0) throw new Error("No public repositories found");
-        renderRepos(repos);
-        githubStatus.textContent = `${repos.length} repositories synced.`;
-      })
-      .catch(() => {
-        const fallback = document.createElement("div");
-        fallback.className = "repo-loading";
-        fallback.textContent = "Public repository data is unavailable right now. Visit GitHub to browse the workbench.";
-        repoFeed.replaceChildren(fallback);
-        githubStatus.textContent = "Live sync unavailable. Static portfolio remains available.";
-      });
+    })();
   </script>
 </body>
 </html>
