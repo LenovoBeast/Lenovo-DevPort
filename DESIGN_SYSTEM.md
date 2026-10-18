@@ -107,8 +107,7 @@ canvas.
 
 ## Known gaps
 
-- **Contact email is intentionally absent.** `CONTACT.email` in `components/Contact.tsx` is
-  empty because `lenovobeast.dev` has no A or MX record; set a working address and the third
-  channel renders.
 - The timeline copy is thematic, not biographical. Replace it in `lib/data.ts` with real
   milestones when you want it to read as a personal history.
+- Project covers are generated (gradient + grid + monogram). Real screenshots would be the
+  natural upgrade.

@@ -5,16 +5,21 @@ import { useRef } from "react";
 import { GITHUB_URL } from "@/lib/data";
 
 /**
- * Contact target. Set `email` to a real, deliverable address and it renders as
- * a third channel. Left empty on purpose: the previous site shipped
- * hello@lenovobeast.dev, but that domain has no A/MX record.
+ * Contact channels. `email` is the direct line; GitHub stays the route for
+ * anything about a specific repository.
  */
 const CONTACT = {
-  email: "",
+  email: "LenovoBeast.905@gmail.com",
   linkedin: "https://www.linkedin.com/in/lenovobeast",
 };
 
 const channels = [
+  {
+    label: "Email",
+    value: CONTACT.email,
+    href: `mailto:${CONTACT.email}`,
+    note: "Direct line",
+  },
   {
     label: "GitHub",
     value: "github.com/lenovobeast",
@@ -92,19 +97,19 @@ export function Contact() {
         </h2>
         <p className="body-copy mt-6 text-[1rem]">
           Tell me what you are building, where it is stuck, or what you want to make clearer.
-          The fastest route is a GitHub issue — it keeps the context in one place.
+          Email is the fastest route for a first message; open an issue when it is about a
+          specific repository.
         </p>
 
         <div className="mt-9 flex flex-wrap gap-3">
-          <Magnetic href={GITHUB_URL} primary>
-            Open an issue
+          <Magnetic href={`mailto:${CONTACT.email}`} primary>
+            Email me
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M4 6h16v12H4z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+              <path d="m4 7 8 6 8-6" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
             </svg>
           </Magnetic>
-          <Magnetic href={`${GITHUB_URL}?tab=repositories`}>
-            Browse repositories
-          </Magnetic>
+          <Magnetic href={GITHUB_URL}>Open an issue</Magnetic>
         </div>
       </div>
 
@@ -114,8 +119,9 @@ export function Contact() {
             <li key={c.label}>
               <a
                 href={c.href}
-                target="_blank"
-                rel="noreferrer"
+                {...(c.href.startsWith("http")
+                  ? { target: "_blank", rel: "noreferrer" }
+                  : {})}
                 className="group flex items-center justify-between gap-4 py-5 transition-colors hover:bg-white/[0.02]"
               >
                 <span>
@@ -138,16 +144,6 @@ export function Contact() {
               </a>
             </li>
           ))}
-          {CONTACT.email ? (
-            <li>
-              <a href={`mailto:${CONTACT.email}`} className="group flex items-center justify-between gap-4 py-5">
-                <span>
-                  <span className="block text-[0.95rem] font-semibold">Email</span>
-                  <span className="mt-0.5 block font-mono text-[0.74rem] text-fg-mute">{CONTACT.email}</span>
-                </span>
-              </a>
-            </li>
-          ) : null}
         </ul>
 
         <p className="mt-5 font-mono text-[0.66rem] leading-relaxed text-white/25">

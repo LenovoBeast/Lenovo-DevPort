@@ -115,9 +115,12 @@ back to static data when it is unavailable or rate-limited.
 
 ### Contact address
 
-`components/Contact.tsx` has a `CONTACT.email` constant, currently empty on purpose: the
-previous site shipped `hello@lenovobeast.dev`, but `lenovobeast.dev` has no A or MX record, so
-that address cannot receive mail. Set a working address and the third channel appears.
+Set in two places, both must match:
+
+- `beastos/components/Contact.tsx` → `CONTACT.email`
+- `beastos/app/layout.tsx` → `email` in the Person JSON-LD
+
+Current: `LenovoBeast.905@gmail.com`.
 
 ---
 
