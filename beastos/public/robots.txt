@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lenovobeast.github.io/Lenovo-DevPort/sitemap.xml

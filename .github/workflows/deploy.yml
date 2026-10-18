@@ -27,23 +27,32 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Assemble site
-        # Publish only the files the site needs. Uploading '.' used to expose
-        # README.md, DESIGN_SYSTEM.md and the 940 KB source artwork publicly.
-        run: |
-          mkdir -p _site
-          cp index.html 404.html robots.txt sitemap.xml LICENSE _site/
-          cp -r fonts _site/
-          cp lenovo-beast-128.png lenovo-beast-512.png lenovo-beast-512.webp \
-             favicon-32.png favicon-48.png apple-touch-icon.png _site/
-          touch _site/.nojekyll
-          echo "Publishing:"
-          find _site -type f | sort
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: beastos/package-lock.json
+
+      - name: Install dependencies
+        working-directory: beastos
+        run: npm ci
+
+      - name: Build static export
+        working-directory: beastos
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
+          NEXT_PUBLIC_BASE_PATH: /Lenovo-DevPort
+
+      - name: Add .nojekyll
+        # Next emits /_next/*; without this Jekyll strips the underscore dir.
+        run: touch beastos/out/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '_site'
+          path: 'beastos/out'
 
       - name: Deploy to GitHub Pages
         id: deployment
