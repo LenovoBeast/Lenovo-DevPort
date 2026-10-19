@@ -5,6 +5,7 @@ import { StackConstellation } from "@/components/StackConstellation";
 import { Work } from "@/components/Work";
 import { Ecosystem } from "@/components/Ecosystem";
 import { Lab } from "@/components/Lab";
+import { WorkbenchBand } from "@/components/WorkbenchBand";
 import { Contact } from "@/components/Contact";
 import { Reveal } from "@/components/Reveal";
 import { GITHUB_URL } from "@/lib/data";
@@ -110,6 +111,8 @@ export default function Page() {
               </div>
             </div>
           </section>
+
+          <WorkbenchBand />
 
           <section id="contact" className="section-pad section-alt scroll-mt-20">
             <div className="shell">
