@@ -21,8 +21,8 @@ function SectionHeader({
   return (
     <div className="max-w-[62ch]">
       <p className="eyebrow">{eyebrow}</p>
-      <h2 className="display mt-5 text-[clamp(2.1rem,4.6vw,3.6rem)]">{title}</h2>
-      <p className="body-copy mt-5 text-[0.98rem]">{lede}</p>
+      <h2 className="display mt-4 text-[clamp(2rem,4.4vw,3.4rem)]">{title}</h2>
+      <p className="body-copy mt-4 text-[0.9375rem]">{lede}</p>
     </div>
   );
 }
@@ -49,7 +49,7 @@ export default function Page() {
             </div>
           </section>
 
-          <section id="stack" className="section-pad scroll-mt-20">
+          <section id="stack" className="section-pad section-alt scroll-mt-20">
             <div className="shell">
               <Reveal>
                 <SectionHeader
@@ -64,7 +64,7 @@ export default function Page() {
                   lede="The tools are interchangeable; the clusters are not. Select a hub to see what actually gets used inside it."
                 />
               </Reveal>
-              <div className="mt-12">
+              <div className="mt-8">
                 <StackConstellation />
               </div>
             </div>
@@ -75,13 +75,13 @@ export default function Page() {
               <Reveal>
                 <SectionHeadWork />
               </Reveal>
-              <div className="mt-12">
+              <div className="mt-8">
                 <Work />
               </div>
             </div>
           </section>
 
-          <section id="ecosystem" className="section-pad scroll-mt-20">
+          <section id="ecosystem" className="section-pad section-alt scroll-mt-20">
             <div className="shell">
               <Reveal>
                 <SectionHeader
@@ -90,7 +90,7 @@ export default function Page() {
                   lede="Every repository orbits the same account. This map is drawn from the GitHub API on load, so it reflects what exists rather than what was true when the page was built."
                 />
               </Reveal>
-              <div className="mt-12">
+              <div className="mt-8">
                 <Ecosystem />
               </div>
             </div>
@@ -105,13 +105,13 @@ export default function Page() {
                   lede="The daily environment and the work in progress. Arch Linux, version-controlled dotfiles, and a short list of things currently being tested."
                 />
               </Reveal>
-              <div className="mt-12">
+              <div className="mt-8">
                 <Lab />
               </div>
             </div>
           </section>
 
-          <section id="contact" className="section-pad scroll-mt-20">
+          <section id="contact" className="section-pad section-alt scroll-mt-20">
             <div className="shell">
               <Reveal>
                 <Contact />
@@ -126,11 +126,11 @@ export default function Page() {
               <span className="grid h-6 w-6 place-items-center rounded-md border border-white/15 bg-white/[0.05]">
                 <span className="h-1 w-1 rounded-full bg-secondary" />
               </span>
-              <span className="text-[0.82rem] text-fg-mute">
+              <span className="text-[0.8125rem] text-fg-mute">
                 © {new Date().getFullYear()} Lenovo Beast
               </span>
             </div>
-            <div className="flex flex-wrap items-center gap-5 font-mono text-[0.66rem] uppercase tracking-[0.16em] text-white/30">
+            <div className="flex flex-wrap items-center gap-5 font-mono text-[0.75rem] uppercase tracking-[0.16em] text-white/30">
               <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="hover:text-white">
                 GitHub
               </a>
@@ -154,7 +154,7 @@ function SectionHeadWork() {
         title="Products, not screenshots"
         lede="Six projects, each shipped and public. Open one to read the problem it was built against and what it actually changed."
       />
-      <p className="shrink-0 font-mono text-[0.66rem] uppercase tracking-[0.18em] text-white/30">
+      <p className="shrink-0 font-mono text-[0.75rem] uppercase tracking-[0.18em] text-white/30">
         Select a project to expand
       </p>
     </div>

@@ -52,11 +52,11 @@ function Metric({ label, value, suffix }: { label: string; value: number; suffix
 
   return (
     <div className="flex flex-col gap-1">
-      <span className="font-mono text-[1.35rem] font-medium leading-none tracking-tight text-white tabular-nums">
+      <span className="font-mono text-[1.25rem] font-medium leading-none tracking-tight text-white tabular-nums">
         {shown}
         {suffix}
       </span>
-      <span className="text-[0.68rem] uppercase tracking-[0.18em] text-fg-mute">{label}</span>
+      <span className="text-[0.75rem] uppercase tracking-[0.18em] text-fg-mute">{label}</span>
     </div>
   );
 }
@@ -94,11 +94,11 @@ export function Stats() {
       <Metric label="Live products" value={data.live} />
       <Metric label="Languages" value={data.langs} />
       <div className="flex flex-col gap-1">
-        <span className="flex items-center gap-2 font-mono text-[0.8rem] font-medium leading-none text-white">
+        <span className="flex items-center gap-2 font-mono text-[0.8125rem] font-medium leading-none text-white">
           <span className="h-1.5 w-1.5 rounded-full bg-success shadow-[0_0_10px_1px_rgba(16,185,129,0.7)]" />
           Open
         </span>
-        <span className="text-[0.68rem] uppercase tracking-[0.18em] text-fg-mute">To collaborate</span>
+        <span className="text-[0.75rem] uppercase tracking-[0.18em] text-fg-mute">To collaborate</span>
       </div>
     </dl>
   );

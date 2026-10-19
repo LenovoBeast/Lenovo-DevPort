@@ -160,7 +160,7 @@ export function Ecosystem() {
 
         <div className="pointer-events-none absolute bottom-4 left-5 flex items-center gap-2">
           <span className={`h-1.5 w-1.5 rounded-full ${live ? "bg-success" : "bg-white/30"}`} />
-          <span className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-white/40">
+          <span className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-white/40">
             {live ? "Live from GitHub" : "Cached view"}
           </span>
         </div>
@@ -169,22 +169,22 @@ export function Ecosystem() {
       {/* Inspector */}
       <div>
         <p className="eyebrow">Repository {String(selected + 1).padStart(2, "0")}</p>
-        <h3 className="display mt-3 text-[clamp(1.6rem,3vw,2.1rem)] break-words">{current.name}</h3>
-        <p className="body-copy mt-3 text-[0.92rem]">
+        <h3 className="display mt-3 text-[clamp(1.5rem,3vw,2rem)] break-words">{current.name}</h3>
+        <p className="body-copy mt-3 text-[0.9375rem]">
           {current.description || "A public repository from the Lenovo Beast workbench."}
         </p>
 
         <dl className="mt-6 grid grid-cols-2 gap-4 border-t border-white/10 pt-5">
           <div>
-            <dt className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-white/35">Language</dt>
-            <dd className="mt-1 flex items-center gap-2 text-[0.88rem]">
+            <dt className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-white/35">Language</dt>
+            <dd className="mt-1 flex items-center gap-2 text-[0.8125rem]">
               <span className="h-2 w-2 rounded-full" style={{ backgroundColor: colorFor(current.language) }} />
               {current.language ?? "Mixed"}
             </dd>
           </div>
           <div>
-            <dt className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-white/35">Deployment</dt>
-            <dd className="mt-1 text-[0.88rem]">{current.homepage ? "Live" : "Repository only"}</dd>
+            <dt className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-white/35">Deployment</dt>
+            <dd className="mt-1 text-[0.8125rem]">{current.homepage ? "Live" : "Repository only"}</dd>
           </div>
         </dl>
 
@@ -193,7 +193,7 @@ export function Ecosystem() {
             href={current.html_url}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex h-10 items-center rounded-full border border-white/15 bg-white/[0.04] px-4 text-[0.82rem] font-medium text-fg-soft transition-colors hover:border-white/30 hover:text-white"
+            className="inline-flex h-10 items-center rounded-full border border-white/15 bg-white/[0.04] px-4 text-[0.8125rem] font-medium text-fg-soft transition-colors hover:border-white/30 hover:text-white"
           >
             View repository
           </a>
@@ -202,7 +202,7 @@ export function Ecosystem() {
               href={current.homepage}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex h-10 items-center rounded-full bg-white px-4 text-[0.82rem] font-semibold text-black"
+              className="inline-flex h-10 items-center rounded-full bg-white px-4 text-[0.8125rem] font-semibold text-black"
             >
               Live site
             </a>
@@ -211,14 +211,14 @@ export function Ecosystem() {
 
         {/* Compact selector, also the keyboard path into the map */}
         <div className="mt-7 border-t border-white/10 pt-5">
-          <p className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-white/35">Jump to</p>
+          <p className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-white/35">Jump to</p>
           <div className="mt-3 flex flex-wrap gap-1.5">
             {repos.slice(0, 12).map((r, i) => (
               <button
                 key={r.name}
                 type="button"
                 onClick={() => setSelected(i)}
-                className={`rounded border px-2 py-0.5 font-mono text-[0.6rem] transition-colors ${
+                className={`rounded border px-2 py-0.5 font-mono text-[0.6875rem] transition-colors ${
                   i === selected
                     ? "border-white/30 bg-white/10 text-white"
                     : "border-white/10 text-fg-mute hover:border-white/25 hover:text-white"

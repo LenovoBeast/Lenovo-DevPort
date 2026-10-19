@@ -5,14 +5,12 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { projects, type Project } from "@/lib/data";
 
 /** Generated cover — no screenshots to fake, so the visual is the system itself. */
-function Cover({ project, tall }: { project: Project; tall?: boolean }) {
+function Cover({ project, ratio = "aspect-[16/9]" }: { project: Project; ratio?: string }) {
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl border border-white/[0.07] ${
-        tall ? "aspect-[16/10]" : "aspect-[16/9]"
-      }`}
+      className={`relative ${ratio} overflow-hidden rounded-2xl border border-white/[0.07]`}
       style={{
-        background: `radial-gradient(115% 100% at 16% 0%, ${project.accent}66 0%, ${project.accent}24 34%, rgba(8,8,8,0.94) 68%, #060606 100%)`,
+        background: `radial-gradient(120% 105% at 16% 0%, ${project.accent}70 0%, ${project.accent}2e 42%, rgba(8,8,8,0.93) 76%, #060606 100%)`,
       }}
     >
       <span
@@ -30,23 +28,25 @@ function Cover({ project, tall }: { project: Project; tall?: boolean }) {
         }}
         aria-hidden="true"
       />
+      {/* Project name as a watermark. A single letter read as an artefact; the
+          full word reads as a decision. */}
       <span
-        className="display pointer-events-none absolute -bottom-[0.18em] right-2 select-none text-[clamp(5rem,14vw,10rem)] leading-none opacity-[0.26]"
+        className="display pointer-events-none absolute -bottom-[0.12em] left-5 right-5 select-none truncate text-[clamp(1.75rem,4.4vw,3.25rem)] leading-none opacity-[0.15]"
         style={{ color: project.accent }}
         aria-hidden="true"
       >
-        {project.name.slice(0, 1).toUpperCase()}
+        {project.name}
       </span>
       <div className="absolute left-5 top-5 flex items-center gap-2">
         <span
           className="h-1.5 w-1.5 rounded-full"
           style={{ backgroundColor: project.accent, boxShadow: `0 0 12px 2px ${project.accent}88` }}
         />
-        <span className="font-mono text-[0.62rem] uppercase tracking-[0.18em] text-white/55">
+        <span className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-white/55">
           {project.platform}
         </span>
       </div>
-      <span className="absolute right-5 top-5 font-mono text-[0.62rem] text-white/35">
+      <span className="absolute right-5 top-5 font-mono text-[0.6875rem] text-white/35">
         {project.year}
       </span>
     </div>
@@ -99,10 +99,10 @@ function CaseStudy({ project, onClose }: { project: Project; onClose: () => void
       >
         <div className="sticky top-0 z-10 flex items-start justify-between gap-4 border-b border-white/10 bg-[#0b0b0b]/85 px-6 py-5 backdrop-blur-xl sm:px-8">
           <div>
-            <p className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-white/45">
+            <p className="font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-white/45">
               Case study · {project.year}
             </p>
-            <h2 id="case-title" className="display mt-2 text-[clamp(1.6rem,3.4vw,2.2rem)]">
+            <h2 id="case-title" className="display mt-2 text-[clamp(1.5rem,3vw,2rem)]">
               {project.name}
             </h2>
           </div>
@@ -120,22 +120,22 @@ function CaseStudy({ project, onClose }: { project: Project; onClose: () => void
         </div>
 
         <div className="px-6 py-7 sm:px-8">
-          <p className="text-[1.02rem] text-fg-soft">{project.summary}</p>
+          <p className="text-[1.0625rem] text-fg-soft">{project.summary}</p>
 
           <dl className="mt-8 space-y-6">
             {rows.map((row) => (
               <div key={row.label} className="grid gap-2 sm:grid-cols-[7rem_1fr] sm:gap-6">
-                <dt className="font-mono text-[0.64rem] uppercase tracking-[0.18em] text-white/40">
+                <dt className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-white/40">
                   {row.label}
                 </dt>
-                <dd className="body-copy text-[0.92rem]">{row.value}</dd>
+                <dd className="body-copy text-[0.9375rem]">{row.value}</dd>
               </div>
             ))}
           </dl>
 
           <ul className="mt-8 space-y-2.5 border-t border-white/10 pt-6">
             {project.caseStudy.bullets.map((b) => (
-              <li key={b} className="flex gap-3 text-[0.9rem] text-fg-soft">
+              <li key={b} className="flex gap-3 text-[0.9375rem] text-fg-soft">
                 <span
                   className="mt-[0.55em] h-1 w-1 shrink-0 rounded-full"
                   style={{ backgroundColor: project.accent }}
@@ -152,7 +152,7 @@ function CaseStudy({ project, onClose }: { project: Project; onClose: () => void
                 href={project.live}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex h-11 items-center gap-2 rounded-full bg-white px-5 text-[0.85rem] font-semibold text-black transition-transform active:scale-[0.98]"
+                className="inline-flex h-11 items-center gap-2 rounded-full bg-white px-5 text-[0.8125rem] font-semibold text-black transition-transform active:scale-[0.98]"
               >
                 Open live site
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -165,7 +165,7 @@ function CaseStudy({ project, onClose }: { project: Project; onClose: () => void
                 href={project.code}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex h-11 items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 text-[0.85rem] font-medium text-fg-soft transition-colors hover:border-white/30 hover:text-white"
+                className="inline-flex h-11 items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 text-[0.8125rem] font-medium text-fg-soft transition-colors hover:border-white/30 hover:text-white"
               >
                 Source
               </a>
@@ -176,7 +176,7 @@ function CaseStudy({ project, onClose }: { project: Project; onClose: () => void
             {project.stack.map((s) => (
               <span
                 key={s}
-                className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.1em] text-fg-mute"
+                className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 font-mono text-[0.6875rem] uppercase tracking-[0.1em] text-fg-mute"
               >
                 {s}
               </span>
@@ -204,15 +204,15 @@ export function Work() {
           onClick={() => setOpen(lead)}
           className="group col-span-full flex flex-col text-left lg:col-span-7"
         >
-          <Cover project={lead} tall />
+          <Cover project={lead} ratio="aspect-[5/2]" />
           <div className="mt-5 flex items-start justify-between gap-6">
             <div>
               <h3 className="text-[1.5rem] font-bold tracking-[-0.03em] transition-colors group-hover:text-white">
                 {lead.name}
               </h3>
-              <p className="mt-1.5 max-w-[42ch] text-[0.9rem] text-fg-mute">{lead.tagline}</p>
+              <p className="mt-1.5 max-w-[42ch] text-[0.9375rem] text-fg-mute">{lead.tagline}</p>
             </div>
-            <span className="mt-1 shrink-0 font-mono text-[0.66rem] uppercase tracking-[0.16em] text-white/35 transition-colors group-hover:text-secondary">
+            <span className="mt-1 shrink-0 font-mono text-[0.75rem] uppercase tracking-[0.16em] text-white/35 transition-colors group-hover:text-secondary">
               Case study
             </span>
           </div>
@@ -223,8 +223,8 @@ export function Work() {
             <button key={p.slug} type="button" onClick={() => setOpen(p)} className="group flex flex-col text-left">
               <Cover project={p} />
               <div className="mt-4">
-                <h3 className="text-[1.1rem] font-bold tracking-[-0.02em]">{p.name}</h3>
-                <p className="mt-1 text-[0.84rem] text-fg-mute">{p.tagline}</p>
+                <h3 className="text-[1.0625rem] font-bold tracking-[-0.02em]">{p.name}</h3>
+                <p className="mt-1 text-[0.8125rem] text-fg-mute">{p.tagline}</p>
               </div>
             </button>
           ))}
@@ -240,24 +240,24 @@ export function Work() {
               onClick={() => setOpen(p)}
               className="group grid w-full grid-cols-[1fr_auto] items-center gap-4 py-5 text-left transition-colors hover:bg-white/[0.02] sm:grid-cols-[2.5rem_1fr_auto_auto] sm:gap-6"
             >
-              <span className="hidden font-mono text-[0.68rem] text-white/30 sm:block">
+              <span className="hidden font-mono text-[0.75rem] text-white/30 sm:block">
                 {String(projects.indexOf(p) + 1).padStart(2, "0")}
               </span>
               <span className="min-w-0">
-                <span className="block text-[1.02rem] font-semibold tracking-[-0.01em]">{p.name}</span>
-                <span className="mt-0.5 block truncate text-[0.84rem] text-fg-mute">{p.tagline}</span>
+                <span className="block text-[1.0625rem] font-semibold tracking-[-0.01em]">{p.name}</span>
+                <span className="mt-0.5 block truncate text-[0.8125rem] text-fg-mute">{p.tagline}</span>
               </span>
               <span className="hidden gap-1.5 sm:flex">
                 {p.stack.slice(0, 2).map((s) => (
                   <span
                     key={s}
-                    className="rounded border border-white/10 px-2 py-0.5 font-mono text-[0.6rem] text-fg-mute"
+                    className="rounded border border-white/10 px-2 py-0.5 font-mono text-[0.6875rem] text-fg-mute"
                   >
                     {s}
                   </span>
                 ))}
               </span>
-              <span className="font-mono text-[0.66rem] uppercase tracking-[0.16em] text-white/30 transition-colors group-hover:text-secondary">
+              <span className="font-mono text-[0.75rem] uppercase tracking-[0.16em] text-white/30 transition-colors group-hover:text-secondary">
                 Open
               </span>
             </button>

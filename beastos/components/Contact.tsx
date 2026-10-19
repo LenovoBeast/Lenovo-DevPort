@@ -76,8 +76,8 @@ function Magnetic({
       style={{ x, y }}
       className={
         primary
-          ? "inline-flex h-12 items-center gap-2.5 rounded-full bg-white px-6 text-[0.9rem] font-semibold text-black transition-transform active:scale-[0.98]"
-          : "inline-flex h-12 items-center gap-2.5 rounded-full border border-white/15 bg-white/[0.04] px-6 text-[0.9rem] font-medium text-fg-soft backdrop-blur-md transition-colors hover:border-white/30 hover:text-white"
+          ? "inline-flex h-12 items-center gap-2.5 rounded-full bg-white px-6 text-[0.9375rem] font-semibold text-black transition-transform active:scale-[0.98]"
+          : "inline-flex h-12 items-center gap-2.5 rounded-full border border-white/15 bg-white/[0.04] px-6 text-[0.9375rem] font-medium text-fg-soft backdrop-blur-md transition-colors hover:border-white/30 hover:text-white"
       }
     >
       {children}
@@ -90,12 +90,12 @@ export function Contact() {
     <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
       <div>
         <p className="eyebrow">07 — Contact</p>
-        <h2 className="display mt-5 text-[clamp(2.2rem,5vw,4rem)]">
+        <h2 className="display mt-5 text-[clamp(2rem,4.4vw,3.4rem)]">
           Have a good
           <br />
           problem?
         </h2>
-        <p className="body-copy mt-6 text-[1rem]">
+        <p className="body-copy mt-6 text-[1.0625rem]">
           Tell me what you are building, where it is stuck, or what you want to make clearer.
           Email is the fastest route for a first message; open an issue when it is about a
           specific repository.
@@ -113,7 +113,7 @@ export function Contact() {
         </div>
       </div>
 
-      <div className="lg:pt-16">
+      <div>
         <ul className="divide-y divide-white/[0.07] border-y border-white/[0.07]">
           {channels.map((c) => (
             <li key={c.label}>
@@ -125,11 +125,11 @@ export function Contact() {
                 className="group flex items-center justify-between gap-4 py-5 transition-colors hover:bg-white/[0.02]"
               >
                 <span>
-                  <span className="block text-[0.95rem] font-semibold">{c.label}</span>
-                  <span className="mt-0.5 block font-mono text-[0.74rem] text-fg-mute">{c.value}</span>
+                  <span className="block text-[0.9375rem] font-semibold">{c.label}</span>
+                  <span className="mt-0.5 block font-mono text-[0.75rem] text-fg-mute">{c.value}</span>
                 </span>
                 <span className="flex items-center gap-3">
-                  <span className="hidden text-[0.72rem] text-white/30 sm:block">{c.note}</span>
+                  <span className="hidden text-[0.75rem] text-white/30 sm:block">{c.note}</span>
                   <svg
                     width="15"
                     height="15"
@@ -146,7 +146,7 @@ export function Contact() {
           ))}
         </ul>
 
-        <p className="mt-5 font-mono text-[0.66rem] leading-relaxed text-white/25">
+        <p className="mt-5 font-mono text-[0.75rem] leading-relaxed text-white/25">
           Availability: open to collaboration on design tooling and agent infrastructure.
         </p>
       </div>

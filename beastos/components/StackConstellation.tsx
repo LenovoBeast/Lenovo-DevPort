@@ -236,7 +236,7 @@ export function StackConstellation() {
               type="button"
               onClick={() => setActive(i)}
               aria-pressed={i === active}
-              className={`rounded-full border px-3 py-1.5 text-[0.74rem] font-medium transition-colors duration-200 ${
+              className={`rounded-full border px-3 py-1.5 text-[0.75rem] font-medium transition-colors duration-200 ${
                 i === active
                   ? "border-white/30 bg-white text-black"
                   : "border-white/10 bg-white/[0.03] text-fg-mute hover:border-white/20 hover:text-white"
@@ -248,15 +248,15 @@ export function StackConstellation() {
         </div>
 
         <div className="mt-6 border-t border-white/10 pt-5">
-          <p className="font-mono text-[0.66rem] uppercase tracking-[0.2em]" style={{ color: current.color }}>
+          <p className="font-mono text-[0.75rem] uppercase tracking-[0.2em]" style={{ color: current.color }}>
             {current.label}
           </p>
-          <p className="body-copy mt-2 text-[0.9rem]">{current.note}</p>
+          <p className="body-copy mt-2 text-[0.9375rem]">{current.note}</p>
           <ul className="mt-3 flex flex-wrap gap-1.5">
             {current.nodes.map((n) => (
               <li
                 key={n}
-                className="rounded border border-white/10 px-2 py-0.5 font-mono text-[0.62rem] text-fg-mute"
+                className="rounded border border-white/10 px-2 py-0.5 font-mono text-[0.6875rem] text-fg-mute"
               >
                 {n}
               </li>

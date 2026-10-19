@@ -23,7 +23,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[100dvh] items-center overflow-hidden pb-16 pt-28 sm:pb-20"
+      className="relative flex min-h-[100dvh] items-center overflow-hidden pb-12 pt-24 sm:pb-16"
     >
       {/* Layered atmosphere: grid, two light sources, grain. */}
       <div className="pointer-events-none absolute inset-0 grid-veil" aria-hidden="true" />
@@ -74,7 +74,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, ease, delay: 0.18 }}
-            className="display mt-6 text-[clamp(3rem,9vw,7.5rem)]"
+            className="display mt-6 text-[clamp(2.75rem,7.2vw,5.8rem)]"
           >
             Lenovo Beast
           </motion.h1>
@@ -94,7 +94,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease, delay: 0.36 }}
-            className="body-copy mt-6 text-[0.98rem] sm:text-[1.05rem]"
+            className="body-copy mt-6 text-[0.9375rem] sm:text-[1.0625rem]"
           >
             A personal technology ecosystem: design tooling, agent systems and open source
             software. Built in the open, shipped as artefacts rather than screenshots.
@@ -108,7 +108,7 @@ export function Hero() {
           >
             <a
               href="#work"
-              className="group relative inline-flex h-12 items-center gap-2.5 overflow-hidden rounded-full bg-white px-6 text-[0.9rem] font-semibold text-black transition-transform duration-200 ease-out active:scale-[0.98]"
+              className="group relative inline-flex h-12 items-center gap-2.5 overflow-hidden rounded-full bg-white px-6 text-[0.9375rem] font-semibold text-black transition-transform duration-200 ease-out active:scale-[0.98]"
             >
               <span className="relative z-10">Explore the work</span>
               <svg
@@ -126,7 +126,7 @@ export function Hero() {
               href={GITHUB_URL}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex h-12 items-center gap-2.5 rounded-full border border-white/12 bg-white/[0.04] px-6 text-[0.9rem] font-medium text-fg-soft backdrop-blur-md transition-colors duration-200 hover:border-white/25 hover:bg-white/[0.08] hover:text-white"
+              className="inline-flex h-12 items-center gap-2.5 rounded-full border border-white/12 bg-white/[0.04] px-6 text-[0.9375rem] font-medium text-fg-soft backdrop-blur-md transition-colors duration-200 hover:border-white/25 hover:bg-white/[0.08] hover:text-white"
             >
               GitHub
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -139,7 +139,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease, delay: 0.54 }}
-            className="mt-12"
+            className="mt-10"
           >
             <Stats />
           </motion.div>
@@ -154,7 +154,7 @@ export function Hero() {
         className="pointer-events-none absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 lg:flex"
         aria-hidden="true"
       >
-        <span className="font-mono text-[0.6rem] uppercase tracking-[0.28em] text-white/30">Scroll</span>
+        <span className="font-mono text-[0.6875rem] uppercase tracking-[0.28em] text-white/30">Scroll</span>
         <span className="relative h-9 w-px overflow-hidden bg-white/10">
           <span className="absolute inset-x-0 top-0 h-3 animate-[float_2.4s_ease-in-out_infinite] bg-secondary/70" />
         </span>

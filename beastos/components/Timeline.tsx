@@ -68,12 +68,12 @@ export function Timeline() {
         {/* Sticky intro */}
         <div className="lg:sticky lg:top-28 lg:self-start">
           <p className="eyebrow">02 — Journey</p>
-          <h2 className="display mt-5 text-[clamp(2.1rem,4.4vw,3.4rem)]">
+          <h2 className="display mt-5 text-[clamp(2rem,4.4vw,3.4rem)]">
             The path that
             <br />
             built the stack
           </h2>
-          <p className="body-copy mt-5 text-[0.95rem]">
+          <p className="body-copy mt-5 text-[0.9375rem]">
             Not a résumé. A trace of what kept getting built, and what each phase left behind
             in the toolchain.
           </p>
@@ -97,17 +97,17 @@ export function Timeline() {
                 aria-hidden="true"
               />
               <div className="flex flex-wrap items-baseline gap-3">
-                <span className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-secondary">
+                <span className="font-mono text-[0.75rem] uppercase tracking-[0.2em] text-secondary">
                   {step.marker}
                 </span>
-                <h3 className="text-[1.15rem] font-bold tracking-[-0.02em]">{step.title}</h3>
+                <h3 className="text-[1.25rem] font-bold tracking-[-0.02em]">{step.title}</h3>
               </div>
-              <p className="body-copy mt-2 text-[0.93rem]">{step.body}</p>
+              <p className="body-copy mt-2 text-[0.9375rem]">{step.body}</p>
               <ul className="mt-3 flex flex-wrap gap-2">
                 {step.tags.map((t) => (
                   <li
                     key={t}
-                    className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-fg-mute"
+                    className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-fg-mute"
                   >
                     {t}
                   </li>
