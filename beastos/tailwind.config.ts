@@ -44,11 +44,18 @@ const config: Config = {
           "0%": { backgroundPosition: "-200% 0" },
           "100%": { backgroundPosition: "200% 0" },
         },
+        /* Slow, gentle drift for the artwork band — compositor-only transform so
+           it stays smooth and cheap. Resting state (0%) is the unzoomed frame. */
+        kenburns: {
+          "0%": { transform: "scale(1.03) translate3d(0, 0, 0)" },
+          "100%": { transform: "scale(1.13) translate3d(-2.5%, -1.8%, 0)" },
+        },
       },
       animation: {
         float: "float 7s ease-in-out infinite",
         pulseSoft: "pulseSoft 3.2s ease-in-out infinite",
         shimmer: "shimmer 2.4s linear infinite",
+        kenburns: "kenburns 22s ease-in-out infinite alternate",
       },
     },
   },

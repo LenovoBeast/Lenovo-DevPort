@@ -41,7 +41,7 @@ export function WorkbenchBand() {
           height={896}
           loading="lazy"
           decoding="async"
-          className="h-full w-full object-cover object-[72%_center]"
+          className="h-full w-full object-cover object-[72%_center] animate-kenburns [will-change:transform]"
           style={{
             backgroundImage: `url(${LQIP})`,
             backgroundSize: "cover",

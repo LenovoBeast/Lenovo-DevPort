@@ -197,6 +197,11 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  /* Pin the artwork band back to its resting, unzoomed frame. */
+  .animate-kenburns {
+    animation: none !important;
+    transform: none !important;
+  }
 }
 
 /* Used by the repository orbital map. */
