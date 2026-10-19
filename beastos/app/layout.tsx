@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import { CONTACT_EMAIL } from "@/lib/data";
 import "./globals.css";
 
 const display = localFont({
@@ -75,7 +76,7 @@ const personSchema = {
   name: "Lenovo Beast",
   url: SITE,
   image: `${SITE}/lenovo-beast-512.png`,
-  email: "mailto:LenovoBeast.905@gmail.com",
+  email: `mailto:${CONTACT_EMAIL}`,
   jobTitle: "Developer",
   sameAs: ["https://github.com/lenovobeast"],
   knowsAbout: ["Design tooling", "Agent systems", "Open source", "TypeScript", "Python", "Go"],

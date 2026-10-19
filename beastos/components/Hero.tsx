@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { motion, useReducedMotion } from "framer-motion";
-import { GITHUB_URL } from "@/lib/data";
+import { CONTACT_EMAIL } from "@/lib/data";
 import { useCoarsePointer, useMediaQuery } from "@/lib/useMedia";
 import { Stats } from "./Stats";
 
@@ -85,9 +85,7 @@ export function Hero() {
             transition={{ duration: 0.8, ease, delay: 0.28 }}
             className="mt-5 text-[clamp(1.1rem,2.4vw,1.6rem)] font-medium tracking-[-0.02em] text-fg-soft"
           >
-            Developer<span className="text-white/50">.</span> Builder
-            <span className="text-white/50">.</span> Open Source
-            <span className="text-white/50">.</span>
+            I build design tooling and agent systems.
           </motion.p>
 
           <motion.p
@@ -96,8 +94,8 @@ export function Hero() {
             transition={{ duration: 0.8, ease, delay: 0.36 }}
             className="body-copy mt-6 text-[0.9375rem] sm:text-[1.0625rem]"
           >
-            A personal technology ecosystem: design tooling, agent systems and open source
-            software. Built in the open, shipped as artefacts rather than screenshots.
+            Design tooling, agent runtimes, and a few utilities that exist because nothing
+            else did. It is all public, and most of it runs.
           </motion.p>
 
           <motion.div
@@ -123,14 +121,13 @@ export function Hero() {
               </svg>
             </a>
             <a
-              href={GITHUB_URL}
-              target="_blank"
-              rel="noreferrer"
+              href={`mailto:${CONTACT_EMAIL}`}
               className="inline-flex h-12 items-center gap-2.5 rounded-full border border-white/12 bg-white/[0.04] px-6 text-[0.9375rem] font-medium text-fg-soft backdrop-blur-md transition-colors duration-200 hover:border-white/25 hover:bg-white/[0.08] hover:text-white"
             >
-              GitHub
+              Get in touch
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M4 6h16v12H4z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+                <path d="m4 7 8 6 8-6" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
               </svg>
             </a>
           </motion.div>

@@ -21,6 +21,9 @@ export type Project = {
 export const GITHUB_USER = "lenovobeast";
 export const GITHUB_URL = `https://github.com/${GITHUB_USER}`;
 
+/** Single source of truth for the contact address (Hero, Contact, JSON-LD). */
+export const CONTACT_EMAIL = "LenovoBeast.905@gmail.com";
+
 /**
  * Curated work. Copy is derived from each repository's own description so the
  * page never claims something the source does not say.
@@ -38,12 +41,12 @@ export const projects: Project[] = [
     code: `${GITHUB_URL}/impeccable`,
     accent: "#00d4ff",
     summary:
-      "The design language that makes your AI harness better at design — a shared visual vocabulary instead of generic output.",
+      "The design language that makes your AI harness better at design. A shared visual vocabulary instead of generic output.",
     caseStudy: {
       problem:
         "Coding agents produce interfaces that are technically correct and visually interchangeable. The gap is not capability, it is vocabulary: without a shared standard, every generation starts from zero.",
       approach:
-        "Encode a design language as something an agent can actually consume — spacing, type scale, colour roles, motion rules and the reasoning behind them — then ship it as a drop-in layer rather than a prompt you paste each time.",
+        "Encode a design language as something an agent can actually consume: spacing, type scale, colour roles, motion rules, and the reasoning behind them. Then ship it as a drop-in layer rather than a prompt you paste each time.",
       result:
         "A reusable reference that keeps generated interfaces coherent across sessions, with the rules written down so they can be argued with.",
       bullets: [
@@ -65,10 +68,10 @@ export const projects: Project[] = [
     code: `${GITHUB_URL}/open-design`,
     accent: "#7c3aed",
     summary:
-      "A local-first design app that turns the agent you already use into a design engine — prototypes, dashboards, slides and video, exported as real files.",
+      "A local-first design app that turns the agent you already use into a design engine: prototypes, dashboards, slides and video, exported as real files.",
     caseStudy: {
       problem:
-        "Design output from AI usually dies inside a chat window. You get a screenshot, not an artefact — nothing you can hand to an engineer or open in a real tool.",
+        "Design output from AI usually dies inside a chat window. You get a screenshot, nothing you can hand to an engineer or open in a real tool.",
       approach:
         "Run the whole loop locally: the agent writes real files, the app renders them, and export produces HTML, PDF, PPTX or MP4 rather than an image of the result.",
       result:
@@ -92,7 +95,7 @@ export const projects: Project[] = [
     code: `${GITHUB_URL}/orca`,
     accent: "#0066ff",
     summary:
-      "The ADE for working with a fleet of parallel agents — run any coding agent on your own subscription, on desktop, mobile or a remote runtime.",
+      "The ADE for working with a fleet of parallel agents. Run any coding agent on your own subscription, on desktop, mobile or a remote runtime.",
     caseStudy: {
       problem:
         "Running several agents at once turns into a tab-management problem. Context scatters, sessions die, and you lose track of which agent is doing what.",
@@ -119,7 +122,7 @@ export const projects: Project[] = [
     code: `${GITHUB_URL}/GeoLibre`,
     accent: "#10b981",
     summary:
-      "A lightweight, cloud-native GIS platform for visualising, exploring and analysing geospatial data — in the browser, on desktop, on mobile, and inside Jupyter notebooks.",
+      "A lightweight, cloud-native GIS platform for visualising, exploring and analysing geospatial data, in the browser, on desktop, on mobile, and inside Jupyter notebooks.",
     caseStudy: {
       problem:
         "Serious geospatial tooling is heavy, desktop-bound and expensive. Lightweight viewers cannot analyse, and analysis tools cannot be shared as a link.",
@@ -146,7 +149,7 @@ export const projects: Project[] = [
     code: `${GITHUB_URL}/Free-LLM`,
     accent: "#0066ff",
     summary:
-      "A directory of 34+ free LLM and AI APIs — permanent free tiers, trial credits and no-card options — synced daily from the live directory.",
+      "A directory of 34+ free LLM and AI APIs: permanent free tiers, trial credits and no-card options. Synced daily from the live directory.",
     caseStudy: {
       problem:
         "Free-tier information rots fast. A list written last quarter is mostly wrong, and the difference between a real free tier and a trial that expires in a week is rarely stated.",
@@ -180,7 +183,7 @@ export const projects: Project[] = [
       approach:
         "Make the data the material. Repository stats, languages and activity drive the visuals, and every section has to justify its space with something you can read.",
       result:
-        "A page that stays fast while looking like it belongs to a different class of site — static export, no server, no database.",
+        "A page that stays fast while looking like it belongs to a different class of site. Static export, no server, no database.",
       bullets: [
         "Live GitHub data, graceful static fallback",
         "3D centrepiece lazy-loaded behind a static frame",
@@ -205,7 +208,7 @@ export const timeline: TimelineEntry[] = [
   {
     marker: "Now",
     title: "Agentic tooling",
-    body: "Building the layer between a model and a finished artefact: harnesses, design languages and runtimes that make agent output usable rather than impressive.",
+    body: "Building the layer between a model and a finished thing: harnesses, design languages and runtimes that make agent output usable rather than impressive.",
     tags: ["Agents", "Design systems", "Local-first"],
   },
   {
@@ -223,7 +226,7 @@ export const timeline: TimelineEntry[] = [
   {
     marker: "2023",
     title: "Product engineering",
-    body: "Full-stack product work across TypeScript, Python and Go — the period where interfaces, data models and deployment stopped being separate problems.",
+    body: "Full-stack product work across TypeScript, Python and Go. The period where interfaces, data models and deployment stopped being separate problems.",
     tags: ["TypeScript", "Python", "Go"],
   },
   {
@@ -255,7 +258,7 @@ export const stackClusters: StackCluster[] = [
     label: "Web",
     color: "#00d4ff",
     nodes: ["React", "Next.js", "TypeScript", "Tailwind", "Three.js", "WebGL"],
-    note: "Interfaces with real depth — rendering, motion and state that stays predictable.",
+    note: "Interfaces with real depth: rendering, motion, and state that stays predictable.",
   },
   {
     id: "backend",
@@ -305,7 +308,7 @@ export const experiments: Experiment[] = [
   {
     name: "archify",
     status: "Active",
-    body: "An agent skill for architecture, workflow and data-flow diagrams — self-contained HTML with motion and crisp export.",
+    body: "An agent skill for architecture, workflow and data-flow diagrams. Self-contained HTML with motion and crisp export.",
     href: `${GITHUB_URL}/archify`,
   },
   {
@@ -323,7 +326,7 @@ export const experiments: Experiment[] = [
   {
     name: "loop-engineering",
     status: "Research",
-    body: "Notes on building reliable loops around non-deterministic systems — retries, budgets and stop conditions.",
+    body: "Notes on building reliable loops around non-deterministic systems: retries, budgets and stop conditions.",
     href: `${GITHUB_URL}/loop-engineering`,
   },
 ];

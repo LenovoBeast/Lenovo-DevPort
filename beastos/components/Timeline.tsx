@@ -74,8 +74,8 @@ export function Timeline() {
             built the stack
           </h2>
           <p className="body-copy mt-5 text-[0.9375rem]">
-            Not a résumé. A trace of what kept getting built, and what each phase left behind
-            in the toolchain.
+            A trace of what kept getting built, and what each phase left behind in the
+            toolchain.
           </p>
         </div>
 

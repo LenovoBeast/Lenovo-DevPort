@@ -2,14 +2,14 @@
 
 import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
 import { useRef } from "react";
-import { GITHUB_URL } from "@/lib/data";
+import { CONTACT_EMAIL, GITHUB_URL } from "@/lib/data";
 
 /**
  * Contact channels. `email` is the direct line; GitHub stays the route for
  * anything about a specific repository.
  */
 const CONTACT = {
-  email: "LenovoBeast.905@gmail.com",
+  email: CONTACT_EMAIL,
   linkedin: "https://www.linkedin.com/in/lenovobeast",
 };
 

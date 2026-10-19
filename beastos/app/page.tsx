@@ -85,7 +85,7 @@ export default function Page() {
             <div className="shell">
               <Reveal>
                 <SectionHeader
-                  eyebrow="05 — Ecosystem"
+                  eyebrow="05 — Repositories"
                   title="Public by default"
                   lede="Every repository orbits the same account. This map is drawn from the GitHub API on load, so it reflects what exists rather than what was true when the page was built."
                 />
