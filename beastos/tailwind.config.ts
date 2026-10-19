@@ -50,12 +50,24 @@ const config: Config = {
           "0%": { transform: "scale(1.03) translate3d(0, 0, 0)" },
           "100%": { transform: "scale(1.13) translate3d(-2.5%, -1.8%, 0)" },
         },
+        /* Breathing glow for the hero's focal spotlight. */
+        breathe: {
+          "0%, 100%": { transform: "scale(1)", opacity: "0.55" },
+          "50%": { transform: "scale(1.08)", opacity: "0.82" },
+        },
+        /* Volumetric light shafts — a long, lazy horizontal sway. */
+        shaftsway: {
+          "0%, 100%": { transform: "translate3d(-2.5%, 0, 0)", opacity: "0.5" },
+          "50%": { transform: "translate3d(2.5%, 0, 0)", opacity: "0.72" },
+        },
       },
       animation: {
         float: "float 7s ease-in-out infinite",
         pulseSoft: "pulseSoft 3.2s ease-in-out infinite",
         shimmer: "shimmer 2.4s linear infinite",
         kenburns: "kenburns 22s ease-in-out infinite alternate",
+        breathe: "breathe 7s ease-in-out infinite",
+        shaftsway: "shaftsway 19s ease-in-out infinite",
       },
     },
   },

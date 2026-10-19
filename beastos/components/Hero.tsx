@@ -1,10 +1,13 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useSpring, useTransform, useMotionValue } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { CONTACT_EMAIL } from "@/lib/data";
 import { useCoarsePointer, useMediaQuery } from "@/lib/useMedia";
 import { Stats } from "./Stats";
+import { Atmosphere } from "./Atmosphere";
+import { LQIP } from "./WorkbenchBand";
 
 // three.js is ~150KB gzipped; keep it out of the initial bundle entirely.
 const BeastCore = dynamic(() => import("./scene/BeastCore"), {
@@ -19,51 +22,160 @@ export function Hero() {
   const coarse = useCoarsePointer();
   const wide = useMediaQuery("(min-width: 768px)");
   const show3D = wide && !coarse && !reduced;
+  const enablePointer = wide && !coarse && !reduced;
+
+  const B = process.env.NEXT_PUBLIC_BASE_PATH || "";
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Pointer parallax — smoothed so it never snaps.
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const sx = useSpring(pointerX, { stiffness: 55, damping: 18, mass: 0.7 });
+  const sy = useSpring(pointerY, { stiffness: 55, damping: 18, mass: 0.7 });
+
+  // Scroll parallax — the stage lags behind the content for depth.
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const bgScrollY = useTransform(scrollYProgress, [0, 1], [0, reduced ? 0 : 48]);
+  const coreScrollScale = useTransform(scrollYProgress, [0, 1], [1, reduced ? 1 : 1.1]);
+  const contentFade = useTransform(scrollYProgress, [0, 0.85], [1, reduced ? 1 : 0]);
+
+  // Per-layer pointer offset (closer layers move more → parallax).
+  const bgX = useTransform(sx, (v) => v * -14);
+  const bgY = useTransform(sy, (v) => v * -10);
+  const shaftX = useTransform(sx, (v) => v * 26);
+  const shaftY = useTransform(sy, (v) => v * 18);
+  const coreX = useTransform(sx, (v) => v * 44);
+  const coreY = useTransform(sy, (v) => v * 28);
+  const spotX = useTransform(sx, (v) => v * 16);
+  const spotY = useTransform(sy, (v) => v * 10);
+
+  useEffect(() => {
+    if (!enablePointer) return;
+    const el = sectionRef.current;
+    if (!el) return;
+    const onMove = (e: PointerEvent) => {
+      const r = el.getBoundingClientRect();
+      pointerX.set((e.clientX - r.left) / r.width - 0.5);
+      pointerY.set((e.clientY - r.top) / r.height - 0.5);
+    };
+    el.addEventListener("pointermove", onMove);
+    return () => el.removeEventListener("pointermove", onMove);
+  }, [enablePointer, pointerX, pointerY]);
 
   return (
     <section
       id="top"
+      ref={sectionRef}
       className="relative flex min-h-[100dvh] items-center overflow-hidden pb-12 pt-24 sm:pb-16"
     >
-      {/* Layered atmosphere: grid, two light sources, grain. */}
-      <div className="pointer-events-none absolute inset-0 grid-veil" aria-hidden="true" />
-      <div
-        className="pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(0,102,255,0.16),transparent_68%)] blur-2xl"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute bottom-[-12%] right-[-8%] h-[460px] w-[560px] rounded-full bg-[radial-gradient(circle,rgba(124,58,237,0.14),transparent_70%)] blur-2xl"
-        aria-hidden="true"
-      />
+      {/* ============ Cinematic backdrop (depth layers) ============ */}
+      {/* Camera settle: the whole stage eases in from a touch of scale + haze. */}
+      <motion.div
+        initial={reduced ? false : { scale: 1.06, opacity: 0.45 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 1.5, ease }}
+        style={{ y: bgScrollY }}
+        className="absolute inset-0 z-0"
+      >
+        {/* Artwork plane — the workshop, focal on the collaborating robots.
+            Always scaled past 1 so pointer + scroll parallax never reveal an edge. */}
+        <motion.div
+          style={{
+            x: enablePointer ? bgX : 0,
+            y: enablePointer ? bgY : 0,
+            scale: 1.12,
+          }}
+          className="absolute inset-0"
+        >
+          <picture>
+            <source
+              media="(max-width: 767px)"
+              type="image/webp"
+              srcSet={`${B}/media/lab-bg-mobile-500.webp 500w, ${B}/media/lab-bg-mobile-800.webp 800w`}
+              sizes="100vw"
+            />
+            <source
+              type="image/webp"
+              srcSet={`${B}/media/lab-bg-800.webp 800w, ${B}/media/lab-bg-1200.webp 1200w, ${B}/media/lab-bg-1776.webp 1776w`}
+              sizes="100vw"
+            />
+            <img
+              src={`${B}/media/lab-bg-1200.jpg`}
+              alt=""
+              width={1776}
+              height={896}
+              loading="eager"
+              decoding="async"
+              className="h-full w-full object-cover object-[72%_center]"
+              style={{
+                backgroundImage: `url(${LQIP})`,
+                backgroundSize: "cover",
+                backgroundPosition: "right center",
+              }}
+            />
+          </picture>
+        </motion.div>
+      </motion.div>
 
-      {/* Spatial centrepiece */}
-      {show3D && (
+      {/* Volumetric light shafts — lazy horizontal sway. */}
+      <motion.div
+        style={enablePointer ? { x: shaftX, y: shaftY } : undefined}
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0"
+      >
         <div
-          className="pointer-events-none absolute inset-y-0 left-[34%] right-0 opacity-90 [mask-image:radial-gradient(ellipse_at_center,black_28%,transparent_74%)]"
+          className="absolute inset-0 animate-shaftsway opacity-70 blur-2xl [mask-image:radial-gradient(125%_125%_at_72%_28%,#000_0%,transparent_78%)]"
+          style={{
+            backgroundImage:
+              "linear-gradient(102deg, transparent 36%, rgba(0,212,255,0.10) 49%, transparent 62%), linear-gradient(78deg, transparent 28%, rgba(124,58,237,0.09) 45%, transparent 60%)",
+          }}
+        />
+      </motion.div>
+
+      {/* Drifting atmosphere (bokeh) — pauses when offscreen / hidden / reduced. */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
+        <Atmosphere density={wide ? 46 : 22} className="h-full w-full" />
+      </div>
+
+      {/* Focal spotlight over the robots — slow breathing. */}
+      <motion.div
+        style={enablePointer ? { x: spotX, y: spotY } : undefined}
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0"
+      >
+        <div className="absolute right-[6%] top-1/2 h-[460px] w-[560px] -translate-y-1/2 animate-breathe rounded-full bg-[radial-gradient(circle,rgba(0,212,255,0.18),transparent_70%)] blur-2xl" />
+      </motion.div>
+
+      {/* Living constellation — the agent-system intelligence coordinating the work. */}
+      {show3D && (
+        <motion.div
+          style={{ x: coreX, y: coreY, scale: coreScrollScale }}
           aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 left-[34%] right-0 z-0 opacity-80 [mask-image:radial-gradient(ellipse_at_center,black_28%,transparent_74%)]"
         >
           <BeastCore />
-        </div>
+        </motion.div>
       )}
 
-      {/* Static stand-in when 3D is off (mobile, touch, reduced motion). */}
-      {!show3D && (
-        <div
-          className="pointer-events-none absolute inset-x-0 top-1/2 h-[420px] -translate-y-1/2 opacity-70"
-          aria-hidden="true"
-        >
-          <div className="absolute left-1/2 top-1/2 h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10" />
-          <div className="absolute left-1/2 top-1/2 h-[360px] w-[360px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/[0.06]" />
-          <div className="absolute left-1/2 top-1/2 h-[180px] w-[180px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(0,212,255,0.22),transparent_70%)] blur-xl" />
-        </div>
-      )}
+      {/* ============ Scrims: readability + cinematic vignette ============ */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#050505_0%,rgba(5,5,5,0.62)_33%,transparent_60%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_top,#050505_0%,transparent_28%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,#050505_0%,transparent_18%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(125%_95%_at_50%_42%,transparent_52%,rgba(5,5,5,0.72)_100%)]" />
+        <div className="absolute inset-0 grid-veil opacity-30" />
+      </div>
 
-      <div className="shell relative z-10">
+      {/* ============ Foreground: the arrival ============ */}
+      <motion.div style={{ opacity: contentFade }} className="shell relative z-10">
         <div className="max-w-[46rem]">
           <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease, delay: 0.1 }}
+            initial={reduced ? false : { opacity: 0, y: 14, filter: "blur(6px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.6, ease, delay: 0.15 }}
             className="eyebrow flex items-center gap-3"
           >
             <span className="h-px w-8 bg-white/20" />
@@ -71,27 +183,27 @@ export function Hero() {
           </motion.p>
 
           <motion.h1
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, ease, delay: 0.18 }}
+            initial={reduced ? false : { opacity: 0, y: 20, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.9, ease, delay: 0.24 }}
             className="display mt-6 text-[clamp(2.75rem,7.2vw,5.8rem)]"
           >
             Lenovo Beast
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease, delay: 0.28 }}
+            initial={reduced ? false : { opacity: 0, y: 16, filter: "blur(6px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.85, ease, delay: 0.34 }}
             className="mt-5 text-[clamp(1.1rem,2.4vw,1.6rem)] font-medium tracking-[-0.02em] text-fg-soft"
           >
             I build design tooling and agent systems.
           </motion.p>
 
           <motion.p
-            initial={{ opacity: 0, y: 14 }}
+            initial={reduced ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease, delay: 0.36 }}
+            transition={{ duration: 0.85, ease, delay: 0.42 }}
             className="body-copy mt-6 text-[0.9375rem] sm:text-[1.0625rem]"
           >
             Design tooling, agent runtimes, and a few utilities that exist because nothing
@@ -99,9 +211,9 @@ export function Hero() {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 14 }}
+            initial={reduced ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease, delay: 0.44 }}
+            transition={{ duration: 0.85, ease, delay: 0.5 }}
             className="mt-9 flex flex-wrap items-center gap-3"
           >
             <a
@@ -133,21 +245,21 @@ export function Hero() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={reduced ? false : { opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease, delay: 0.54 }}
+            transition={{ duration: 0.9, ease, delay: 0.58 }}
             className="mt-10"
           >
             <Stats />
           </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Scroll cue */}
       <motion.div
-        initial={{ opacity: 0 }}
+        initial={reduced ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.1, duration: 0.8 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
         className="pointer-events-none absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 lg:flex"
         aria-hidden="true"
       >

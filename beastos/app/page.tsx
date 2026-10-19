@@ -31,11 +31,13 @@ function SectionHeader({
 export default function Page() {
   return (
     <>
-      {/* Fixed atmosphere shared by every section */}
+      {/* Fixed atmosphere shared by every section — breathes so the world feels
+          alive everywhere, not only on the hero. Disabled under reduced motion. */}
       <div className="pointer-events-none fixed inset-0 z-0" aria-hidden="true">
         <div className="absolute inset-0 bg-[#050505]" />
         <div className="absolute inset-0 grid-veil opacity-60" />
-        <div className="absolute left-1/2 top-0 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(0,102,255,0.10),transparent_65%)] blur-3xl" />
+        <div className="absolute left-1/2 top-0 h-[600px] w-[900px] -translate-x-1/2 animate-breathe rounded-full bg-[radial-gradient(circle,rgba(0,102,255,0.10),transparent_65%)] blur-3xl" />
+        <div className="absolute bottom-[-10%] right-[-6%] h-[520px] w-[680px] animate-breathe rounded-full bg-[radial-gradient(circle,rgba(124,58,237,0.08),transparent_68%)] blur-3xl [animation-delay:-3.5s]" />
       </div>
 
       <div className="relative z-10">
