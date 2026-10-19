@@ -78,6 +78,12 @@ const personSchema = {
   image: `${SITE}/lenovo-beast-512.png`,
   email: `mailto:${CONTACT_EMAIL}`,
   jobTitle: "Developer",
+  address: {
+    "@type": "PostalAddress",
+    addressRegion: "District of Columbia, Maryland, Virginia",
+    addressCountry: "US",
+  },
+  workLocation: { "@type": "Place", name: "Remote, worldwide" },
   sameAs: ["https://github.com/lenovobeast"],
   knowsAbout: ["Design tooling", "Agent systems", "Open source", "TypeScript", "Python", "Go"],
 };

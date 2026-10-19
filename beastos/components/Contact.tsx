@@ -147,7 +147,7 @@ export function Contact() {
         </ul>
 
         <p className="mt-5 font-mono text-[0.75rem] leading-relaxed text-white/25">
-          Availability: open to collaboration on design tooling and agent infrastructure.
+          Based in the DMV (DC, MD, VA). Available everywhere. Timing on request.
         </p>
       </div>
     </div>

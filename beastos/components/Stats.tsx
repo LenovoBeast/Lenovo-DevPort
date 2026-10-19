@@ -96,9 +96,9 @@ export function Stats() {
       <div className="flex flex-col gap-1">
         <span className="flex items-center gap-2 font-mono text-[0.8125rem] font-medium leading-none text-white">
           <span className="h-1.5 w-1.5 rounded-full bg-success shadow-[0_0_10px_1px_rgba(16,185,129,0.7)]" />
-          Open
+          DMV
         </span>
-        <span className="text-[0.75rem] uppercase tracking-[0.18em] text-fg-mute">To collaborate</span>
+        <span className="text-[0.75rem] uppercase tracking-[0.18em] text-fg-mute">DC · MD · VA · remote</span>
       </div>
     </dl>
   );
