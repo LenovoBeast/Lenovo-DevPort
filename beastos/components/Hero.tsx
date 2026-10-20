@@ -1,8 +1,8 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { motion, useReducedMotion, useScroll, useSpring, useTransform, useMotionValue } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { motion, useReducedMotion, useScroll, useSpring, useTransform, useMotionValue, useMotionTemplate } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { CONTACT_EMAIL } from "@/lib/data";
 import { useCoarsePointer, useMediaQuery } from "@/lib/useMedia";
 import { Stats } from "./Stats";
@@ -33,6 +33,23 @@ export function Hero() {
   const sx = useSpring(pointerX, { stiffness: 55, damping: 18, mass: 0.7 });
   const sy = useSpring(pointerY, { stiffness: 55, damping: 18, mass: 0.7 });
 
+  // The torch: a hole in the scrim that follows the pointer, so the visitor
+  // lights up the workshop themselves. Clamped to the artwork side so the
+  // headline is never left without its scrim.
+  const torchX = useMotionValue(72);
+  const torchY = useMotionValue(48);
+  const torchXS = useSpring(torchX, { stiffness: 90, damping: 22, mass: 0.6 });
+  const torchYS = useSpring(torchY, { stiffness: 90, damping: 22, mass: 0.6 });
+  const scrimMask = useMotionTemplate`radial-gradient(circle 250px at ${torchXS}% ${torchYS}%, transparent 0%, transparent 40%, #000 74%)`;
+  const torchGlow = useMotionTemplate`radial-gradient(circle 250px at ${torchXS}% ${torchYS}%, rgba(255,255,255,0.06) 0%, rgba(0,212,255,0.04) 38%, transparent 68%)`;
+  const [torchUsed, setTorchUsed] = useState(false);
+
+  // Magnetic primary action.
+  const ctaX = useMotionValue(0);
+  const ctaY = useMotionValue(0);
+  const ctaXS = useSpring(ctaX, { stiffness: 220, damping: 16, mass: 0.4 });
+  const ctaYS = useSpring(ctaY, { stiffness: 220, damping: 16, mass: 0.4 });
+
   // Scroll parallax — the stage lags behind the content for depth.
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -41,6 +58,8 @@ export function Hero() {
   const bgScrollY = useTransform(scrollYProgress, [0, 1], [0, reduced ? 0 : 48]);
   const coreScrollScale = useTransform(scrollYProgress, [0, 1], [1, reduced ? 1 : 1.1]);
   const contentFade = useTransform(scrollYProgress, [0, 0.85], [1, reduced ? 1 : 0]);
+  // The torch hint belongs to the hero only; retire it as soon as we scroll.
+  const hintOpacity = useTransform(scrollYProgress, [0, 0.06], [1, 0]);
 
   // Per-layer pointer offset (closer layers move more → parallax).
   const bgX = useTransform(sx, (v) => v * -14);
@@ -58,8 +77,14 @@ export function Hero() {
     if (!el) return;
     const onMove = (e: PointerEvent) => {
       const r = el.getBoundingClientRect();
-      pointerX.set((e.clientX - r.left) / r.width - 0.5);
-      pointerY.set((e.clientY - r.top) / r.height - 0.5);
+      const px = (e.clientX - r.left) / r.width;
+      const py = (e.clientY - r.top) / r.height;
+      pointerX.set(px - 0.5);
+      pointerY.set(py - 0.5);
+      // Clamp the torch to the artwork side; the copy keeps its scrim.
+      torchX.set(Math.min(96, Math.max(52, px * 100)));
+      torchY.set(Math.min(88, Math.max(12, py * 100)));
+      setTorchUsed(true);
     };
     el.addEventListener("pointermove", onMove);
     return () => el.removeEventListener("pointermove", onMove);
@@ -161,13 +186,32 @@ export function Hero() {
       )}
 
       {/* ============ Scrims: readability + cinematic vignette ============ */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
+      {/* Masked by the torch: transparent under the pointer, opaque elsewhere,
+          so moving the cursor reveals the ungraded artwork beneath. */}
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0"
+        style={
+          enablePointer
+            ? { WebkitMaskImage: scrimMask, maskImage: scrimMask }
+            : undefined
+        }
+      >
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#050505_0%,rgba(5,5,5,0.62)_33%,transparent_60%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_top,#050505_0%,transparent_28%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,#050505_0%,transparent_18%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(125%_95%_at_50%_42%,transparent_52%,rgba(5,5,5,0.72)_100%)]" />
         <div className="absolute inset-0 grid-veil opacity-30" />
-      </div>
+      </motion.div>
+
+      {/* Soft light at the torch edge, so the reveal reads as a lens. */}
+      {enablePointer && (
+        <motion.div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0"
+          style={{ background: torchGlow }}
+        />
+      )}
 
       {/* ============ Foreground: the arrival ============ */}
       <motion.div style={{ opacity: contentFade }} className="shell relative z-10">
@@ -204,10 +248,10 @@ export function Hero() {
             initial={reduced ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, ease, delay: 0.42 }}
-            className="body-copy mt-6 text-[0.9375rem] sm:text-[1.0625rem]"
+            className="body-copy mt-6 max-w-[36rem] text-[0.9375rem] sm:text-[1.0625rem]"
           >
-            Design tooling, agent runtimes, and a few utilities that exist because nothing
-            else did. It is all public, and most of it runs.
+            Runtimes, harnesses, and the utilities that exist because nothing else did.
+            Everything public. Most of it running.
           </motion.p>
 
           <motion.div
@@ -216,8 +260,19 @@ export function Hero() {
             transition={{ duration: 0.85, ease, delay: 0.5 }}
             className="mt-9 flex flex-wrap items-center gap-3"
           >
-            <a
+            <motion.a
               href="#work"
+              style={enablePointer ? { x: ctaXS, y: ctaYS } : undefined}
+              onPointerMove={(e) => {
+                if (!enablePointer) return;
+                const r = e.currentTarget.getBoundingClientRect();
+                ctaX.set(((e.clientX - (r.left + r.width / 2)) / r.width) * 12);
+                ctaY.set(((e.clientY - (r.top + r.height / 2)) / r.height) * 10);
+              }}
+              onPointerLeave={() => {
+                ctaX.set(0);
+                ctaY.set(0);
+              }}
               className="group relative inline-flex h-12 items-center gap-2.5 overflow-hidden rounded-full bg-white px-6 text-[0.9375rem] font-semibold text-black transition-transform duration-200 ease-out active:scale-[0.98]"
             >
               <span className="relative z-10">Explore the work</span>
@@ -231,7 +286,7 @@ export function Hero() {
               >
                 <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-            </a>
+            </motion.a>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
               className="inline-flex h-12 items-center gap-2.5 rounded-full border border-white/12 bg-white/[0.04] px-6 text-[0.9375rem] font-medium text-fg-soft backdrop-blur-md transition-colors duration-200 hover:border-white/25 hover:bg-white/[0.08] hover:text-white"
@@ -254,6 +309,27 @@ export function Hero() {
           </motion.div>
         </div>
       </motion.div>
+
+      {/* Discoverability for the torch — retires after the first move or scroll. */}
+      {enablePointer && !torchUsed && (
+        <motion.div
+          style={{ opacity: hintOpacity }}
+          className="pointer-events-none absolute bottom-6 right-6 z-10 hidden lg:block"
+          aria-hidden="true"
+        >
+          <motion.div
+            initial={reduced ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.8, duration: 0.9 }}
+            className="flex items-center gap-2.5"
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-secondary/70" />
+            <span className="font-mono text-[0.6875rem] uppercase tracking-[0.24em] text-white/35">
+              Move to light the workshop
+            </span>
+          </motion.div>
+        </motion.div>
+      )}
 
       {/* Scroll cue */}
       <motion.div

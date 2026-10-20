@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { timeline } from "@/lib/data";
 import { useReducedMotionSafe } from "@/lib/useMedia";
 
@@ -12,6 +12,24 @@ export function Timeline() {
   const root = useRef<HTMLDivElement>(null);
   const line = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotionSafe();
+
+  // A small live element: local time in the DMV, so the section is never a
+  // static wall of text. Empty until mounted to avoid a hydration mismatch.
+  const [clock, setClock] = useState("");
+  useEffect(() => {
+    const tick = () =>
+      setClock(
+        new Intl.DateTimeFormat("en-US", {
+          timeZone: "America/New_York",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        }).format(new Date()),
+      );
+    tick();
+    const id = window.setInterval(tick, 30_000);
+    return () => window.clearInterval(id);
+  }, []);
 
   useEffect(() => {
     if (reduced) return;
@@ -77,6 +95,54 @@ export function Timeline() {
             A trace of what kept getting built, and what each phase left behind in the
             toolchain.
           </p>
+
+          {/* Live now panel: gives the sticky column substance instead of air. */}
+          <div className="mt-9 rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+            <div className="flex items-center justify-between">
+              <span className="font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-white/45">
+                Now · DMV
+              </span>
+              <span className="flex items-center gap-2 font-mono text-[0.75rem] tabular-nums text-white/75">
+                <span className="relative flex h-1.5 w-1.5" aria-hidden="true">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-secondary/60 motion-safe:animate-ping" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-secondary" />
+                </span>
+                {clock || "--:--"}
+              </span>
+            </div>
+
+            <dl className="mt-4 space-y-3">
+              <div>
+                <dt className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-white/35">
+                  Building
+                </dt>
+                <dd className="mt-1 text-[0.9375rem] font-medium text-fg-soft">
+                  Agent harnesses and the design language they run on.
+                </dd>
+              </div>
+              <div>
+                <dt className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-white/35">
+                  Open to
+                </dt>
+                <dd className="mt-1 text-[0.9375rem] font-medium text-fg-soft">
+                  Select product and design-engineering work.
+                </dd>
+              </div>
+            </dl>
+
+            <div className="mt-4 flex items-end gap-1.5" aria-hidden="true">
+              {[0.35, 0.62, 0.45, 0.9, 0.55, 0.74, 0.42].map((v, i) => (
+                <span
+                  key={i}
+                  className="w-1.5 rounded-full bg-gradient-to-t from-secondary/25 to-secondary/80 motion-safe:animate-pulse"
+                  style={{
+                    height: `${Math.round(v * 26 + 8)}px`,
+                    animationDelay: `${i * 130}ms`,
+                  }}
+                />
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Steps */}

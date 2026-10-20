@@ -96,8 +96,8 @@ export function Ecosystem() {
               cy="400"
               r={r}
               fill="none"
-              stroke="rgba(255,255,255,0.09)"
-              strokeWidth="1"
+              stroke="rgba(255,255,255,0.16)"
+              strokeWidth="1.1"
               strokeDasharray={i === 1 ? "2 6" : undefined}
             />
           ))}
@@ -105,9 +105,9 @@ export function Ecosystem() {
           <circle cx="400" cy="400" r="120" fill="url(#coreGlow)" />
 
           {/* Core */}
-          <circle cx="400" cy="400" r="34" fill="#050505" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5" />
+          <circle cx="400" cy="400" r="34" fill="#050505" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" />
           <circle cx="400" cy="400" r="6" fill="#00d4ff" />
-          <text x="400" y="452" textAnchor="middle" fontSize="11" fill="rgba(255,255,255,0.45)" fontFamily="ui-monospace, monospace" letterSpacing="2">
+          <text x="400" y="452" textAnchor="middle" fontSize="11" fill="rgba(255,255,255,0.6)" fontFamily="ui-monospace, monospace" letterSpacing="2">
             LENOVO BEAST
           </text>
 
@@ -138,17 +138,17 @@ export function Ecosystem() {
                         fill="transparent"
                       />
                       {isActive && (
-                        <circle cx={x} cy={y} r="14" fill={colorFor(repo.language)} opacity="0.18" />
+                        <circle cx={x} cy={y} r="14" fill={colorFor(repo.language)} opacity="0.26" />
                       )}
                       <circle
                         cx={x}
                         cy={y}
-                        r={isActive ? 6 : 4}
+                        r={isActive ? 7.5 : 5.2}
                         fill={colorFor(repo.language)}
-                        opacity={isActive ? 1 : 0.75}
+                        opacity={isActive ? 1 : 0.95}
                       />
                       {repo.homepage && (
-                        <circle cx={x} cy={y} r={isActive ? 9 : 7} fill="none" stroke={colorFor(repo.language)} strokeWidth="1" opacity="0.45" />
+                        <circle cx={x} cy={y} r={isActive ? 10 : 8} fill="none" stroke={colorFor(repo.language)} strokeWidth="1.2" opacity="0.6" />
                       )}
                     </g>
                   );
