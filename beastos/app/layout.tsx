@@ -45,13 +45,20 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
     url: SITE,
-    images: [{ url: `${SITE}/lenovo-beast-512.png`, width: 512, height: 512 }],
+    images: [
+      {
+        url: `${SITE}/media/og.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Two service robots collaborating over a glowing design canvas in a dark night workshop.",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
-    images: [`${SITE}/lenovo-beast-512.png`],
+    images: [`${SITE}/media/og.jpg`],
   },
   robots: { index: true, follow: true },
   icons: {

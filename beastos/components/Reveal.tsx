@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 
 type RevealProps = {
@@ -13,17 +14,27 @@ type RevealProps = {
 };
 
 /**
- * Viewport reveal. Framer handles the animation so CSS and JS never fight over
- * the same transform, and reduced motion resolves straight to the end state.
+ * Viewport reveal. Reduced motion is read straight from matchMedia rather than
+ * a library hook: when animations are suppressed the element renders in its
+ * end state, so content can never be stranded at opacity 0.
  */
 export function Reveal({ children, delay = 0, y = 22, className, as = "div" }: RevealProps) {
-  const reduced = useReducedMotion();
-  const MotionTag = motion[as];
+  const [reduced, setReduced] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(mq.matches);
+    const onChange = () => setReduced(mq.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
 
   if (reduced) {
     const Tag = as;
     return <Tag className={className}>{children}</Tag>;
   }
+
+  const MotionTag = motion[as];
 
   return (
     <MotionTag

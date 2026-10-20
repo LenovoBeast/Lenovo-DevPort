@@ -3,50 +3,104 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { projects, type Project } from "@/lib/data";
+import { scenes } from "@/lib/scenes";
 
-/** Generated cover — no screenshots to fake, so the visual is the system itself. */
+/**
+ * Project cover. A real scene from the night-shift world when one exists,
+ * with the generated gradient kept as a graceful fallback. Scrims guarantee
+ * the labels stay readable over the photograph.
+ */
 function Cover({ project, ratio = "aspect-[16/9]" }: { project: Project; ratio?: string }) {
+  const scene = scenes[project.slug];
+
   return (
     <div
-      className={`relative ${ratio} overflow-hidden rounded-2xl border border-white/[0.07]`}
-      style={{
-        background: `radial-gradient(120% 105% at 16% 0%, ${project.accent}70 0%, ${project.accent}2e 42%, rgba(8,8,8,0.93) 76%, #060606 100%)`,
-      }}
+      className={`relative ${ratio} overflow-hidden rounded-2xl border border-white/[0.07] bg-[#080808] transition-colors duration-300 group-hover:border-white/15`}
+      style={
+        scene
+          ? undefined
+          : {
+              background: `radial-gradient(120% 105% at 16% 0%, ${project.accent}70 0%, ${project.accent}2e 42%, rgba(8,8,8,0.93) 76%, #060606 100%)`,
+            }
+      }
     >
-      <span
-        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute inset-0 opacity-[0.6]"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-          maskImage: "radial-gradient(ellipse at 30% 20%, #000, transparent 78%)",
-          WebkitMaskImage: "radial-gradient(ellipse at 30% 20%, #000, transparent 78%)",
-        }}
-        aria-hidden="true"
-      />
-      {/* Project name as a watermark. A single letter read as an artefact; the
-          full word reads as a decision. */}
-      <span
-        className="display pointer-events-none absolute -bottom-[0.12em] left-5 right-5 select-none truncate text-[clamp(1.75rem,4.4vw,3.25rem)] leading-none opacity-[0.15]"
-        style={{ color: project.accent }}
-        aria-hidden="true"
-      >
-        {project.name}
-      </span>
+      {scene ? (
+        <>
+          <picture>
+            <source
+              type="image/webp"
+              srcSet={`${scene.base}-800.webp 800w, ${scene.base}-1600.webp 1600w`}
+              sizes="(min-width: 1024px) 60vw, 100vw"
+            />
+            <img
+              src={`${scene.base}-1200.jpg`}
+              alt={scene.alt}
+              width={1678}
+              height={944}
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full object-cover object-[center_42%] transition-transform duration-[900ms] ease-out group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+              style={{
+                backgroundImage: `url(${scene.lqip})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            />
+          </picture>
+          <div
+            className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/70 to-transparent"
+            aria-hidden="true"
+          />
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black/85 via-black/25 to-transparent"
+            aria-hidden="true"
+          />
+          <div
+            className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/45 via-transparent to-transparent"
+            aria-hidden="true"
+          />
+          <div
+            className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/[0.06]"
+            aria-hidden="true"
+          />
+        </>
+      ) : (
+        <>
+          <span
+            className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent"
+            aria-hidden="true"
+          />
+          <div
+            className="absolute inset-0 opacity-[0.6]"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px)",
+              backgroundSize: "40px 40px",
+              maskImage: "radial-gradient(ellipse at 30% 20%, #000, transparent 78%)",
+              WebkitMaskImage: "radial-gradient(ellipse at 30% 20%, #000, transparent 78%)",
+            }}
+            aria-hidden="true"
+          />
+          <span
+            className="display pointer-events-none absolute -bottom-[0.12em] left-5 right-5 select-none truncate text-[clamp(1.75rem,4.4vw,3.25rem)] leading-none opacity-[0.15]"
+            style={{ color: project.accent }}
+            aria-hidden="true"
+          >
+            {project.name}
+          </span>
+        </>
+      )}
+
       <div className="absolute left-5 top-5 flex items-center gap-2">
         <span
           className="h-1.5 w-1.5 rounded-full"
           style={{ backgroundColor: project.accent, boxShadow: `0 0 12px 2px ${project.accent}88` }}
         />
-        <span className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-white/55">
+        <span className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-white/70 [text-shadow:0_1px_8px_rgba(0,0,0,0.8)]">
           {project.platform}
         </span>
       </div>
-      <span className="absolute right-5 top-5 font-mono text-[0.6875rem] text-white/35">
+      <span className="absolute right-5 top-5 font-mono text-[0.6875rem] text-white/55 [text-shadow:0_1px_8px_rgba(0,0,0,0.8)]">
         {project.year}
       </span>
     </div>
@@ -76,6 +130,7 @@ function CaseStudy({ project, onClose }: { project: Project; onClose: () => void
     { label: "Approach", value: project.caseStudy.approach },
     { label: "Result", value: project.caseStudy.result },
   ];
+  const scene = scenes[project.slug];
 
   return (
     <motion.div
@@ -118,6 +173,24 @@ function CaseStudy({ project, onClose }: { project: Project; onClose: () => void
             </svg>
           </button>
         </div>
+
+        {scene && (
+          <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-white/10">
+            <img
+              src={`${scene.base}-800.webp`}
+              alt={scene.alt}
+              width={1600}
+              height={900}
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full object-cover object-[center_42%]"
+            />
+            <div
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0b0b0b] via-transparent to-transparent"
+              aria-hidden="true"
+            />
+          </div>
+        )}
 
         <div className="px-6 py-7 sm:px-8">
           <p className="text-[1.0625rem] text-fg-soft">{project.summary}</p>
@@ -238,11 +311,24 @@ export function Work() {
             <button
               type="button"
               onClick={() => setOpen(p)}
-              className="group grid w-full grid-cols-[1fr_auto] items-center gap-4 py-5 text-left transition-colors hover:bg-white/[0.02] sm:grid-cols-[2.5rem_1fr_auto_auto] sm:gap-6"
+              className="group grid w-full grid-cols-[auto_1fr_auto] items-center gap-4 py-4 text-left transition-colors hover:bg-white/[0.02] sm:grid-cols-[2.5rem_auto_1fr_auto_auto] sm:gap-5"
             >
               <span className="hidden font-mono text-[0.75rem] text-white/30 sm:block">
                 {String(projects.indexOf(p) + 1).padStart(2, "0")}
               </span>
+              {scenes[p.slug] && (
+                <span className="relative h-14 w-24 shrink-0 overflow-hidden rounded-lg border border-white/10 bg-[#0b0b0b]">
+                  <img
+                    src={`${scenes[p.slug]!.base}-400.webp`}
+                    alt=""
+                    width={400}
+                    height={225}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover object-[center_42%] opacity-85 transition-opacity duration-300 group-hover:opacity-100"
+                  />
+                </span>
+              )}
               <span className="min-w-0">
                 <span className="block text-[1.0625rem] font-semibold tracking-[-0.01em]">{p.name}</span>
                 <span className="mt-0.5 block truncate text-[0.8125rem] text-fg-mute">{p.tagline}</span>
