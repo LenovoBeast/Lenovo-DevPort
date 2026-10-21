@@ -69,15 +69,33 @@ export function Nav() {
           ))}
         </nav>
 
-        <a
-          href={GITHUB_URL}
-          target="_blank"
-          rel="noreferrer"
-          className="group flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.04] px-3.5 py-1.5 text-[0.8125rem] font-medium text-fg-soft transition-colors hover:border-white/25 hover:bg-white/[0.08] hover:text-white"
-        >
-          <span className="h-1.5 w-1.5 rounded-full bg-success shadow-[0_0_10px_1px_rgba(16,185,129,0.6)]" />
-          GitHub
-        </a>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new Event("beast:cmdk"))}
+            aria-label="Open command palette"
+            className="flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.04] px-3 py-1.5 text-[0.8125rem] font-medium text-fg-soft transition-colors hover:border-white/25 hover:bg-white/[0.08] hover:text-white"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
+              <path d="m20 20-3.5-3.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+            <span className="hidden sm:inline">Search</span>
+            <kbd className="hidden rounded border border-white/15 px-1.5 py-0.5 font-mono text-[0.625rem] text-white/45 md:inline">
+              ⌘K
+            </kbd>
+          </button>
+
+          <a
+            href={GITHUB_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="group flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.04] px-3.5 py-1.5 text-[0.8125rem] font-medium text-fg-soft transition-colors hover:border-white/25 hover:bg-white/[0.08] hover:text-white"
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-success shadow-[0_0_10px_1px_rgba(16,185,129,0.6)]" />
+            GitHub
+          </a>
+        </div>
       </div>
     </motion.header>
   );

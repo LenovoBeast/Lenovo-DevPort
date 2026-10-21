@@ -274,6 +274,7 @@ export function Work() {
         {/* Lead project — asymmetric, spans more columns */}
         <button
           type="button"
+          id={`project-${lead.slug}`}
           onClick={() => setOpen(lead)}
           className="group col-span-full flex flex-col text-left lg:col-span-7"
         >
@@ -293,7 +294,7 @@ export function Work() {
 
         <div className="col-span-full grid gap-4 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1">
           {[second, rest[0]].filter(Boolean).map((p) => (
-            <button key={p.slug} type="button" onClick={() => setOpen(p)} className="group flex flex-col text-left">
+            <button key={p.slug} type="button" id={`project-${p.slug}`} onClick={() => setOpen(p)} className="group flex flex-col text-left">
               <Cover project={p} />
               <div className="mt-4">
                 <h3 className="text-[1.0625rem] font-bold tracking-[-0.02em]">{p.name}</h3>
@@ -310,6 +311,7 @@ export function Work() {
           <li key={p.slug}>
             <button
               type="button"
+              id={`project-${p.slug}`}
               onClick={() => setOpen(p)}
               className="group grid w-full grid-cols-[auto_1fr_auto] items-center gap-4 py-4 text-left transition-colors hover:bg-white/[0.02] sm:grid-cols-[2.5rem_auto_1fr_auto_auto] sm:gap-5"
             >

@@ -6,6 +6,7 @@ import { Work } from "@/components/Work";
 import { Ecosystem } from "@/components/Ecosystem";
 import { Lab } from "@/components/Lab";
 import { WorkbenchBand } from "@/components/WorkbenchBand";
+import { CommandPalette } from "@/components/CommandPalette";
 import { Contact } from "@/components/Contact";
 import { Reveal } from "@/components/Reveal";
 import { GITHUB_URL } from "@/lib/data";
@@ -146,6 +147,8 @@ export default function Page() {
             </div>
           </div>
         </footer>
+
+        <CommandPalette />
       </div>
     </>
   );

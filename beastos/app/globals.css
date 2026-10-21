@@ -213,3 +213,28 @@
     transform: rotate(360deg);
   }
 }
+
+/* Command palette: briefly ring the project a command jumped to. */
+@keyframes cmdk-flash {
+  0%,
+  100% {
+    outline-color: rgba(0, 212, 255, 0);
+  }
+  22% {
+    outline-color: rgba(0, 212, 255, 0.7);
+  }
+}
+
+.cmdk-flash {
+  outline: 2px solid transparent;
+  outline-offset: 8px;
+  border-radius: 1rem;
+  animation: cmdk-flash 1.35s ease-out 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cmdk-flash {
+    animation: none;
+    outline-color: rgba(0, 212, 255, 0.55);
+  }
+}
