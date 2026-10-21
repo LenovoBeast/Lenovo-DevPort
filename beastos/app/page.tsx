@@ -7,6 +7,7 @@ import { Ecosystem } from "@/components/Ecosystem";
 import { Lab } from "@/components/Lab";
 import { WorkbenchBand } from "@/components/WorkbenchBand";
 import { CommandPalette } from "@/components/CommandPalette";
+import { PaletteTrigger } from "@/components/PaletteTrigger";
 import { Contact } from "@/components/Contact";
 import { Reveal } from "@/components/Reveal";
 import { GITHUB_URL } from "@/lib/data";
@@ -137,6 +138,7 @@ export default function Page() {
               </span>
             </div>
             <div className="flex flex-wrap items-center gap-5 font-mono text-[0.75rem] uppercase tracking-[0.16em] text-white/30">
+              <PaletteTrigger />
               <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="hover:text-white">
                 GitHub
               </a>
